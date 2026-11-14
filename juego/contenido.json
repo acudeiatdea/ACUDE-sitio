@@ -1,0 +1,1086 @@
+{
+  "generado": "2026-11-11T15:30:33.216Z",
+  "hoja": "1AlWKTbMPqXxdjl3wGOUrC9fqCLIQje6jQqzXRt8Wc00",
+  "reglas": {
+    "afirmaciones_por_capitulo": 4,
+    "situaciones_por_capitulo": 2
+  },
+  "capitulos": [
+    {
+      "id": "C01",
+      "estado": "por validar",
+      "sensible": false,
+      "orden": 1,
+      "nombre": "El campus",
+      "ruta": "campus",
+      "intro": "Eco llega al campus y los pasillos están en silencio, estudiantes, docentes, directivas, egresados y personal administrativo pasan sin mirarse, cada acierto devuelve una voz y el campus empieza a despertar",
+      "regalo": {
+        "nombre": "Mochila",
+        "texto": "Para guardar las voces que va recuperando"
+      }
+    },
+    {
+      "id": "C02",
+      "estado": "por validar",
+      "sensible": false,
+      "orden": 2,
+      "nombre": "El aula",
+      "ruta": "aula",
+      "intro": "En el aula hay pupitres vacíos y un escalón en la puerta, no todas las personas encuentran cómo entrar y participar, ni quien estudia ni quien enseña, ayuda a Eco a abrir el camino",
+      "regalo": {
+        "nombre": "Gorra",
+        "texto": "Lista para cada clase y cada jornada de trabajo"
+      }
+    },
+    {
+      "id": "C03",
+      "estado": "por validar",
+      "sensible": false,
+      "orden": 3,
+      "nombre": "El chat y los grupos",
+      "ruta": "chat",
+      "intro": "En los chats de clase, los trabajos en grupo y los equipos de las oficinas todo pasa muy rápido, Eco quiere que ahí también se sienta el respeto",
+      "regalo": {
+        "nombre": "Bufanda",
+        "texto": "Tejida con mensajes amables"
+      }
+    },
+    {
+      "id": "C04",
+      "estado": "por validar",
+      "sensible": false,
+      "orden": 4,
+      "nombre": "El territorio",
+      "ruta": "pueblo",
+      "intro": "Eco viaja a una sede fuera de Medellín, el TdeA también está aquí, con estudiantes, docentes y personal que hacen comunidad",
+      "regalo": {
+        "nombre": "Gafas de sol",
+        "texto": "Para el sol del camino"
+      }
+    },
+    {
+      "id": "C05",
+      "estado": "por validar",
+      "sensible": false,
+      "orden": 5,
+      "nombre": "La plaza",
+      "ruta": "plaza",
+      "intro": "Todas las voces que recuperaste llegan a la plaza, estudiantes, egresados, docentes, directivas y personal administrativo, falta un último paso para la gran fiesta de la comunidad",
+      "regalo": {
+        "nombre": "Corona de flores",
+        "texto": "Para la gran fiesta de la comunidad"
+      }
+    }
+  ],
+  "mitos": [
+    {
+      "id": "M01",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 5,
+      "nivel": 1,
+      "texto": "En el TdeA existe una política de derechos humanos, diversidad y género",
+      "respuesta": "derecho",
+      "explicacion": "Existe y está firmada, es la Resolución Académica 003 de 2023",
+      "fuente": "Res. Académica 003 de 2023, TdeA (Derechos Humanos, Diversidad y Género)"
+    },
+    {
+      "id": "M02",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Una broma no cuenta como acoso si nadie se quejó",
+      "respuesta": "mito",
+      "explicacion": "Que nadie se queje no quiere decir que no duela, muchas personas callan por miedo o por no saber a dónde ir",
+      "fuente": "Ley 1257 de 2008"
+    },
+    {
+      "id": "M03",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 2,
+      "texto": "Si tengo una discapacidad puedo pedir ajustes razonables para presentar un examen",
+      "respuesta": "derecho",
+      "explicacion": "Es un derecho, primero Pluridiversos hace una caracterización para saber qué apoyos necesitas, porque no todas las personas con discapacidad necesitan los mismos",
+      "fuente": "Ley 1618 de 2013 y Res. 11 de 2016, TdeA (Atención Educativa a la Diversidad)"
+    },
+    {
+      "id": "M04",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 3,
+      "nivel": 1,
+      "texto": "Los temas de género solo le importan a las mujeres",
+      "respuesta": "mito",
+      "explicacion": "La equidad de género es de todas las personas, también de quien hoy no lo vive de cerca",
+      "fuente": "Res. Académica 003 de 2023, TdeA (Derechos Humanos, Diversidad y Género)"
+    },
+    {
+      "id": "M05",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Si el acoso fue por Teams o WhatsApp no cuenta porque no fue en la universidad",
+      "respuesta": "mito",
+      "explicacion": "Lo virtual también es la universidad, los lineamientos para educación superior incluyen lo que pasa en entornos digitales",
+      "fuente": "Res. 14466 de 2022, Ministerio de Educación (VBG en educación superior)"
+    },
+    {
+      "id": "M06",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 4,
+      "nivel": 2,
+      "texto": "Pluridiversos también atiende a estudiantes de las sedes y regiones",
+      "respuesta": "derecho",
+      "explicacion": "El programa es para toda la comunidad TdeA y sus servicios se solicitan en línea",
+      "fuente": "Página de Pluridiversos, TdeA"
+    },
+    {
+      "id": "M07",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 1,
+      "texto": "Si alguien usa silla de ruedas, llegar al salón es problema suyo",
+      "respuesta": "mito",
+      "explicacion": "La accesibilidad es responsabilidad de la institución, no de la persona",
+      "fuente": "Ley 1618 de 2013"
+    },
+    {
+      "id": "M08",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 5,
+      "nivel": 2,
+      "texto": "Pedir que te llamen por tu nombre identitario es un capricho",
+      "respuesta": "mito",
+      "explicacion": "Reconocer la identidad de alguien hace parte de la política de diversidad y género del TdeA",
+      "fuente": "Res. Académica 003 de 2023, TdeA, y Sentencia T-192 de 2020, Corte Constitucional"
+    },
+    {
+      "id": "M09",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 1,
+      "texto": "Burlarse del acento de alguien de otra región es solo recocha",
+      "respuesta": "mito",
+      "explicacion": "Los regionalismos y las expresiones culturales son parte de la inclusión que el TdeA se comprometió a cuidar",
+      "fuente": "Res. Académica 002 de 2023, TdeA (Educación Superior Inclusiva e Intercultural)"
+    },
+    {
+      "id": "M10",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Si no me pasó a mí, no puedo buscar orientación",
+      "respuesta": "mito",
+      "explicacion": "Si lo viste también puedes notificarlo a los canales oficiales o acercarte a los programas de Bienestar, según el caso",
+      "fuente": "Pluridiversos, revisión nov 2026"
+    },
+    {
+      "id": "M11",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 2,
+      "texto": "Si una persona no parece tener una discapacidad, no puede pedir ajustes razonables",
+      "respuesta": "mito",
+      "explicacion": "Hay discapacidades y condiciones que no se ven, y también tienen derecho a ajustes razonables",
+      "fuente": "Ley 1618 de 2013, Ley 1346 de 2009 y Ley 2630 de 2026 (Política Pública Nacional de Multilingüismo), citadas por Pluridiversos"
+    },
+    {
+      "id": "M12",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 5,
+      "nivel": 2,
+      "texto": "La lengua de señas colombiana está reconocida por la ley",
+      "respuesta": "derecho",
+      "explicacion": "Está reconocida como la lengua de la comunidad sorda en Colombia",
+      "fuente": "Ley 324 de 1996 y Ley 982 de 2005"
+    },
+    {
+      "id": "M13",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 4,
+      "nivel": 2,
+      "texto": "Colombia se reconoce como un país con diversidad étnica y cultural",
+      "respuesta": "derecho",
+      "explicacion": "Lo dice la Constitución, y el TdeA trabaja con enfoque en etnias y pueblos originarios",
+      "fuente": "Constitución Política, art. 7"
+    },
+    {
+      "id": "M14",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 1,
+      "texto": "Todas las personas tienen derecho al libre desarrollo de su personalidad",
+      "respuesta": "derecho",
+      "explicacion": "Cómo te vistes, cómo te ves y cómo vives tu identidad hacen parte de ese derecho",
+      "fuente": "Constitución Política, art. 16"
+    },
+    {
+      "id": "M15",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 1,
+      "texto": "Si alguien se viste distinto, es normal que el grupo opine",
+      "respuesta": "mito",
+      "explicacion": "Opinar del cuerpo o la ropa de alguien sin que lo pida puede hacerle daño, el respeto va primero",
+      "fuente": "Constitución Política, art. 16"
+    },
+    {
+      "id": "M16",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Discriminar a alguien por su orientación sexual puede ser un delito en Colombia",
+      "respuesta": "derecho",
+      "explicacion": "La ley antidiscriminación sanciona actos de discriminación por razones como el sexo o la orientación sexual",
+      "fuente": "Ley 1482 de 2011"
+    },
+    {
+      "id": "M17",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Un piropo en el pasillo es solo un halago",
+      "respuesta": "mito",
+      "explicacion": "Si no se pidió o incomoda, deja de ser halago, y las universidades deben prevenir las violencias basadas en género",
+      "fuente": "Res. 14466 de 2022, Ministerio de Educación (VBG en educación superior)"
+    },
+    {
+      "id": "M18",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 5,
+      "nivel": 2,
+      "texto": "En Colombia las personas trans pueden corregir el componente sexo en su registro civil",
+      "respuesta": "derecho",
+      "explicacion": "Existe un trámite ante notaría para hacerlo",
+      "fuente": "Decreto 1227 de 2015"
+    },
+    {
+      "id": "M19",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 4,
+      "nivel": 1,
+      "texto": "Si la discriminación pasa en una sede regional, la política del TdeA no aplica",
+      "respuesta": "mito",
+      "explicacion": "Las políticas institucionales aplican a toda la comunidad TdeA",
+      "fuente": "Res. Académica 003 de 2023, TdeA (Derechos Humanos, Diversidad y Género)"
+    },
+    {
+      "id": "M20",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 1,
+      "texto": "La inclusión en la U solo se trabaja en el mes de la diversidad",
+      "respuesta": "mito",
+      "explicacion": "Pluridiversos hace acompañamiento todo el semestre, con seguimiento y alertas tempranas",
+      "fuente": "Página de Pluridiversos, TdeA"
+    },
+    {
+      "id": "M21",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 3,
+      "texto": "Por el libre desarrollo de la personalidad puedo burlarme de cómo se viste alguien",
+      "respuesta": "mito",
+      "explicacion": "Ese derecho tiene un límite: los derechos de las demás personas, y burlarse de alguien los pasa por encima",
+      "fuente": "Constitución Política, art. 16"
+    },
+    {
+      "id": "M22",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 2,
+      "texto": "Docentes y personal administrativo también pueden pedir acompañamiento a Pluridiversos",
+      "respuesta": "derecho",
+      "explicacion": "El programa es para toda la comunidad TdeA: estudiantes, egresados, docentes y administrativos",
+      "fuente": "Página de Pluridiversos, TdeA"
+    },
+    {
+      "id": "M23",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 3,
+      "texto": "Después de graduarte, Pluridiversos te puede seguir acompañando para conseguir empleo",
+      "respuesta": "derecho",
+      "explicacion": "Pluridiversos acompaña el acceso, la permanencia, el egreso y la empleabilidad, también de egresados",
+      "fuente": "Página de Pluridiversos, TdeA"
+    },
+    {
+      "id": "M24",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 1,
+      "nivel": 2,
+      "texto": "Las rampas y los ascensores solo le sirven a quien usa silla de ruedas",
+      "respuesta": "mito",
+      "explicacion": "La accesibilidad le sirve a mucha gente: a quien lleva un coche de bebé, a quien tiene una lesión o a quien carga equipos",
+      "fuente": "Ley 1618 de 2013"
+    },
+    {
+      "id": "M25",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 3,
+      "texto": "No todas las personas con la misma discapacidad necesitan los mismos ajustes",
+      "respuesta": "derecho",
+      "explicacion": "Por eso Pluridiversos hace una caracterización de cada persona antes de definir los apoyos",
+      "fuente": "Ley 1618 de 2013, nota de Pluridiversos"
+    },
+    {
+      "id": "M26",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 3,
+      "texto": "Las personas con discapacidad tienen derecho a aprobar la materia sin ser evaluadas",
+      "respuesta": "mito",
+      "explicacion": "Un ajuste razonable cambia cómo te evalúan, no te exime de aprender lo que pide la materia",
+      "fuente": "Ley 1618 de 2013"
+    },
+    {
+      "id": "M27",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 3,
+      "texto": "Para pedir un ajuste razonable tienes que contarle tu caso a todo el grupo",
+      "respuesta": "mito",
+      "explicacion": "La solicitud va a Pluridiversos, al correo de ajustes razonables o a la oficina 1-103, no se hace frente al grupo",
+      "fuente": "Ruta de ajustes razonables, TdeA"
+    },
+    {
+      "id": "M28",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 3,
+      "texto": "Que alguien tenga más tiempo en un examen por un ajuste razonable puede ser justo con todo el grupo",
+      "respuesta": "derecho",
+      "explicacion": "El ajuste busca que esa persona estudie en igualdad de condiciones, no ponerla por encima de nadie",
+      "fuente": "Ley 1618 de 2013"
+    },
+    {
+      "id": "M29",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 2,
+      "texto": "Una estudiante gestante o en periodo de lactancia puede recibir atención diferencial para seguir estudiando",
+      "respuesta": "derecho",
+      "explicacion": "La ley protege a estudiantes gestantes y en periodo de lactancia, Pluridiversos la tiene en cuenta en la atención diferencial",
+      "fuente": "Ley 2394 de 2024, citada por Pluridiversos"
+    },
+    {
+      "id": "M30",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 3,
+      "nivel": 3,
+      "texto": "La libertad de expresión protege cualquier chiste, aunque humille a alguien",
+      "respuesta": "mito",
+      "explicacion": "Expresarse es un derecho, y también lo son la igualdad y el respeto, un chiste que humilla también hace daño",
+      "fuente": "Constitución Política, arts. 13 y 20"
+    },
+    {
+      "id": "M31",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 3,
+      "nivel": 2,
+      "texto": "Un comentario en el grupo de WhatsApp de la materia también puede ser discriminación",
+      "respuesta": "derecho",
+      "explicacion": "Lo que pasa en los chats de clase también hace parte de la vida en la U",
+      "fuente": "Res. Académica 003 de 2023, TdeA"
+    },
+    {
+      "id": "M32",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 3,
+      "nivel": 3,
+      "texto": "Puedes pedir orientación en Bienestar aunque no tengas pruebas de lo que pasó",
+      "respuesta": "derecho",
+      "explicacion": "No necesitas tener todo resuelto para pedir orientación, en Bienestar te explican qué se necesita para un proceso formal",
+      "fuente": "Pregúntale Q09, revisado por Pluridiversos"
+    },
+    {
+      "id": "M33",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 4,
+      "nivel": 3,
+      "texto": "En Colombia el castellano es el único idioma oficial en todo el territorio",
+      "respuesta": "mito",
+      "explicacion": "Las lenguas de los grupos étnicos también son oficiales en sus territorios",
+      "fuente": "Constitución Política, art. 10, y Ley 2630 de 2026 (Política Pública Nacional de Multilingüismo)"
+    },
+    {
+      "id": "M34",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 4,
+      "nivel": 3,
+      "texto": "La igualdad es tratar a todas las personas exactamente igual, sin excepciones",
+      "respuesta": "mito",
+      "explicacion": "La Constitución pide medidas a favor de quienes están en desventaja, por eso existen el enfoque diferencial y los ajustes razonables",
+      "fuente": "Constitución Política, art. 13"
+    },
+    {
+      "id": "M35",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 4,
+      "nivel": 2,
+      "texto": "Una persona de un pueblo indígena puede recibir atención diferencial en la universidad",
+      "respuesta": "derecho",
+      "explicacion": "Pluridiversos trabaja con enfoque diferencial en etnias y pueblos originarios",
+      "fuente": "Constitución Política, art. 7, y Ley 21 de 1991, citadas por Pluridiversos"
+    },
+    {
+      "id": "M36",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 5,
+      "nivel": 3,
+      "texto": "La lengua de señas colombiana es el español traducido palabra por palabra con las manos",
+      "respuesta": "mito",
+      "explicacion": "Es una lengua propia, con su gramática, y la ley la reconoce como la lengua de la comunidad sorda",
+      "fuente": "Ley 324 de 1996 y Ley 982 de 2005"
+    },
+    {
+      "id": "M37",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 5,
+      "nivel": 2,
+      "texto": "El TdeA tiene una política propia de educación superior inclusiva e intercultural",
+      "respuesta": "derecho",
+      "explicacion": "Existe y es la Resolución Académica 002 de 2023",
+      "fuente": "Res. Académica 002 de 2023, TdeA"
+    },
+    {
+      "id": "M38",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "nivel": 3,
+      "texto": "Solo las personas con discapacidad pueden recibir ajustes razonables",
+      "respuesta": "mito",
+      "explicacion": "También pueden recibirlos estudiantes gestantes, personas indígenas o personas cuya primera lengua no es el español",
+      "fuente": "Ley 1618 de 2013, Ley 2394 de 2024 y Ley 2630 de 2026, citadas por Pluridiversos"
+    }
+  ],
+  "dilemas": [
+    {
+      "id": "D01",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 4,
+      "texto": "En el grupo de WhatsApp de la materia alguien se burla del acento de un compañero de Vegachí ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Le escribo por privado al compañero para ver cómo está",
+          "perfil": "acompana",
+          "despues": "Le cambias la noche a alguien, a veces eso basta para que no se sienta solo"
+        },
+        {
+          "texto": "Respondo en el grupo: \"parce, ese chiste no da\"",
+          "perfil": "transforma",
+          "despues": "El chiste pierde fuerza cuando alguien lo nombra con calma, otras personas se animan a escribir lo mismo"
+        },
+        {
+          "texto": "Leo, sigo, pero me quedo pensando",
+          "perfil": "observa",
+          "despues": "Notarlo ya es un paso, la próxima vez puede que digas algo"
+        }
+      ]
+    },
+    {
+      "id": "D02",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 5,
+      "texto": "Un compañero pidió que lo llamen por su nombre identitario y un profe insiste en el nombre de la lista ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Lo llamo siempre por su nombre, aunque el profe no lo haga",
+          "perfil": "transforma",
+          "despues": "Cuando el grupo usa su nombre, el nombre se vuelve normal para todos"
+        },
+        {
+          "texto": "Le pregunto si quiere apoyo para hablarlo con el profe o con Bienestar",
+          "perfil": "activa",
+          "despues": "Preguntar primero respeta su decisión y le abre una ruta real"
+        },
+        {
+          "texto": "En clase no digo nada, pero después lo saludo por su nombre",
+          "perfil": "acompana",
+          "despues": "Un saludo con su nombre le dice que alguien lo ve"
+        }
+      ]
+    },
+    {
+      "id": "D03",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 3,
+      "texto": "En el trabajo en grupo, cada idea que propone una compañera la repite un compañero y a él sí le hacen caso ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Digo: \"como propuso ella hace un momento…\"",
+          "perfil": "transforma",
+          "despues": "Devolver el crédito en voz alta cambia cómo escucha el grupo"
+        },
+        {
+          "texto": "Hablo con ella después y le pregunto cómo lo vive",
+          "perfil": "acompana",
+          "despues": "Saber que alguien lo notó le quita peso a la situación"
+        },
+        {
+          "texto": "Me doy cuenta y lo anoto para estar pendiente",
+          "perfil": "observa",
+          "despues": "Ver el patrón es lo que permite cortarlo después"
+        }
+      ]
+    },
+    {
+      "id": "D04",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "texto": "Alguien te cuenta que un docente le escribe por fuera de clase y la incomoda ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Escucho sin juzgar y le pregunto qué necesita",
+          "perfil": "acompana",
+          "despues": "Escuchar primero es lo que más ayuda, la decisión de qué hacer es de ella"
+        },
+        {
+          "texto": "Le cuento que existe la ruta TdeA sin Violencias Basadas en Género y le ofrezco acompañarla",
+          "perfil": "activa",
+          "despues": "Conocer la ruta y ofrecer compañía hace que activarla sea menos difícil"
+        },
+        {
+          "texto": "Le pido consejo a alguien de confianza para saber qué hacer",
+          "perfil": "observa",
+          "despues": "Pedir consejo está bien, recuerda que la historia es de ella y ella decide con quién se comparte"
+        }
+      ]
+    },
+    {
+      "id": "D05",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "texto": "Para el trabajo en grupo nadie invita al compañero con discapacidad auditiva ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Lo invito a mi grupo y le pregunto cómo prefiere comunicarse",
+          "perfil": "acompana",
+          "despues": "Preguntarle cómo prefiere trabajar le dice que lo tienes en cuenta tal como es"
+        },
+        {
+          "texto": "Propongo que el grupo trabaje por chat para que todas las personas participen igual",
+          "perfil": "transforma",
+          "despues": "Cambiar la forma de trabajar ayuda a todo el grupo, no solo a él"
+        },
+        {
+          "texto": "Me doy cuenta y lo comento con alguien de confianza",
+          "perfil": "observa",
+          "despues": "Contarlo ya mueve algo, entre dos es más fácil invitarlo la próxima vez"
+        }
+      ]
+    },
+    {
+      "id": "D06",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 3,
+      "texto": "En el chat de Teams alguien escribe un chiste sobre las mujeres en ingeniería y varias personas ponen risas ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Escribo con calma: \"prefiero que no hagamos chistes así\"",
+          "perfil": "transforma",
+          "despues": "Una línea tranquila corta la cadena de risas y otras personas se animan a no seguirla"
+        },
+        {
+          "texto": "Le escribo por privado a una compañera de la carrera para ver cómo lo tomó",
+          "perfil": "acompana",
+          "despues": "Tu mensaje le recuerda que en la carrera también tiene con quién contar"
+        },
+        {
+          "texto": "No pongo risa y me quedo pensando en eso",
+          "perfil": "observa",
+          "despues": "No reírse también dice algo, aunque nadie lo vea"
+        }
+      ]
+    },
+    {
+      "id": "D07",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 4,
+      "texto": "Un compañero que llegó de otro país te dice que no sabe si puede pedir apoyo en la U ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Lo escucho y le pregunto qué necesita",
+          "perfil": "acompana",
+          "despues": "Escuchar primero le da confianza para contar lo que de verdad necesita"
+        },
+        {
+          "texto": "Le cuento que Pluridiversos también trabaja con personas migrantes y le ofrezco acompañarlo a llenar el formulario",
+          "perfil": "activa",
+          "despues": "Conocer la ruta y acompañar hace que pedir apoyo sea menos difícil"
+        },
+        {
+          "texto": "Le pregunto a Bienestar cómo funciona, sin dar su nombre",
+          "perfil": "observa",
+          "despues": "Averiguar sin exponerlo cuida su privacidad y te prepara para ayudar"
+        }
+      ]
+    },
+    {
+      "id": "D08",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "texto": "En una exposición alguien imita la forma de hablar de un compañero que tartamudea y varias personas se ríen ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Digo con calma: \"dejémoslo terminar\"",
+          "perfil": "transforma",
+          "despues": "Devolverle el turno le recuerda al grupo que lo importante es lo que tiene para decir"
+        },
+        {
+          "texto": "Después de clase le pregunto cómo está",
+          "perfil": "acompana",
+          "despues": "Un mensaje después puede pesar más que la burla"
+        },
+        {
+          "texto": "No me río y me fijo si vuelve a pasar",
+          "perfil": "observa",
+          "despues": "No sumarse a la risa ya cambia el ambiente"
+        }
+      ]
+    },
+    {
+      "id": "D10",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 3,
+      "texto": "Alguien comparte en el WhatsApp del curso una foto de otra persona para burlarse de su cuerpo ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Escribo que no está bien y pido que la borren",
+          "perfil": "transforma",
+          "despues": "Muchas veces solo hace falta que una persona lo diga para que otros lo apoyen"
+        },
+        {
+          "texto": "Si conozco a la persona, le escribo por privado",
+          "perfil": "acompana",
+          "despues": "Saber que alguien está de su lado le ayuda a no cargarlo sola"
+        },
+        {
+          "texto": "Busco cómo se orienta una situación así en Bienestar",
+          "perfil": "activa",
+          "despues": "Conocer la ruta te prepara para ayudar si la persona lo quiere"
+        }
+      ]
+    },
+    {
+      "id": "D11",
+      "estado": "aprobado",
+      "sensible": false,
+      "capitulo": 2,
+      "texto": "Un compañero cuenta que tiene más tiempo en los exámenes por un ajuste razonable y otra persona dice \"eso es ventaja\" ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Explico que es un ajuste para estudiar en igualdad, no una ventaja",
+          "perfil": "transforma",
+          "despues": "Nombrarlo bien ayuda a que el grupo deje de verlo como un privilegio"
+        },
+        {
+          "texto": "Le digo al compañero que tiene todo el derecho a pedirlo",
+          "perfil": "acompana",
+          "despues": "Un respaldo a tiempo le quita la culpa de usar su derecho"
+        },
+        {
+          "texto": "Averiguo cómo funciona la ruta de ajustes razonables",
+          "perfil": "activa",
+          "despues": "Saber cómo funciona te deja explicarlo con datos la próxima vez"
+        }
+      ]
+    },
+    {
+      "id": "D12",
+      "estado": "aprobado",
+      "sensible": true,
+      "capitulo": 5,
+      "texto": "Al armar grupos, alguien pide cambiarse para no trabajar con un compañero por rumores sobre su orientación sexual ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Me hago con él y lo trato como a cualquiera",
+          "perfil": "acompana",
+          "despues": "Que alguien elija trabajar contigo dice más que cualquier rumor"
+        },
+        {
+          "texto": "Digo en el grupo que un rumor no es razón para dejar a nadie por fuera",
+          "perfil": "transforma",
+          "despues": "Ponerlo en palabras frena el rechazo antes de que se vuelva costumbre"
+        },
+        {
+          "texto": "Si el rechazo sigue, busco orientación en Pluridiversos",
+          "perfil": "activa",
+          "despues": "Saber a dónde ir hace que no tengas que resolverlo solo"
+        }
+      ]
+    },
+    {
+      "id": "D13",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 1,
+      "texto": "En la cafetería alguien le habla muy lento y en voz alta a una compañera ciega, como si no entendiera ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Le hablo a ella directamente, como a cualquiera, y le pregunto si quiere ayuda con algo",
+          "perfil": "acompana",
+          "despues": "Hablarle a ella y no por encima de ella le devuelve su lugar en la conversación"
+        },
+        {
+          "texto": "Le digo con calma a la persona: \"ella te entiende perfecto\"",
+          "perfil": "transforma",
+          "despues": "Una frase tranquila corrige sin humillar a nadie"
+        },
+        {
+          "texto": "Averiguo con Pluridiversos qué apoyos de accesibilidad hay en el campus",
+          "perfil": "activa",
+          "despues": "Saber qué apoyos existen te deja ayudar mejor la próxima vez"
+        }
+      ]
+    },
+    {
+      "id": "D14",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 3,
+      "texto": "En un trabajo en grupo, una persona casi no escribe en el chat pero en las reuniones sí aporta, y alguien propone sacarla del grupo ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Propongo que cada quien aporte por el medio que mejor le funcione",
+          "perfil": "transforma",
+          "despues": "Cuando el grupo acepta varias formas de aportar, nadie queda por fuera por su estilo"
+        },
+        {
+          "texto": "Le escribo por privado para saber cómo prefiere participar",
+          "perfil": "acompana",
+          "despues": "Preguntar primero evita decidir por ella"
+        },
+        {
+          "texto": "Antes de opinar miro cómo se están repartiendo las tareas",
+          "perfil": "observa",
+          "despues": "Mirar con calma ayuda a ver si el problema es la persona o la forma de trabajar"
+        }
+      ]
+    },
+    {
+      "id": "D15",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 4,
+      "texto": "Un compañero de una sede regional pierde clases virtuales porque se le cae la conexión, y alguien dice \"eso es falta de compromiso\" ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Explico que la conexión no es igual en todas partes",
+          "perfil": "transforma",
+          "despues": "Nombrar la diferencia de condiciones cambia cómo lo ve el grupo"
+        },
+        {
+          "texto": "Le comparto mis apuntes y la grabación si la hay",
+          "perfil": "acompana",
+          "despues": "Un apoyo concreto le ayuda a no quedarse atrás"
+        },
+        {
+          "texto": "Le propongo preguntar juntos en Bienestar qué apoyos hay",
+          "perfil": "activa",
+          "despues": "Preguntar en el lugar correcto abre una ruta que quizás no conocía"
+        }
+      ]
+    },
+    {
+      "id": "D16",
+      "estado": "por validar",
+      "sensible": false,
+      "capitulo": 5,
+      "texto": "Para una actividad de la U alguien propone un salón en un segundo piso sin ascensor \"porque siempre se ha hecho ahí\" ¿Qué haces?",
+      "opciones": [
+        {
+          "texto": "Propongo buscar un lugar al que todas las personas puedan llegar",
+          "perfil": "transforma",
+          "despues": "Pensar en la accesibilidad desde el inicio evita que alguien quede por fuera"
+        },
+        {
+          "texto": "Pregunto si alguien del grupo necesita algo para poder asistir",
+          "perfil": "acompana",
+          "despues": "Preguntar abre la puerta a que cada persona diga lo que necesita"
+        },
+        {
+          "texto": "Consulto con Pluridiversos qué tener en cuenta para que la actividad sea accesible",
+          "perfil": "activa",
+          "despues": "Consultar a quien sabe hace que la actividad sea de todas las personas"
+        }
+      ]
+    }
+  ],
+  "perfiles": [
+    {
+      "id": "P01",
+      "estado": "aprobado",
+      "sensible": false,
+      "clave": "observa",
+      "nombre": "Observa",
+      "frase": "Empiezas a notar lo que otras personas dejan pasar, y todo cambio empieza por ahí",
+      "accion": "Mañana fíjate en quién habla menos en tu clase o en tu equipo de trabajo"
+    },
+    {
+      "id": "P02",
+      "estado": "aprobado",
+      "sensible": false,
+      "clave": "acompana",
+      "nombre": "Acompaña",
+      "frase": "Sabes escuchar, y eso hace que la gente no se sienta sola",
+      "accion": "Mañana escríbele a alguien de tu clase o de tu equipo que hace rato no ves"
+    },
+    {
+      "id": "P03",
+      "estado": "aprobado",
+      "sensible": false,
+      "clave": "activa",
+      "nombre": "Activa",
+      "frase": "Conoces la ruta y la usas, contigo nadie se queda sin saber a dónde ir",
+      "accion": "Mañana guarda en tu celular el enlace de Pluridiversos"
+    },
+    {
+      "id": "P04",
+      "estado": "aprobado",
+      "sensible": false,
+      "clave": "transforma",
+      "nombre": "Transforma",
+      "frase": "Cambias el ambiente a tu alrededor, donde estás, la gente se siente más libre",
+      "accion": "Mañana comparte este juego con tu grupo de la materia o con tu equipo de trabajo"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": "Q01",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "¿A dónde voy si me pasó algo?",
+      "respuesta": "Empieza por Bienestar Universitario, el programa Pluridiversos tiene un formulario de solicitud de acompañamiento diferencial, Si es una violencia basada en género existe la ruta TdeA sin VBG, Si estás en peligro ahora, llama al 123"
+    },
+    {
+      "id": "Q02",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "¿Puedo usar mi nombre identitario en clase y en las plataformas?",
+      "respuesta": "Sí, la política de diversidad y género del TdeA respalda el reconocimiento de la identidad, y la Corte Constitucional lo protege en la Sentencia T-192 de 2020, Para el paso a paso escríbele a Pluridiversos o acércate a la oficina 1-103"
+    },
+    {
+      "id": "Q03",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "¿Qué hago si fue un profe?",
+      "respuesta": "También aplica la ruta, no importa quién haya sido, Puedes buscar orientación en Bienestar sin tener todo resuelto"
+    },
+    {
+      "id": "Q04",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Qué son los ajustes razonables?",
+      "respuesta": "Son cambios en cómo se evalúa o se enseña para que una persona con discapacidad o con una condición particular estudie en igualdad, Se piden al correo ajustes.razonables@tdea.edu.co o en la oficina 1-103, y Pluridiversos hace una caracterización para definir los apoyos"
+    },
+    {
+      "id": "Q05",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Pluridiversos es solo para algunos grupos?",
+      "respuesta": "No, trabaja diversidades e identidades, género, discapacidad, regionalismos y más, en Bienestar Universitario te cuentan cómo participar"
+    },
+    {
+      "id": "Q06",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "Estudio en una sede o región, ¿también me atienden?",
+      "respuesta": "Sí, Pluridiversos es para toda la comunidad TdeA, también en sedes y regiones, Escríbeles a tdea.pluridiverso@tdea.edu.co"
+    },
+    {
+      "id": "Q07",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Qué es Pluridiversos?",
+      "respuesta": "Es el programa de Bienestar Universitario que acompaña el acceso, la permanencia, el egreso y la empleabilidad con enfoque diferencial, para estudiantes, egresados, docentes y administrativos"
+    },
+    {
+      "id": "Q08",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "¿Qué es una violencia basada en género?",
+      "respuesta": "Es cualquier acción que hace daño a alguien por su género, su orientación sexual o su identidad: comentarios, acoso, presión, amenazas o agresiones, en persona o por redes"
+    },
+    {
+      "id": "Q09",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Tengo que tener pruebas para pedir ayuda?",
+      "respuesta": "No necesitas tener todo resuelto para buscar orientación, qué se necesita para un proceso formal te lo explican en Bienestar Universitario"
+    },
+    {
+      "id": "Q10",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Lo que cuente en Bienestar es confidencial?",
+      "respuesta": "La confidencialidad y sus límites te los explican en la primera atención de Bienestar Universitario"
+    },
+    {
+      "id": "Q11",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "Me siento mal emocionalmente, ¿a dónde voy?",
+      "respuesta": "Bienestar Universitario tiene acompañamiento para eso, escribe a desarrollo.humano@tdea.edu.co, Si sientes que estás en peligro ahora, llama al 123"
+    },
+    {
+      "id": "Q12",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "¿Qué hago si alguien me cuenta que le pasó algo?",
+      "respuesta": "Escucha sin juzgar, no le pidas detalles que no quiera dar, cuéntale que existe la ruta y respeta lo que decida, No lo cuentes a otras personas sin su permiso"
+    },
+    {
+      "id": "Q13",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Qué es el lenguaje inclusivo y es obligatorio?",
+      "respuesta": "Es hablar y escribir sin dejar a nadie por fuera, El TdeA no tiene un lineamiento propio sobre esto, si quieres orientación escríbele a Pluridiversos o acércate a la oficina 1-103"
+    },
+    {
+      "id": "Q14",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Hay grupos o espacios para participar?",
+      "respuesta": "Sí, Pluridiversos tiene grupos de participación poblacional, cátedras y semilleros en el Pluri-Lab, pregunta en Bienestar Universitario por la oferta del semestre"
+    },
+    {
+      "id": "Q15",
+      "estado": "aprobado",
+      "sensible": true,
+      "pregunta": "Soy de una comunidad indígena o afro, ¿hay apoyo para mí?",
+      "respuesta": "Sí, Pluridiversos trabaja con enfoque diferencial en etnias y pueblos originarios y puedes pedir acompañamiento por formulario"
+    },
+    {
+      "id": "Q16",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Qué es la inclusión en el TdeA?",
+      "respuesta": "Es que todas las personas puedan estudiar, enseñar, trabajar, participar y sentirse parte del TdeA, sin importar de dónde vienen, cómo hablan o qué necesitan, en Bienestar Universitario te pueden contar cómo se vive en tu sede"
+    },
+    {
+      "id": "Q17",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Qué hago si veo burlas o discriminación en un grupo o un chat?",
+      "respuesta": "Si es seguro para ti, puedes decir algo corto y amable o escribirle en privado a la persona afectada, para contar lo que pasó y recibir orientación acércate a Bienestar Universitario"
+    },
+    {
+      "id": "Q18",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "Vengo de otra región y me cuesta adaptarme, ¿hay apoyo?",
+      "respuesta": "Es normal que cueste al principio, en Bienestar Universitario pueden orientarte sobre actividades, grupos y acompañamiento para que te sientas en casa"
+    },
+    {
+      "id": "Q19",
+      "estado": "aprobado",
+      "sensible": false,
+      "pregunta": "¿Cómo puedo ser una mejor persona aliada?",
+      "respuesta": "Escucha, pregunta qué necesita la otra persona y no guardes silencio ante una burla, en Bienestar Universitario puedes conocer actividades para seguir aprendiendo"
+    }
+  ],
+  "ayuda": [
+    {
+      "id": "A01",
+      "estado": "aprobado",
+      "sensible": false,
+      "nombre": "Línea de emergencias",
+      "numero": "123",
+      "texto": "Si tú o alguien más está en peligro",
+      "enlace": ""
+    },
+    {
+      "id": "A02",
+      "estado": "aprobado",
+      "sensible": false,
+      "nombre": "Línea de orientación a mujeres",
+      "numero": "155",
+      "texto": "Orientación a mujeres víctimas de violencia",
+      "enlace": ""
+    },
+    {
+      "id": "A06",
+      "estado": "aprobado",
+      "sensible": false,
+      "nombre": "Línea de salud mental",
+      "numero": "106",
+      "texto": "Para cualquier persona que necesite apoyo emocional o se sienta en crisis, es gratuita, confidencial y atiende las 24 horas",
+      "enlace": ""
+    },
+    {
+      "id": "A03",
+      "estado": "aprobado",
+      "sensible": false,
+      "nombre": "Bienestar Universitario TdeA",
+      "numero": "",
+      "texto": "Programa Pluridiversos: tdea.pluridiverso@tdea.edu.co, oficina 1-103 del bloque 1",
+      "enlace": "https://tdea.edu.co/micrositios/bienestar-universitario/pluridiverso/"
+    },
+    {
+      "id": "A04",
+      "estado": "aprobado",
+      "sensible": true,
+      "nombre": "Ruta TdeA sin Violencias Basadas en Género",
+      "numero": "",
+      "texto": "Para alertas por violencias basadas en género escribe a alerta.genero@tdea.edu.co, o a Pluridiversos, tdea.pluridiverso@tdea.edu.co",
+      "enlace": "mailto:alerta.genero@tdea.edu.co"
+    },
+    {
+      "id": "A05",
+      "estado": "aprobado",
+      "sensible": false,
+      "nombre": "Apoyo psicológico de Bienestar",
+      "numero": "",
+      "texto": "Escribe a desarrollo.humano@tdea.edu.co",
+      "enlace": "mailto:desarrollo.humano@tdea.edu.co"
+    }
+  ]
+}

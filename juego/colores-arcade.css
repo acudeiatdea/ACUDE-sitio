@@ -1,0 +1,14 @@
+/* Paletas claras de Arcade: Arena y Lavanda (las agrega ../paletas.js, que marca la elegida en data-paleta).
+   La pantalla, con las personas y Eco, y la mascota leen sus colores de la raíz y se quedan como en Musgo. Aquí
+   cambia el color de acento del resto (botones A y B, letreros, enlaces) desde body, que no toca la raíz.
+   Con alto contraste no se aplica: mandan los colores del juego */
+html[data-paleta="arena"] body { --lime: #cf7d58; --lime-lo: #a35a3a; --lime-hi: #e3a083; --btn-shadow: #7a3f27; }
+html[data-paleta="lavanda"] body { --lime: #9c8fd6; --lime-lo: #7a6cb8; --lime-hi: #c3b9ec; --btn-shadow: #5a4d96; }
+
+/* Sobre la consola clara, los nombres de los botones y los íconos de la barra de abajo van en el color de la
+   letra de la consola (el acento casi no se leía); el enlace a la otra versión, en un tono más oscuro */
+html[data-paleta] .abtn span, html[data-paleta] .quick-btn { color: var(--ink-shell); }
+html[data-paleta="arena"] .wrap > .otra-version { color: #8e4a2e; }
+html[data-paleta="lavanda"] .wrap > .otra-version { color: #5b4c9e; }
+/* «Consola aliada», «Ayuda» y «¿Necesitas ayuda ahora?» también van en el color de la letra de la consola */
+html[data-paleta] .brandline, html[data-paleta] .help-btn { color: var(--ink-shell); }
