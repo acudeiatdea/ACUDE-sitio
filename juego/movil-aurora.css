@@ -1,0 +1,43 @@
+/* Aurora en celular: solo para pantallas de menos de 600 px de ancho; en computador no cambia nada.
+ * Lo carga public/juego/aurora/index.html (lo agrega npm run conectar-juego) después de los estilos del juego. */
+@media (max-width: 599px) {
+  .app { gap: 14px; padding-top: 16px; }
+
+  /* El dibujo de arriba, a la mitad de alto; después de responder se oculta para dejar sitio a la explicación */
+  #eco-track { aspect-ratio: auto; height: 62px; min-height: 0; max-height: none; margin-top: 0; border-radius: 14px; }
+  .app:has(#stage .feedback) #eco-track { display: none; }
+
+  /* La afirmación con letra más pequeña: máximo 4 líneas a 360 px */
+  .stage { position: relative; justify-content: flex-start; gap: 14px; }
+  .claim { font-size: 1.35rem; line-height: 1.2; }
+  .claim.scene { font-size: 1.2rem; }
+
+  /* Escuchar: un botón pequeño de ícono al lado de «Capítulo · Afirmación» (y del resultado, después de responder) */
+  .stage > button.listen, .feedback > button.listen {
+    position: absolute; top: 0; right: 0;
+    width: 44px; height: 44px; min-height: 44px; padding: 0; justify-content: center; border-radius: 50%;
+  }
+  .stage button.listen span { display: none; }
+  .stage:has(> button.listen) > :first-child { padding-right: 52px; min-height: 44px; display: flex; align-items: center; }
+  /* «Capítulo 2 · Afirmación 1 de 4» en una sola línea al lado del ícono */
+  .stage > .eyebrow { font-size: .75rem; letter-spacing: .06em; }
+  .feedback { position: relative; padding-top: 12px; gap: 6px; }
+  .feedback > button.listen { top: 10px; }
+  .feedback > .verdict { padding-right: 52px; font-size: 1.3rem; }
+  .why { font-size: 1.02rem; }
+
+  /* Botones más bajos: Mito y Derecho, seguir y las tres opciones de ¿Qué harías? */
+  .controls { gap: 10px; }
+  .controls button:not(.option) { min-height: 58px; font-size: 1.25rem; }
+  .controls.options { gap: 8px; }
+  button.option { min-height: 0; padding: 12px 16px; font-size: 1.02rem; line-height: 1.25; }
+
+  /* Portada: los botones de 1 a 4 personas a la vista sin bajar; créditos más juntos y la explicación más pequeña */
+  .credit { padding-top: 8px; gap: 2px; }
+  .stage > .note { font-size: .85rem; line-height: 1.35; }
+  .app { gap: 12px; }
+  .stage { gap: 10px; }
+
+  /* Espacio abajo: la barra de Menú y Ayuda nunca tapa el texto ni el botón para seguir */
+  .app { padding-bottom: calc(96px + env(safe-area-inset-bottom, 0px)); }
+}

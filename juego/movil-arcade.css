@@ -1,0 +1,42 @@
+/* Arcade en celular: solo para pantallas de menos de 600 px de ancho; en computador no cambia nada.
+ * Lo carga public/juego/arcade/index.html (lo agrega npm run conectar-juego) después de los estilos del juego. */
+.quick-btn.solo-movil { display: none; }
+.help-btn .ayuda-corta { display: none; }
+
+@media (max-width: 599px) {
+  /* Controles más pequeños y juntos; la cruz y los botones siguen de 44 px o más para tocar */
+  :root { --cell: 44px; --btn: 56px; }
+  .wrap { gap: 6px; padding-block: 6px; }
+  .console {
+    grid-template-rows: minmax(0, 1fr) auto;
+    grid-template-areas: "screen screen" "left right";
+    padding: 8px 10px 10px;
+    border-radius: 20px 20px 44px 20px;
+  }
+  .bezel { padding: 6px 10px 10px; gap: 4px; border-radius: 10px 10px 28px 10px; }
+  .left, .right { padding-top: 8px; gap: 0; }
+  .left { padding-left: 6px; }
+  .right { padding-right: 6px; }
+  .ab { width: calc(var(--btn) * 2.1); height: calc(var(--btn) * 1.6); }
+
+  /* Sin la línea «Consola aliada»; Efectos y Récords pasan a la barra de abajo, junto a la música */
+  .brandline { display: none; }
+  .left .pill, .right .pill { display: none; }
+  .quick-btn { width: 44px; }
+  .quick-btn.solo-movil { display: inline-flex; }
+  /* «Ayuda» con ícono, en una sola línea */
+  .dock .help-btn { padding-inline: 8px; white-space: nowrap; }
+  .help-btn .ayuda-larga { display: none; }
+  .help-btn .ayuda-corta { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+  .help-btn .ayuda-corta svg { width: 20px; height: 20px; flex: none; }
+
+  /* Ningún texto de lectura por debajo de 12 px: el nombre de arriba quedaba de 10 px (ya está en la portada) */
+  .wordmark b { display: none; }
+  .logo .o { font-size: 12px; }
+
+  /* Portada: el título más pequeño y el paisaje completo */
+  .welcome { gap: 8px; }
+  .welcome .logo .m { font-size: clamp(16px, 5.6vw, 22px); }
+  .welcome .logo .d { font-size: clamp(12px, 4.2vw, 16px); }
+  .welcome .scene-cv { display: block; max-height: 24vh; }
+}

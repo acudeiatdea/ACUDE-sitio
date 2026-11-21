@@ -1,0 +1,2308 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Sin etiquetas Aurora</title>
+<meta name="description" content="Sin etiquetas, el juego sobre diversidad e inclusión de la comunidad TdeA: ayuda a Eco a reunir las voces en cinco capítulos. Hecho por estudiantes del ACUDE Herramientas de IA">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CO">
+<meta property="og:title" content="Sin etiquetas Aurora">
+<meta property="og:description" content="Sin etiquetas, el juego sobre diversidad e inclusión de la comunidad TdeA: ayuda a Eco a reunir las voces en cinco capítulos. Hecho por estudiantes del ACUDE Herramientas de IA">
+<meta property="og:url" content="https://acudeiatdea.github.io/ACUDE-sitio/juego/aurora/">
+<meta property="og:image" content="https://acudeiatdea.github.io/ACUDE-sitio/juego/capturas/aurora.jpg">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+/* Layout: una sola columna a pantalla completa, afirmación arriba y botones grandes al alcance del pulgar */
+:root {
+  --bg: #0a1910;
+  --surface: #11261a;
+  --line: #234132;
+  --fg: #eef6e8;
+  --muted: #a3baa9;
+  --lime: #c8f53a;
+  --lime-ink: #0a1910;
+  --miss: #ff9a86;
+  --red: #ff4d4d;
+  --display: "Bricolage Grotesque", "Arial Black", system-ui, sans-serif;
+  --body: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --au1: rgba(200,245,58,.10); --au2: rgba(60,170,130,.15); --au3: rgba(120,200,90,.08);
+  color-scheme: dark;
+}
+/* Paletas de color, se eligen en el botón Colores */
+:root[data-pal="noche"] { --bg: #0b1220; --surface: #121c30; --line: #26365a; --fg: #eef2fb; --muted: #a9b6d3; --lime: #8fd3ff; --lime-ink: #0b1220; --miss: #ffb3a1; --red: #ff6b6b; --au1: rgba(143,211,255,.12); --au2: rgba(120,110,220,.16); --au3: rgba(90,160,220,.08); }
+:root[data-pal="tierra"] { --bg: #1d1610; --surface: #2a2018; --line: #4a3a2a; --fg: #f6ecdf; --muted: #c9b8a3; --lime: #f5b041; --lime-ink: #1d1610; --miss: #ffab91; --red: #ff7a6b; --au1: rgba(245,176,65,.12); --au2: rgba(200,110,70,.14); --au3: rgba(240,200,120,.07); }
+:root[data-pal="dia"] { --bg: #eef3e6; --surface: #ffffff; --line: #c9d4bf; --fg: #1d2b20; --muted: #55665a; --lime: #2f6b2a; --lime-ink: #ffffff; --miss: #a8432f; --red: #c0392b; --au1: rgba(140,190,90,.22); --au2: rgba(120,200,180,.20); --au3: rgba(245,215,110,.18); color-scheme: light; }
+:root[data-pal="bruma"] { --bg: #dfe5dc; --surface: #eef2ec; --line: #b8c4b5; --fg: #263228; --muted: #56655a; --lime: #3f6e34; --lime-ink: #ffffff; --miss: #a8432f; --red: #b03a2e; --au1: rgba(255,255,255,.35); --au2: rgba(160,190,170,.30); --au3: rgba(200,210,190,.30); color-scheme: light; }
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 18px;
+  line-height: 1.45;
+}
+.app {
+  min-height: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-block: 24px calc(84px + env(safe-area-inset-bottom, 0px));
+  padding-left: max(18px, env(safe-area-inset-left, 0px));
+  padding-right: max(18px, env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+}
+/* Aurora lenta detrás del contenido */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 25% 30%, var(--au1), transparent 70%),
+    radial-gradient(45% 40% at 75% 65%, var(--au2), transparent 70%),
+    radial-gradient(35% 30% at 60% 12%, var(--au3), transparent 70%);
+  animation: aurora 38s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes aurora {
+  0% { transform: translate3d(-4%, -2%, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(3%, 4%, 0) rotate(8deg) scale(1.08); }
+  100% { transform: translate3d(5%, -3%, 0) rotate(-6deg) scale(1.02); }
+}
+.app { position: relative; z-index: 1; }
+.toggles { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.span2 { grid-column: 1 / -1; }
+a.share-wa {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 76px; border-radius: 18px; text-decoration: none;
+  background: var(--lime); color: var(--lime-ink);
+  font-family: var(--display); font-weight: 800; font-size: 1.35rem;
+}
+a.share-wa:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+.share-text { margin: 0; padding: 12px 14px; border: 1.5px dashed var(--line); border-radius: 12px; white-space: pre-wrap; font-size: 1rem; color: var(--fg); -webkit-user-select: text; user-select: text; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* Escuchar en voz alta */
+button.listen {
+  justify-self: start; align-self: flex-start;
+  display: inline-flex; align-items: center; gap: 8px;
+  min-height: 44px; padding: 0 16px;
+  font-family: var(--body); font-weight: 700; font-size: 1rem;
+  background: transparent; color: var(--lime);
+  border: 1.5px solid var(--lime); border-radius: 999px;
+}
+button.listen svg { width: 18px; height: 18px; flex: none; }
+button.listen.speaking { background: var(--lime); color: var(--lime-ink); }
+.a11y button.listen { font-size: 1.15rem; border-width: 2px; }
+/* Avisos visibles de sonido */
+.sndcap {
+  position: fixed; z-index: 40; left: 50%; top: calc(env(safe-area-inset-top, 0px) + 10px);
+  transform: translate(-50%, -8px); opacity: 0; pointer-events: none;
+  padding: 8px 16px; border-radius: 999px;
+  background: var(--surface); color: var(--fg); border: 1.5px solid var(--lime);
+  font-family: var(--body); font-weight: 700; font-size: 15px; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0,0,0,.4);
+  transition: opacity .2s ease, transform .2s ease;
+}
+.sndcap.show { opacity: 1; transform: translate(-50%, 0); }
+.a11y .sndcap { font-size: 18px; border-width: 2px; }
+.hdr-r { display: flex; align-items: center; gap: 12px; }
+button.aa-btn {
+  min-height: 44px; min-width: 52px; padding: 0 10px;
+  font-family: var(--body); font-weight: 700; font-size: 1.1rem;
+  background: transparent; color: var(--lime);
+  border: 2px solid var(--lime); border-radius: 12px;
+}
+button.aa-btn[aria-pressed="true"] { background: var(--lime); color: var(--lime-ink); }
+/* Letra grande y alto contraste */
+:root.a11y {
+  --bg: #000000; --surface: #141414; --line: #ffffff; --fg: #ffffff; --muted: #f0f0f0;
+  --lime: #eaff6b; --lime-ink: #000000; --miss: #ffb4a6; --red: #ff6b6b;
+}
+.a11y body { font-size: 21px; }
+.a11y body::before { display: none; }
+.a11y .dot { background: transparent; box-shadow: inset 0 0 0 2px #ffffff; }
+.a11y .dot.now { background: #ffffff; }
+.a11y .dot.done { background: var(--lime); box-shadow: none; }
+.a11y .dot.wrong { background: var(--red); box-shadow: none; }
+.a11y .claim { font-size: clamp(2.1rem, 9vw, 2.8rem); }
+.a11y .claim.scene { font-size: clamp(1.8rem, 7.6vw, 2.3rem); }
+.a11y .why, .a11y .end-text, .a11y .faq-a, .a11y .ally-phrase, .a11y .ally-action { font-size: 1.3rem; }
+.a11y .note, .a11y .eyebrow, .a11y .answer-tag, .a11y .tally li, .a11y footer { font-size: 1.1rem; }
+.a11y button { font-size: 1.6rem; }
+.a11y button.option, .a11y button.faq-q { font-size: 1.25rem; border: 2px solid var(--line); }
+.a11y button.sound, .a11y button.aa-btn { font-size: 1.15rem; }
+.a11y button.help-btn { font-size: 1.25rem; min-height: 58px; }
+.a11y .help-card { font-size: 1.2rem; }
+.a11y .credit .c1, .a11y .credit .c2 { font-size: 1.1rem; }
+.a11y .credits-list li, .a11y .search input { font-size: 1.25rem; border-width: 2px; }
+.credit { display: grid; gap: 4px; padding-top: 14px; border-top: 1px solid var(--line); }
+.credit p { margin: 0; }
+.credit .c1 { color: var(--fg); font-size: .95rem; font-weight: 700; }
+.credit .c2 { color: var(--muted); font-size: .9rem; }
+.credits-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.credits-list li { padding: 14px 16px; border-radius: 14px; background: var(--surface); border: 1.5px solid var(--line); font-size: 1.05rem; }
+.faq-a a, .credits a { color: var(--lime); font-weight: 700; }
+[hidden] { display: none !important; }
+
+/* Pregúntale */
+.search { display: grid; gap: 6px; }
+.search input {
+  width: 100%; box-sizing: border-box; min-height: 52px; padding: 10px 16px;
+  border: 2px solid var(--line); border-radius: 14px;
+  background: var(--surface); color: var(--fg);
+  font-family: var(--body); font-size: 1.1rem;
+  -webkit-appearance: none; appearance: none; outline: none;
+}
+.search input::placeholder { color: var(--muted); opacity: 1; }
+.search input:focus { border-color: var(--lime); }
+.faq-list { display: grid; gap: 10px; }
+button.faq-q {
+  font-family: var(--body); font-weight: 700; font-size: 1.05rem; line-height: 1.3;
+  text-align: left; min-height: 56px; padding: 12px 16px;
+  background: var(--surface); color: var(--fg);
+  border: 1.5px solid var(--line); border-radius: 14px;
+}
+button.faq-q[aria-expanded="true"] { border-color: var(--lime); color: var(--lime); }
+.faq-a { margin: -4px 0 0; padding: 12px 16px; border-left: 3px solid var(--lime); color: var(--fg); font-size: 1.05rem; animation: rise .3s ease-out; }
+
+/* Ayuda inmediata, siempre visible */
+/* Barra fija de abajo: menú del juego y ayuda, con fondo propio para no tapar el contenido */
+.dock {
+  position: fixed; z-index: 30; left: 0; right: 0; bottom: 0;
+  display: flex; gap: 8px; justify-content: center;
+  padding: 8px max(18px, env(safe-area-inset-right, 0px)) max(8px, env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-left, 0px));
+  background: var(--bg); border-top: 1px solid var(--line);
+}
+.dock > * { max-width: 484px; }
+button.help-btn, button.dock-menu {
+  min-height: 44px; padding: 0 14px;
+  font-family: var(--body); font-weight: 700; font-size: .98rem;
+  background: var(--surface); color: var(--lime);
+  border: 2px solid var(--lime); border-radius: 14px;
+}
+button.help-btn { flex: 1; }
+button.dock-menu { flex: none; display: inline-flex; align-items: center; gap: 6px; background: var(--lime); color: var(--lime-ink); }
+button.dock-menu svg { width: 20px; height: 20px; }
+button.dock-menu[hidden] { display: none; }
+button.dock-menu:active { filter: brightness(.9); }
+button.help-btn:active { background: var(--lime); color: var(--lime-ink); }
+.help {
+  position: fixed; inset: 0; z-index: 50;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(0,0,0,.6);
+  padding-top: max(16px, env(safe-area-inset-top, 0px));
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.help-card {
+  width: 100%; max-width: 484px; max-height: 100%; overflow-y: auto; box-sizing: border-box;
+  display: grid; gap: 10px; padding: 18px;
+  border: 1.5px solid var(--line); border-radius: 18px;
+  background: var(--surface); color: var(--fg);
+  font-family: var(--body); font-size: 1rem; line-height: 1.4;
+}
+.help-card h2 { margin: 0; font-family: var(--display); font-size: 1.4rem; line-height: 1.2; color: var(--lime); text-wrap: balance; }
+.help-card p { margin: 0; color: var(--muted); }
+.help-item { display: grid; gap: 6px; padding: 12px 14px; border-radius: 14px; background: var(--bg); }
+.help-item .num { font-family: var(--display); font-size: 2rem; font-weight: 800; line-height: 1; color: var(--lime); font-variant-numeric: tabular-nums; -webkit-user-select: text; user-select: text; }
+.help-item .name { font-weight: 700; }
+.help-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+.help-actions a, .help-actions button {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 18px; border-radius: 999px;
+  border: 1.5px solid var(--lime); background: transparent; color: var(--lime);
+  font-family: var(--body); font-weight: 700; font-size: 1rem; text-decoration: none;
+}
+button.help-close { min-height: 52px; font-size: 1.1rem; }
+
+/* Eco camina debajo del encabezado */
+/* Escenario de Eco: campus que se construye, territorio y fiesta final */
+.scene:not(.claim) {
+  position: relative;
+  aspect-ratio: 400 / 150;
+  max-width: 100%;
+  max-height: 172px;
+  min-height: 112px;
+  margin-top: -8px;
+  border-radius: 18px;
+  overflow: hidden;
+  pointer-events: none;
+  background: #0b1d15;
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.scene svg.world { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.world .far { transform: translateX(calc(var(--px, 0) * -0.03px)); }
+.world .mid { transform: translateX(calc(var(--px, 0) * -0.08px)); }
+.world .sun { opacity: var(--sun, .12); transition: opacity 1.4s ease; }
+.world .daytint { opacity: var(--day, 0); transition: opacity 1.4s ease; }
+.world .stars { opacity: calc(1 - var(--day, 0) * 1.6); transition: opacity 1.4s ease; }
+.world .stars circle { animation: twinkle 2.6s ease-in-out infinite alternate; }
+.world .stars circle:nth-child(2n) { animation-delay: -1.3s; }
+.world .layer { transition: opacity .9s ease; }
+.world .layer.hide { opacity: 0; }
+.world .grow { opacity: 0; transform: translateY(6px) scale(.85); transform-box: fill-box; transform-origin: 50% 100%; transition: opacity .8s ease, transform .9s cubic-bezier(.3, 1.5, .5, 1); }
+.world .grow.on { opacity: 1; transform: none; }
+.world .win { fill: #2a5640; transition: fill .8s ease; }
+.world .lit .win { fill: #e6f39a; }
+.world .lit .win:nth-child(3n) { fill: #f5d76e; }
+.world .cloud { opacity: 0; }
+.world .cloud.pass { animation: pass 5s linear forwards; }
+.world .bulb { animation: twinkle 1.2s ease-in-out infinite alternate; }
+.world .bulb:nth-child(2n) { animation-delay: -.6s; }
+@keyframes twinkle { from { opacity: .35; } to { opacity: 1; } }
+@keyframes pass { 0% { transform: translateX(-90px); opacity: 0; } 12% { opacity: .85; } 88% { opacity: .85; } 100% { transform: translateX(470px); opacity: 0; } }
+.eco { position: absolute; left: 0; bottom: 4px; width: 52px; height: 52px; transform-origin: 50% 50%; will-change: transform; }
+.eco svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.eco .all, .eco .bod, .eco .leg, .eco .arm, .eco .eye { transform-box: fill-box; }
+.eco .all { transform-origin: 50% 100%; }
+.eco .leg { transform-origin: 50% 0; }
+.eco .arm-l { transform-origin: 100% 50%; }
+.eco .arm-r { transform-origin: 0 50%; }
+.eco .eye { transform-origin: 50% 50%; animation: blink 4.2s infinite; }
+.eco .joy, .eco .open, .eco .frown { opacity: 0; }
+.eco.walking .leg-l { animation: step .42s ease-in-out infinite alternate; }
+.eco.walking .leg-r { animation: step .42s ease-in-out infinite alternate-reverse; }
+.eco.walking .bod { animation: bob .21s ease-in-out infinite alternate; }
+.eco.happy .eye, .eco.cheer .eye, .eco.happy .smile, .eco.cheer .smile { opacity: 0; }
+.eco.happy .joy, .eco.cheer .joy, .eco.happy .open, .eco.cheer .open { opacity: 1; }
+.eco.happy .all { animation: hop .45s ease-out 2; }
+.eco.cheer .all { animation: hop .5s ease-out infinite; }
+.eco.cheer .arm-l { transform: rotate(55deg); }
+.eco.cheer .arm-r { transform: rotate(-55deg); }
+.eco.sad .smile { opacity: 0; }
+.eco.sad .frown { opacity: 1; }
+.eco.sad .eye { transform: scaleY(.55) translateY(1px); animation: none; }
+.eco.sad .all { transform: translateY(2px); }
+@keyframes step { from { transform: rotate(20deg); } to { transform: rotate(-20deg); } }
+@keyframes bob { from { transform: translateY(0); } to { transform: translateY(-1.5px); } }
+@keyframes hop { 0% { transform: translateY(0); } 40% { transform: translateY(-12px) scale(1.04, .97); } 100% { transform: translateY(0); } }
+@keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+
+header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.brand {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: -0.01em;
+}
+.brand span { color: var(--lime); }
+.dots { display: flex; gap: 8px; }
+.dot {
+  width: 30px; height: 18px; border-radius: 6px;
+  display: grid; place-items: center;
+  font: 800 12px/1 var(--body); color: var(--bg);
+  background: var(--line);
+  transition: background .3s;
+}
+.dot.done { background: var(--lime); }
+.dot.wrong { background: var(--red); }
+.confetti { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 20; }
+.confetti i {
+  position: absolute; top: 45%; left: 50%;
+  width: 10px; height: 14px; border-radius: 2px;
+  animation: pop 1s ease-out forwards;
+}
+@keyframes pop {
+  from { transform: translate(0,0) rotate(0); opacity: 1; }
+  to { transform: translate(var(--x), var(--y)) rotate(540deg); opacity: 0; }
+}
+.verdict.ok { display: inline-block; }
+.verdict.ok.cheer { animation: cheer .5s ease-out; }
+@keyframes cheer { 0% { transform: scale(.7); } 60% { transform: scale(1.15); } 100% { transform: scale(1); } }
+.dot.now { background: var(--fg); }
+
+.stage { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+.eyebrow {
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.turn { color: var(--lime); }
+.claim {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(1.75rem, 7.4vw, 2.3rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+  margin: 0;
+}
+.feedback {
+  border-top: 2px solid var(--line);
+  padding-top: 18px;
+  display: grid;
+  gap: 8px;
+  animation: rise .35s ease-out;
+}
+.verdict {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.verdict.ok { color: var(--lime); }
+.verdict.bad { color: var(--miss); }
+.why { margin: 0; color: var(--fg); font-size: 1.1rem; }
+.answer-tag {
+  justify-self: start;
+  align-self: flex-start;
+  font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  border: 1.5px solid var(--muted); color: var(--muted);
+  padding: 4px 10px; border-radius: 999px;
+}
+
+.tally { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 6px; }
+.tally li {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  font-variant-numeric: tabular-nums;
+}
+.tally .who { font-weight: 700; }
+.tally .ok { color: var(--lime); font-weight: 700; }
+.tally .bad { color: var(--miss); font-weight: 700; }
+.tally li.lead { box-shadow: inset 0 0 0 2px var(--lime); }
+
+.controls { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.controls.single { grid-template-columns: 1fr; }
+button {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.45rem;
+  min-height: 76px;
+  border-radius: 18px;
+  border: 0;
+  background: var(--lime);
+  color: var(--lime-ink);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .12s, opacity .2s;
+}
+button:active { transform: scale(.97); }
+button:focus-visible { outline: 3px solid var(--fg); outline-offset: 3px; }
+button:disabled { opacity: .35; cursor: default; transform: none; }
+button.picked:disabled { opacity: 1; box-shadow: 0 0 0 3px var(--bg), 0 0 0 6px var(--fg); }
+button.ghost { background: transparent; color: var(--lime); border: 2px solid var(--lime); font-size: 1.2rem; min-height: 64px; }
+
+.score {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(4.5rem, 26vw, 7rem);
+  line-height: 1;
+  color: var(--lime);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.score small { font-size: .4em; color: var(--muted); }
+.winner { color: var(--lime); }
+.end-text { margin: 0; font-size: 1.15rem; max-width: 34ch; }
+
+.controls.options { grid-template-columns: 1fr; gap: 12px; }
+button.option {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.3;
+  text-align: left;
+  min-height: 64px;
+  padding: 14px 20px;
+}
+.claim.scene { font-size: clamp(1.4rem, 6vw, 1.8rem); }
+.verdict.neutral { color: var(--fg); }
+.note { margin: 0; color: var(--muted); font-size: 1rem; }
+
+.ally {
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: var(--surface);
+  border: 2px solid var(--lime);
+  animation: rise .35s ease-out;
+}
+.ally-name {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(2rem, 9vw, 2.6rem);
+  line-height: 1.05;
+  color: var(--lime);
+  margin: 0;
+}
+.ally-phrase { margin: 0; font-size: 1.1rem; }
+.ally-label { margin-top: 6px; }
+.ally-action { margin: 0; font-size: 1.05rem; font-weight: 700; }
+
+footer { font-size: .85rem; color: var(--muted); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+button.sound {
+  font-family: var(--body);
+  font-weight: 700;
+  font-size: .95rem;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--lime);
+  border: 1.5px solid var(--line);
+}
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Historia, mapa y opciones */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { padding: 6px 12px; border-radius: 999px; border: 1.5px solid var(--line); font-weight: 700; font-size: .95rem; color: var(--fg); }
+.chip.on { border-color: var(--lime); color: var(--lime); }
+.stars { display: flex; gap: 8px; color: var(--lime); }
+.stars svg { width: 40px; height: 40px; display: block; }
+.stars .off { opacity: .25; }
+button.option small, button small.btn-sub, .sheet-opt small, .card-opt small { display: block; font-family: var(--body); font-weight: 400; font-size: .95rem; line-height: 1.3; opacity: .85; margin-top: 3px; }
+button.option.locked { background: transparent; color: var(--muted); border: 1.5px dashed var(--line); }
+.dots { justify-content: center; flex-wrap: wrap; margin-top: -12px; }
+.dots:empty { display: none; }
+button.option.primary { box-shadow: 0 0 0 3px var(--bg), 0 0 0 6px var(--lime); }
+.note.voice { color: var(--lime); font-weight: 700; }
+.book { display: grid; gap: 14px; }
+.book section { display: grid; gap: 6px; padding-bottom: 14px; border-bottom: 1.5px dashed var(--line); }
+.book .why { font-size: 1.05rem; }
+button.hdr-btn { min-height: 44px; padding: 0 12px; font-family: var(--body); font-weight: 700; font-size: 1rem; background: transparent; color: var(--lime); border: 2px solid var(--lime); border-radius: 12px; }
+.sheet-opt, .card-opt { display: block; width: 100%; text-align: left; min-height: 56px; padding: 10px 16px; font-family: var(--body); font-weight: 700; font-size: 1.05rem; line-height: 1.3; background: var(--bg); color: var(--fg); border: 1.5px solid var(--line); border-radius: 14px; }
+.sheet-opt[aria-pressed="true"], .card-opt[aria-pressed="true"] { border: 2px solid var(--lime); color: var(--lime); }
+.sheet-opt[aria-pressed="true"] > span:not(.swatch)::after { content: " \2713"; }
+.speed-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.speed-row .sheet-opt { text-align: center; padding: 10px 6px; }
+.swatch { display: inline-flex; gap: 4px; margin-right: 10px; vertical-align: middle; }
+.swatch i { width: 18px; height: 18px; border-radius: 5px; display: inline-block; box-shadow: inset 0 0 0 1px rgba(127,127,127,.5); }
+.card-opts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.card-opt { text-align: center; padding: 10px 6px; }
+.share-img { display: block; width: 100%; max-width: 280px; margin: 0 auto; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+.share-img:not([src]) { aspect-ratio: 9 / 16; background: var(--surface); }
+.hello { margin: 0; font-family: var(--display); font-weight: 800; font-size: clamp(1.35rem, 5vw, 1.7rem); line-height: 1.15; color: var(--lime); }
+.a11y .chip, .a11y .sheet-opt, .a11y .card-opt { font-size: 1.15rem; }
+/* Escenario: aula, chat y mapa */
+.world .pane { fill: #12301f; transition: fill .8s ease; }
+.world .lit .pane { fill: #e6f39a; }
+.world .node .flag { fill: #3d6550; }
+.world .node .disc { fill: #234132; stroke: #3d6550; stroke-width: 2; }
+.world .node .num { font: 700 10px "Atkinson Hyperlegible", sans-serif; fill: #eef6e8; }
+.world .node.done .flag, .world .node.done .disc { fill: #c8f53a; }
+.world .node.done .num { fill: #0a1910; }
+.world .node.now .flag { fill: #f5d76e; }
+.world .node.now .disc { stroke: #f5d76e; }
+.world .node.locked { opacity: .55; }
+/* Regalos que lleva Eco */
+.eco .acc { display: none; }
+.eco.w-mochila .acc-mochila, .eco.w-bufanda .acc-bufanda, .eco.w-gorra .acc-gorra, .eco.w-gafas .acc-gafas, .eco.w-corona .acc-corona { display: inline; }
+footer .otra-version { color: inherit; font-size: .85rem; text-underline-offset: 3px; }
+.answer-tag.trampa { border-color: var(--lime); color: var(--lime); font-size: .7rem; }
+</style>
+<link rel="stylesheet" href="../colores-aurora.css">
+<link rel="stylesheet" href="../movil-aurora.css">
+
+<div class="app">
+  <header>
+    <div class="brand">Sin <span>etiquetas</span></div>
+    <div class="hdr-r">
+      <button type="button" class="aa-btn" id="btn-aa" aria-pressed="false" aria-label="Letra grande y alto contraste">Aa</button>
+    </div>
+  </header>
+  <div class="dots" id="dots" role="img" aria-label="Progreso del juego"></div>
+
+  <div class="scene" id="eco-track" role="img" aria-label="Escena: de noche en un campus con dos edificios, una banca y una pared en blanco, todavía no hay árboles y las ventanas están apagadas, Eco, un globito de diálogo verde, camina por el campus">
+    <svg class="world" id="world" viewBox="0 0 400 150" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#08170f"/>
+          <stop offset="1" stop-color="#16392a"/>
+        </linearGradient>
+        <radialGradient id="glow">
+          <stop offset="0" stop-color="#f5d76e" stop-opacity=".6"/>
+          <stop offset="1" stop-color="#f5d76e" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <rect width="400" height="150" fill="url(#sky)"/>
+      <rect class="daytint" width="400" height="150" fill="#2f6a50"/>
+      <circle class="sun" cx="300" cy="120" r="80" fill="url(#glow)"/>
+      <g class="stars" fill="#e8f0d8">
+        <circle cx="40" cy="18" r="1"/><circle cx="92" cy="34" r=".8"/><circle cx="150" cy="14" r="1.1"/>
+        <circle cx="210" cy="28" r=".8"/><circle cx="268" cy="12" r="1"/><circle cx="330" cy="30" r=".9"/><circle cx="378" cy="16" r="1"/>
+      </g>
+      <g class="cloud">
+        <ellipse cx="0" cy="34" rx="22" ry="9" fill="#7d9688"/>
+        <ellipse cx="16" cy="28" rx="14" ry="10" fill="#8aa394"/>
+        <ellipse cx="-14" cy="30" rx="11" ry="8" fill="#8aa394"/>
+      </g>
+      <g class="far">
+        <path d="M-20 112 L30 78 L70 96 L120 60 L170 94 L215 72 L262 98 L312 64 L356 90 L420 74 L420 150 L-20 150Z" fill="#11301f"/>
+      </g>
+      <g class="mid">
+        <path d="M-20 124 Q50 96 110 116 T220 108 T330 118 T420 104 V150 H-20Z" fill="#173d29"/>
+      </g>
+
+      <g id="layers"></g>
+
+      <rect x="-20" y="129" width="440" height="22" fill="#132b1d"/>
+      <rect x="-20" y="129" width="440" height="2" fill="#24503a"/>
+    </svg>
+    <div class="eco" id="eco">
+      <svg viewBox="0 0 64 64">
+        <ellipse cx="32" cy="61" rx="15" ry="2.5" fill="rgba(0,0,0,.35)"/>
+        <g class="all">
+          <rect class="leg leg-l" x="23" y="47" width="6" height="12" rx="3" fill="#93b522"/>
+          <rect class="leg leg-r" x="35" y="47" width="6" height="12" rx="3" fill="#93b522"/>
+          <g class="bod">
+            <g class="acc acc-mochila"><rect x="0" y="30" width="10" height="15" rx="3" fill="#a55a40"/><rect x="2" y="34" width="6" height="4" rx="1.5" fill="#7a3f2c"/></g>
+            <rect class="arm arm-l" x="1" y="27" width="9" height="5" rx="2.5" fill="#93b522"/>
+            <rect class="arm arm-r" x="54" y="27" width="9" height="5" rx="2.5" fill="#93b522"/>
+            <path d="M26 8h12c10 0 18 8 18 18v2c0 10-8 18-18 18H27l-11 8 3-9.5C12 41.5 8 35.5 8 28v-2C8 16 16 8 26 8z" fill="#c8f53a" stroke="#93b522" stroke-width="2" stroke-linejoin="round"/>
+            <ellipse cx="21" cy="17" rx="5" ry="3" fill="#e6ff9c" opacity=".7"/>
+            <ellipse class="eye" cx="25" cy="25" rx="3" ry="4" fill="#0a1910"/>
+            <ellipse class="eye" cx="39" cy="25" rx="3" ry="4" fill="#0a1910"/>
+            <path class="joy" d="M21.5 26.5q3.5-5 7 0M35.5 26.5q3.5-5 7 0" fill="none" stroke="#0a1910" stroke-width="2.4" stroke-linecap="round"/>
+            <circle cx="19" cy="32" r="3" fill="#ff9a86" opacity=".55"/>
+            <circle cx="45" cy="32" r="3" fill="#ff9a86" opacity=".55"/>
+            <path class="smile" d="M27 32q5 5 10 0" fill="none" stroke="#0a1910" stroke-width="2.4" stroke-linecap="round"/>
+            <path class="open" d="M26 31.5h12q-1 7-6 7t-6-7z" fill="#0a1910"/>
+            <path class="frown" d="M27 36q5-4.5 10 0" fill="none" stroke="#0a1910" stroke-width="2.4" stroke-linecap="round"/>
+            <g class="acc acc-bufanda"><path d="M15 39 Q32 47 49 39 L49 44 Q32 52 15 44Z" fill="#ff9a86"/><rect x="38" y="43" width="6" height="11" rx="2" fill="#ff9a86"/></g>
+            <g class="acc acc-gafas"><rect x="19" y="20" width="12" height="9" rx="3.5" fill="#0a1910"/><rect x="33" y="20" width="12" height="9" rx="3.5" fill="#0a1910"/><rect x="30" y="22.5" width="4" height="2" fill="#0a1910"/><rect x="21" y="21.5" width="4" height="2" rx="1" fill="#ffffff" opacity=".55"/><rect x="35" y="21.5" width="4" height="2" rx="1" fill="#ffffff" opacity=".55"/></g>
+            <g class="acc acc-gorra"><path d="M15 13 Q32 -3 49 13 Z" fill="#7fc9c2"/><rect x="40" y="10" width="17" height="4" rx="2" fill="#4f9a92"/></g>
+            <g class="acc acc-corona"><path d="M14 12 Q32 1 50 12" stroke="#4f8a3c" stroke-width="2.6" fill="none"/><circle cx="18" cy="9" r="3.6" fill="#ff9a86"/><circle cx="26" cy="5.6" r="3.6" fill="#f5d76e"/><circle cx="34" cy="4.8" r="3.6" fill="#b39ddb"/><circle cx="42" cy="6.4" r="3.6" fill="#ff9a86"/><circle cx="48" cy="10" r="3.2" fill="#f5d76e"/><circle cx="26" cy="5.6" r="1.3" fill="#ffffff"/><circle cx="34" cy="4.8" r="1.3" fill="#ffffff"/></g>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <p class="sr-only" id="scene-live" aria-live="polite"></p>
+  <main class="stage" id="stage" aria-live="polite"></main>
+
+  <div class="controls" id="controls"></div>
+
+  <footer>
+    <div class="toggles">
+      <button type="button" class="sound" id="btn-sound" aria-pressed="true">Sonido: sí</button>
+      <button type="button" class="sound" id="btn-vibe" aria-pressed="true" hidden>Vibración: sí</button>
+      <button type="button" class="sound" id="btn-caps" aria-pressed="true">Avisos de sonido: sí</button>
+      <button type="button" class="sound" id="btn-music" aria-pressed="true">Música: sí</button>
+      <button type="button" class="sound" id="btn-colors" aria-haspopup="dialog">Colores</button>
+      <button type="button" class="sound" id="btn-voice" aria-haspopup="dialog">Voz</button>
+      <button type="button" class="sound" id="btn-credits">Créditos</button>
+    </div>
+    <span>No pedimos datos personales, tu avance se guarda solo en tu celular</span>
+    <a class="otra-version" href="../arcade/">¿Prefieres la versión Arcade?</a>
+  </footer>
+</div>
+
+<div class="sndcap" id="sndcap" aria-hidden="true"></div>
+
+<div class="dock"><button type="button" class="dock-menu" id="btn-menu" aria-haspopup="dialog" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Menú</button><button type="button" class="help-btn" id="btn-help" aria-haspopup="dialog">¿Necesitas ayuda ahora?</button></div>
+
+<div class="help" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden>
+  <div class="help-card" id="sheet-card"></div>
+</div>
+
+<div class="help" id="help" role="dialog" aria-modal="true" aria-labelledby="help-title" hidden>
+  <div class="help-card">
+    <h2 id="help-title">¿Necesitas ayuda ahora?</h2>
+    <p>Cuentas con apoyo, estas son las líneas a las que puedes acudir</p>
+    <div class="help-item">
+      <span class="num">123</span>
+      <span class="name">Línea de emergencias</span>
+      <span>Si tú o alguien más está en peligro</span>
+      <div class="help-actions"><a href="tel:123" id="call-123">Llamar</a><button type="button" data-copy="123" id="copy-123">Copiar número</button></div>
+    </div>
+    <div class="help-item">
+      <span class="num">155</span>
+      <span class="name">Línea de orientación a mujeres</span>
+      <span>Orientación a mujeres víctimas de violencia</span>
+      <div class="help-actions"><a href="tel:155" id="call-155">Llamar</a><button type="button" data-copy="155" id="copy-155">Copiar número</button></div>
+    </div>
+    <div class="help-item">
+      <span class="num">106</span>
+      <span class="name">Línea de salud mental</span>
+      <span>Para cualquier persona que necesite apoyo emocional o se sienta en crisis, es gratuita, confidencial y atiende las 24 horas</span>
+      <div class="help-actions"><a href="tel:106" id="call-106">Llamar</a><button type="button" data-copy="106" id="copy-106">Copiar número</button></div>
+    </div>
+    <div class="help-item">
+      <span class="name">Bienestar Universitario TdeA</span>
+      <span>Acércate a Bienestar Universitario del Tecnológico de Antioquia, en el campus de Medellín o en la sede de tu territorio, allí te escuchan y te orientan</span>
+      <div class="help-actions"><a href="https://tdea.edu.co/micrositios/bienestar-universitario/pluridiverso/" target="_blank" rel="noopener noreferrer" id="link-pluri">Conoce Pluridiversos</a></div>
+    </div>
+    <p>Si estudias en un territorio fuera de Medellín, también puedes preguntar en tu alcaldía por las líneas de apoyo de tu municipio</p>
+    <p>Si el botón Llamar no abre el teléfono, marca el número directamente</p>
+    <button type="button" class="help-close" id="help-close">Cerrar</button>
+  </div>
+</div>
+
+<script src="../contenido.js"></script>
+<script>
+if (window.JUEGO) JUEGO.ayuda(document.getElementById("help"));
+/* ---------- Contenido: base de Pluridiversos (en revisión), igual que en la versión Arcade ---------- */
+const CLAIMS = {
+  M01: { claim: "En el TdeA existe una política de derechos humanos, diversidad y género", answer: "derecho", why: "Existe y está firmada, es la Resolución Académica 003 de 2023" },
+  M03: { claim: "Si tengo una discapacidad puedo pedir ajustes razonables para presentar un examen", answer: "derecho", why: "Es un derecho y el TdeA tiene una ruta de ajustes razonables con formulario en línea" },
+  M04: { claim: "Los temas de género solo le importan a las mujeres", answer: "mito", why: "La equidad de género es de todas las personas, también de quien hoy no lo vive de cerca" },
+  M06: { claim: "Pluridiversos también atiende a estudiantes de las sedes y regiones", answer: "derecho", why: "El programa es para toda la comunidad TdeA y sus servicios se solicitan en línea" },
+  M07: { claim: "Si alguien usa silla de ruedas, llegar al salón es problema suyo", answer: "mito", why: "La accesibilidad es responsabilidad de la institución, no de la persona" },
+  M09: { claim: "Burlarse del acento de alguien de otra región es solo recocha", answer: "mito", why: "Los regionalismos y las expresiones culturales son parte de la inclusión que el TdeA se comprometió a cuidar" },
+  M11: { claim: "Si una persona no parece tener una discapacidad, no puede pedir ajustes", answer: "mito", why: "Hay discapacidades y condiciones que no se ven, y también tienen derecho a ajustes razonables" },
+  M12: { claim: "La lengua de señas colombiana está reconocida por la ley", answer: "derecho", why: "Está reconocida como la lengua de la comunidad sorda en Colombia" },
+  M14: { claim: "Todas las personas tienen derecho al libre desarrollo de su personalidad", answer: "derecho", why: "Cómo te vistes, cómo te ves y cómo vives tu identidad hacen parte de ese derecho" },
+  M15: { claim: "Si alguien se viste distinto, es normal que el grupo opine", answer: "mito", why: "Opinar del cuerpo o la ropa de alguien sin que lo pida puede hacerle daño, el respeto va primero" },
+  M19: { claim: "Si la discriminación pasa en una sede regional, la política del TdeA no aplica", answer: "mito", why: "Las políticas institucionales aplican a toda la comunidad TdeA" },
+  M20: { claim: "La inclusión en la U solo se trabaja en el mes de la diversidad", answer: "mito", why: "Pluridiversos hace acompañamiento todo el semestre, con seguimiento y alertas tempranas" }
+};
+
+const DILEMMAS = {
+  D01: { place: "WhatsApp de la materia", text: "En el grupo de WhatsApp de la materia alguien se burla del acento de un compañero de Vegachí ¿Qué haces?", options: [
+    { profile: "acompana", label: "Le escribo por privado al compañero para ver cómo está", next: "Le cambias la noche a alguien, a veces eso basta para que no se sienta solo" },
+    { profile: "transforma", label: "Respondo en el grupo: \"parce, ese chiste no da\"", next: "El chiste pierde fuerza cuando alguien lo nombra con calma, otras personas se animan a escribir lo mismo" },
+    { profile: "observa", label: "Leo, sigo, pero me quedo pensando", next: "Notarlo ya es un paso, la próxima vez puede que digas algo" } ] },
+  D03: { place: "Trabajo en grupo", text: "En el trabajo en grupo, cada idea que propone una compañera la repite un compañero y a él sí le hacen caso ¿Qué haces?", options: [
+    { profile: "transforma", label: "Digo: \"como propuso ella hace un momento…\"", next: "Devolver el crédito en voz alta cambia cómo escucha el grupo" },
+    { profile: "acompana", label: "Hablo con ella después y le pregunto cómo lo vive", next: "Saber que alguien lo notó le quita peso a la situación" },
+    { profile: "observa", label: "Me doy cuenta y lo anoto para estar pendiente", next: "Ver el patrón es lo que permite cortarlo después" } ] },
+  D05: { place: "Trabajo en grupo", text: "Para el trabajo en grupo nadie invita al compañero con discapacidad auditiva ¿Qué haces?", options: [
+    { profile: "acompana", label: "Lo invito a mi grupo y le pregunto cómo prefiere comunicarse", next: "Preguntarle cómo prefiere trabajar le dice que lo tienes en cuenta tal como es" },
+    { profile: "transforma", label: "Propongo que el grupo trabaje por chat para que todas las personas participen igual", next: "Cambiar la forma de trabajar ayuda a todo el grupo, no solo a él" },
+    { profile: "observa", label: "Me doy cuenta y lo comento con alguien de confianza", next: "Contarlo ya mueve algo, entre dos es más fácil invitarlo la próxima vez" } ] },
+  D06: { place: "Chat de Teams", text: "En el chat de Teams alguien escribe un chiste sobre las mujeres en ingeniería y varias personas ponen risas ¿Qué haces?", options: [
+    { profile: "transforma", label: "Escribo con calma: \"prefiero que no hagamos chistes así\"", next: "Una línea tranquila corta la cadena de risas y otras personas se animan a no seguirla" },
+    { profile: "acompana", label: "Le escribo por privado a una compañera de la carrera para ver cómo lo tomó", next: "Tu mensaje le recuerda que en la carrera también tiene con quién contar" },
+    { profile: "observa", label: "No pongo risa y me quedo pensando en eso", next: "No reírse también dice algo, aunque nadie lo vea" } ] },
+  D08: { place: "Exposición en clase", text: "En una exposición alguien imita la forma de hablar de un compañero que tartamudea y varias personas se ríen ¿Qué haces?", options: [
+    { profile: "transforma", label: "Digo con calma: \"dejémoslo terminar\"", next: "Devolverle el turno le recuerda al grupo que lo importante es lo que tiene para decir" },
+    { profile: "acompana", label: "Después de clase le pregunto cómo está", next: "Un mensaje después puede pesar más que la burla" },
+    { profile: "observa", label: "No me río y me fijo si vuelve a pasar", next: "No sumarse a la risa ya cambia el ambiente" } ] },
+  D11: { place: "En clase", text: "Un compañero cuenta que tiene más tiempo en los exámenes por un ajuste razonable y otra persona dice \"eso es ventaja\" ¿Qué haces?", options: [
+    { profile: "transforma", label: "Explico que es un ajuste para estudiar en igualdad, no una ventaja", next: "Nombrarlo bien ayuda a que el grupo deje de verlo como un privilegio" },
+    { profile: "acompana", label: "Le digo al compañero que tiene todo el derecho a pedirlo", next: "Un respaldo a tiempo le quita la culpa de usar su derecho" },
+    { profile: "activa", label: "Averiguo cómo funciona la ruta de ajustes razonables", next: "Saber cómo funciona te deja explicarlo con datos la próxima vez" } ] }
+};
+
+/* La historia de Eco: cinco capítulos */
+const CHAPTERS = [
+  { name: "EL CAMPUS", place: "campus", claims: ["M09", "M14", "M15", "M20"], dilemmas: [], reward: "mochila",
+    intro: "Eco llega al campus y los pasillos están en silencio, estudiantes, docentes, directivas, egresados y personal administrativo pasan sin mirarse, cada acierto devuelve una voz y el campus empieza a despertar" },
+  { name: "EL AULA", place: "aula", claims: ["M03", "M07", "M11"], dilemmas: ["D05", "D11", "D08"], reward: "gorra",
+    intro: "En el aula hay pupitres vacíos y un escalón en la puerta, no todas las personas encuentran cómo entrar y participar, ni quien estudia ni quien enseña, ayuda a Eco a abrir el camino" },
+  { name: "EL CHAT Y LOS GRUPOS", place: "chat", claims: ["M04"], dilemmas: ["D06", "D03"], reward: "bufanda",
+    intro: "En los chats de clase, los trabajos en grupo y los equipos de las oficinas todo pasa muy rápido, Eco quiere que ahí también se sienta el respeto" },
+  { name: "EL TERRITORIO", place: "pueblo", claims: ["M06", "M19"], dilemmas: ["D01"], reward: "gafas",
+    intro: "Eco viaja a una sede fuera de Medellín, el TdeA también está aquí, con estudiantes, docentes y personal que hacen comunidad" },
+  { name: "LA PLAZA", place: "plaza", claims: ["M01", "M12"], dilemmas: [], reward: "corona",
+    intro: "Todas las voces que recuperaste llegan a la plaza, estudiantes, egresados, docentes, directivas y personal administrativo, falta un último paso para la gran fiesta de la comunidad" }
+];
+const ACC = {
+  mochila: { name: "MOCHILA", text: "Para guardar las voces que va recuperando" },
+  gorra: { name: "GORRA", text: "Lista para cada clase y cada jornada de trabajo" },
+  bufanda: { name: "BUFANDA", text: "Tejida con mensajes amables" },
+  gafas: { name: "GAFAS DE SOL", text: "Para el sol del camino" },
+  corona: { name: "CORONA DE FLORES", text: "Para la gran fiesta de la comunidad" }
+};
+if (window.JUEGO) JUEGO.historia(CLAIMS, DILEMMAS, CHAPTERS, ACC);
+const TOTAL_CLAIMS = CHAPTERS.reduce((a, c) => a + c.claims.length, 0);
+const TOTAL_DILEMMAS = CHAPTERS.reduce((a, c) => a + c.dilemmas.length, 0);
+let ITEMS = [], SCENES = [];
+
+const PROFILES = {
+  observa: { name: "OBSERVA", phrase: "Empiezas a notar lo que otras personas dejan pasar, y todo cambio empieza por ahí", action: "Mañana fíjate en quién habla menos en tu clase o en tu equipo de trabajo" },
+  acompana: { name: "ACOMPAÑA", phrase: "Sabes escuchar, y eso hace que la gente no se sienta sola", action: "Mañana escríbele a alguien de tu clase o de tu equipo que hace rato no ves" },
+  activa: { name: "ACTIVA", phrase: "Conoces la ruta y la usas, contigo nadie se queda sin saber a dónde ir", action: "Mañana guarda en tu celular el enlace de Pluridiversos" },
+  transforma: { name: "TRANSFORMA", phrase: "Cambias el ambiente a tu alrededor, donde estás, la gente se siente más libre", action: "Mañana comparte este juego con tu grupo de la materia o con tu equipo de trabajo" }
+};
+if (window.JUEGO) JUEGO.perfiles(PROFILES);
+/* En esta versión los nombres de perfil van en minúscula */
+Object.values(PROFILES).forEach(p => { p.name = p.name.charAt(0) + p.name.slice(1).toLowerCase(); });
+
+const SHARE_URL = "https://acudeiatdea.github.io/ACUDE-sitio/juego/aurora/";
+const PLURI_URL = "https://tdea.edu.co/micrositios/bienestar-universitario/pluridiverso/";
+const CREDIT_START = "Hecho por estudiantes del ACUDE Herramientas de IA, Tecnológico de Antioquia, 2026-2";
+const CREDIT_1 = "Un juego de estudiantes del ACUDE Herramientas de IA, Tecnológico de Antioquia";
+const CREDIT_2 = "Contenido trabajado con Pluridiversos, Bienestar Universitario TdeA";
+const CREDITS = [
+  CREDIT_START,
+  "Música creada con IA en Artlist por el curso",
+  CREDIT_2
+];
+/* El perfil sale del que más veces se eligió, y si hay empate, del último elegido */
+function allyProfile(choices) {
+  const list = choices.filter(Boolean);
+  if (!list.length) return PROFILES.observa;
+  const count = {};
+  list.forEach(c => { count[c] = (count[c] || 0) + 1; });
+  const max = Math.max(...Object.values(count));
+  for (let k = list.length - 1; k >= 0; k--) if (count[list[k]] === max) return PROFILES[list[k]];
+  return PROFILES.observa;
+}
+
+/* ---------- La historia de Eco ---------- */
+const STEP_TXT = {
+  campus: ["Creció un árbol", "Se encienden las ventanas", "Aparece un mural de colores", "Llega gente a la banca"],
+  aula: ["Aparece una rampa", "Se enciende la luz", "El tablero se llena de ideas", "Llega alguien a clase", "Se suman más personas", "Toda la clase participa"],
+  chat: ["Llega un mensaje amable", "Llegan respuestas con corazón", "El grupo se une"],
+  pueblo: ["Llega gente a la plaza", "La plaza se llena", "Llega la chiva"],
+  plaza: ["Aparecen los banderines", "Se encienden las luces"]
+};
+const PROLOGUE = "Las voces del TdeA se dispersaron, estudiantes, docentes, directivas, egresados y personal administrativo, cada quien quedó por su lado, Eco quiere reunirlas y construir una comunidad donde quepamos todas las personas";
+const EPILOGUE = "Todas las voces llegan a la plaza y empieza la gran fiesta de la comunidad, al final descubres tu perfil aliado y una acción pequeña para hacer mañana";
+const GOAL = 0.5;
+const nice = s => s.charAt(0) + s.slice(1).toLowerCase();
+const voicesOf = c => c.claims.length + c.dilemmas.length;
+const article = r => r === "gafas" ? "unas " : "una ";
+
+/* Avance guardado solo en este celular */
+const STORY_KEY = "mod-story", RUN_KEY = "mod-run";
+function loadStory() {
+  try { const st = JSON.parse(localStorage.getItem(STORY_KEY)); if (st && Array.isArray(st.stars) && Array.isArray(st.acc)) { st.acc = st.acc.filter(a => ACC[a]); return st; } } catch (e) {}
+  return { unlocked: 0, stars: [0, 0, 0, 0, 0], acc: [], seen: false };
+}
+function saveStory() { try { localStorage.setItem(STORY_KEY, JSON.stringify(story)); } catch (e) {} }
+let story = loadStory();
+function saveRun() { try { localStorage.setItem(RUN_KEY, JSON.stringify({ players, mode, chap, runStart, runStars, snap: chapSnap })); } catch (e) {} }
+function loadRun() { try { const r = JSON.parse(localStorage.getItem(RUN_KEY)); if (r && r.snap && Array.isArray(r.snap.scores) && CHAPTERS[r.chap]) return r; } catch (e) {} return null; }
+function clearRun() { try { localStorage.removeItem(RUN_KEY); } catch (e) {} }
+const runHint = r => "Capítulo " + (r.chap + 1) + ", " + (r.players === 1 ? "1 persona" : r.players + " personas " + (r.mode === "coop" ? "en equipo" : "por turnos"));
+
+const stage = document.getElementById("stage");
+const controls = document.getElementById("controls");
+const dots = document.getElementById("dots");
+const soundBtn = document.getElementById("btn-sound");
+const menuBtn = document.getElementById("btn-menu");
+/* ---------- Eco camina y reacciona ---------- */
+const ecoEl = document.getElementById("eco"), ecoTrack = document.getElementById("eco-track");
+let ecoX = 12, ecoDir = 1, ecoLast = 0, ecoState = "idle", ecoUntil = 0, ecoTarget = null;
+const ecoStill = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function ecoSay(state, ms) {
+  ecoState = state;
+  ecoUntil = performance.now() + (ms || 1600);
+  ecoEl.classList.remove("happy", "sad", "cheer");
+  if (state !== "idle") ecoEl.classList.add(state);
+}
+function ecoLoop(t) {
+  const dt = ecoLast ? Math.min(0.05, (t - ecoLast) / 1000) : 0;
+  ecoLast = t;
+  if (ecoState !== "idle" && performance.now() > ecoUntil) ecoSay("idle");
+  const max = Math.max(0, ecoTrack.clientWidth - 56);
+  const tgt = ecoTarget == null ? null : Math.min(ecoTarget, max);
+  const walking = ecoState === "idle" && !ecoStill() && (tgt == null || Math.abs(tgt - ecoX) > 1);
+  ecoEl.classList.toggle("walking", walking);
+  if (tgt != null && ecoStill()) ecoX = tgt;
+  if (walking && tgt != null) {
+    ecoDir = tgt > ecoX ? 1 : -1;
+    ecoX += ecoDir * 80 * dt;
+    if ((ecoDir > 0 && ecoX > tgt) || (ecoDir < 0 && ecoX < tgt)) ecoX = tgt;
+  } else if (walking) {
+    ecoX += ecoDir * 26 * dt;
+    if (ecoX >= max) { ecoX = max; ecoDir = -1; }
+    if (ecoX <= 0) { ecoX = 0; ecoDir = 1; }
+  }
+  ecoX = Math.min(Math.max(ecoX, 0), max);
+  ecoEl.style.transform = "translateX(" + ecoX + "px) scaleX(" + ecoDir + ")";
+  ecoTrack.style.setProperty("--px", ecoX.toFixed(1));
+  requestAnimationFrame(ecoLoop);
+}
+requestAnimationFrame(ecoLoop);
+
+/* ---------- Escuchar en voz alta, con la voz y la velocidad que elijas ---------- */
+const canSpeak = "speechSynthesis" in window && typeof SpeechSynthesisUtterance !== "undefined";
+const SPEAKER = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+let speakingBtn = null;
+let voicePick = "", voiceRate = 0.95;
+try { voicePick = localStorage.getItem("mod-voice") || ""; voiceRate = parseFloat(localStorage.getItem("mod-rate")) || 0.95; } catch (e) {}
+const RATES = [[0.75, "LENTA"], [0.95, "NORMAL"], [1.2, "RÁPIDA"]];
+function esVoices() {
+  if (!canSpeak) return [];
+  let vs = [];
+  try { vs = speechSynthesis.getVoices(); } catch (e) {}
+  const rank = v => /^es[-_]CO/i.test(v.lang) ? 0 : /^es[-_](419|MX|US)/i.test(v.lang) ? 1 : 2;
+  return vs.filter(v => /^es/i.test(v.lang)).sort((a, b) => rank(a) - rank(b) || a.name.localeCompare(b.name));
+}
+if (canSpeak) { try { speechSynthesis.getVoices(); } catch (e) {} }
+const autoVoice = vs => vs.find(x => /^es[-_]CO/i.test(x.lang)) || vs.find(x => /^es[-_](MX|US|419)/i.test(x.lang)) || vs[0];
+const shortVoice = v => v.name.replace(/^(Microsoft|Google|Apple)\s+/i, "").replace(/\s*[-(].*$/, "").trim() || v.name;
+function regionOf(lang) {
+  const r = (lang.split(/[-_]/)[1] || "").toUpperCase();
+  if (!r) return "Español";
+  if (r === "419") return "Español de Latinoamérica";
+  try { return "Español de " + new Intl.DisplayNames(["es"], { type: "region" }).of(r); } catch (e) { return "Español " + r; }
+}
+function stopSpeak() {
+  if (!canSpeak) return;
+  try { speechSynthesis.cancel(); } catch (e) {}
+  if (speakingBtn) { speakingBtn.classList.remove("speaking"); speakingBtn = null; }
+  if (typeof duckMusic === "function") duckMusic(false);
+}
+function speak(text, btn) {
+  if (!canSpeak) return;
+  stopSpeak();
+  try {
+    const u = new SpeechSynthesisUtterance(text);
+    const vs = esVoices();
+    const v = vs.find(x => x.voiceURI === voicePick) || autoVoice(vs);
+    u.lang = v ? v.lang : "es-CO";
+    if (v) u.voice = v;
+    u.rate = voiceRate;
+    if (btn) { speakingBtn = btn; btn.classList.add("speaking"); }
+    duckMusic(true);
+    u.onend = u.onerror = () => { duckMusic(false); if (speakingBtn === btn && btn) { btn.classList.remove("speaking"); speakingBtn = null; } };
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+function addListen(parent, getText) {
+  if (!canSpeak) return;
+  const b = el("button", "listen");
+  b.type = "button";
+  b.innerHTML = SPEAKER + "<span>Escuchar</span>";
+  b.setAttribute("aria-label", "Escuchar en voz alta");
+  b.addEventListener("click", () => {
+    if (speakingBtn === b) { stopSpeak(); return; }
+    speak(typeof getText === "function" ? getText() : getText, b);
+  });
+  parent.appendChild(b);
+}
+
+/* ---------- Sonido (se genera en el navegador, no descarga nada) ---------- */
+let audio = null, soundOn = true;
+try { soundOn = localStorage.getItem("mod-sound") !== "off"; } catch (e) {}
+
+function paintSoundBtn() {
+  soundBtn.textContent = "Sonido: " + (soundOn ? "sí" : "no");
+  soundBtn.setAttribute("aria-pressed", soundOn ? "true" : "false");
+}
+soundBtn.addEventListener("click", () => {
+  soundOn = !soundOn;
+  try { localStorage.setItem("mod-sound", soundOn ? "on" : "off"); } catch (e) {}
+  paintSoundBtn();
+  sfx("tap");
+});
+paintSoundBtn();
+
+/* ---------- Vibración (solo en celulares que la permiten) ---------- */
+const canVibe = typeof navigator !== "undefined" && typeof navigator.vibrate === "function";
+const VIBES = { tap: 10, ok: [30, 40, 30], bad: 90, choice: 20, win: [40, 40, 40, 40, 160] };
+let vibeOn = true;
+try { vibeOn = localStorage.getItem("mod-vibe") !== "off"; } catch (e) {}
+const vibeBtn = document.getElementById("btn-vibe");
+function buzz(kind) {
+  if (!canVibe || !vibeOn || !VIBES[kind]) return;
+  try { navigator.vibrate(VIBES[kind]); } catch (e) {}
+}
+function paintVibeBtn() {
+  vibeBtn.textContent = "Vibración: " + (vibeOn ? "sí" : "no");
+  vibeBtn.setAttribute("aria-pressed", vibeOn ? "true" : "false");
+}
+if (canVibe) {
+  vibeBtn.hidden = false;
+  paintVibeBtn();
+  vibeBtn.addEventListener("click", () => {
+    vibeOn = !vibeOn;
+    try { localStorage.setItem("mod-vibe", vibeOn ? "on" : "off"); } catch (e) {}
+    paintVibeBtn();
+    if (vibeOn) { try { navigator.vibrate(60); } catch (e) {} }
+  });
+}
+
+function tone(freq, start, dur, type, vol) {
+  const o = audio.createOscillator();
+  const g = audio.createGain();
+  o.type = type || "sine";
+  o.frequency.setValueAtTime(freq, start);
+  g.gain.setValueAtTime(0.0001, start);
+  g.gain.linearRampToValueAtTime(vol || 0.18, start + 0.015);
+  g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+  o.connect(g).connect(audio.destination);
+  o.start(start);
+  o.stop(start + dur + 0.05);
+}
+
+/* ---------- Avisos visibles de sonido ---------- */
+const CAPS = { ok: "Sonido de acierto", bad: "Sonido de error", choice: "Sonido de decisi\u00f3n", win: "Sonido de celebraci\u00f3n" };
+let capsOn = true, capTimer = 0;
+try { capsOn = localStorage.getItem("mod-caps") !== "off"; } catch (e) {}
+function caption(text) {
+  if (!capsOn || !text) return;
+  const c = document.getElementById("sndcap");
+  c.textContent = "\u266a " + text;
+  c.classList.add("show");
+  clearTimeout(capTimer);
+  capTimer = setTimeout(() => c.classList.remove("show"), 1800);
+}
+
+function sfx(kind) {
+  if (soundOn) caption(CAPS[kind]);
+  buzz(kind);
+  if (!soundOn) return;
+  try {
+    audio = audio || new (window.AudioContext || window.webkitAudioContext)();
+    if (audio.state === "suspended") audio.resume();
+    const t = audio.currentTime + 0.01;
+    if (kind === "ok") {
+      tone(523.25, t, 0.14, "triangle");
+      tone(659.25, t + 0.1, 0.14, "triangle");
+      tone(783.99, t + 0.2, 0.32, "triangle");
+    } else if (kind === "bad") {
+      tone(330, t, 0.2, "sine", 0.2);
+      tone(247, t + 0.17, 0.35, "sine", 0.2);
+    } else if (kind === "choice") {
+      tone(392, t, 0.12, "sine", 0.14);
+      tone(523.25, t + 0.1, 0.25, "sine", 0.14);
+    } else if (kind === "win") {
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, k) => tone(f, t + k * 0.11, 0.3, "triangle"));
+    } else {
+      tone(440, t, 0.07, "triangle", 0.1);
+    }
+  } catch (e) {}
+}
+
+/* ---------- Utilidades ---------- */
+function el(tag, cls, text) {
+  const n = document.createElement(tag);
+  if (cls) n.className = cls;
+  if (text != null) n.textContent = text;
+  return n;
+}
+const name = k => "Participante " + (k + 1);
+
+
+/* ---------- Música de fondo: las mismas tres pistas de la versión Arcade ---------- */
+const TRACKS = { tema: { src: "../musica/tema.mp3", name: "tema principal", loop: true }, nivel2: { src: "../musica/nivel2.mp3", name: "situaciones", loop: true }, victoria: { src: "../musica/victoria.mp3", name: "victoria", loop: false } };
+const MUSIC_VOL = 0.35, MUSIC_LOW = 0.08;
+let musicOn = true, musicTrack = "", musicStarted = false;
+try { musicOn = localStorage.getItem("mod-music") !== "off"; } catch (e) {}
+const musicEl = new Audio();
+musicEl.preload = "auto";
+musicEl.volume = MUSIC_VOL;
+musicEl.addEventListener("ended", () => { if (musicTrack === "victoria") setTrack("tema", true); });
+const musicBtn = document.getElementById("btn-music");
+function paintMusicBtn() {
+  musicBtn.textContent = "Música: " + (musicOn ? "sí" : "no");
+  musicBtn.setAttribute("aria-pressed", musicOn ? "true" : "false");
+}
+function playMusic() {
+  if (!musicOn || !musicStarted || !musicTrack) return;
+  const p = musicEl.play();
+  if (p && p.catch) p.catch(() => {});
+}
+function setTrack(k, quiet) {
+  if (!TRACKS[k] || k === musicTrack) return;
+  musicTrack = k;
+  musicEl.src = TRACKS[k].src;
+  musicEl.loop = TRACKS[k].loop;
+  playMusic();
+  if (musicOn && musicStarted && !quiet) caption("Música: " + TRACKS[k].name);
+}
+const trackFor = p => p === "scenes" ? "nivel2" : p === "end" ? "victoria" : "tema";
+/* Los navegadores solo dejan sonar música después del primer toque */
+document.addEventListener("pointerdown", () => { if (!musicStarted) { musicStarted = true; playMusic(); } }, { capture: true });
+document.addEventListener("keydown", () => { if (!musicStarted) { musicStarted = true; playMusic(); } }, { capture: true });
+musicBtn.addEventListener("click", () => {
+  musicOn = !musicOn;
+  try { localStorage.setItem("mod-music", musicOn ? "on" : "off"); } catch (e) {}
+  paintMusicBtn();
+  if (musicOn) { musicStarted = true; playMusic(); caption("Música: " + (TRACKS[musicTrack] || TRACKS.tema).name); }
+  else musicEl.pause();
+});
+paintMusicBtn();
+/* Baja la música mientras se lee en voz alta */
+function duckMusic(low) { musicEl.volume = low ? MUSIC_LOW : MUSIC_VOL; }
+
+function celebrate() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const box = el("div", "confetti");
+  const colors = ["#c8f53a", "#eef6e8", "#7fe0a0", "#f5e13a"];
+  for (let n = 0; n < 28; n++) {
+    const p = document.createElement("i");
+    const ang = Math.random() * Math.PI * 2;
+    const dist = 120 + Math.random() * 160;
+    p.style.setProperty("--x", Math.cos(ang) * dist + "px");
+    p.style.setProperty("--y", Math.sin(ang) * dist + "px");
+    p.style.background = colors[n % colors.length];
+    p.style.animationDelay = Math.random() * 0.15 + "s";
+    box.appendChild(p);
+  }
+  document.body.appendChild(box);
+  setTimeout(() => box.remove(), 1400);
+}
+
+function setSingle(btn) {
+  setTimeout(() => {
+    controls.className = "controls single";
+    controls.innerHTML = "";
+    controls.appendChild(btn);
+    btn.focus({ preventScroll: true });
+  }, 450);
+}
+
+/* ---------- Escenarios de la historia, dibujados en vector ---------- */
+const PER = (x, skin, shirt, pants, extra) => '<g transform="translate(' + x + ' 130)"><circle cx="0" cy="-26" r="4" fill="' + skin + '"/><rect x="-4" y="-21" width="8" height="13" rx="3" fill="' + shirt + '"/><rect x="-3.5" y="-9" width="3" height="9" fill="' + pants + '"/><rect x="0.5" y="-9" width="3" height="9" fill="' + pants + '"/>' + (extra || "") + '</g>';
+const CHAIR = (x, skin, shirt) => '<g transform="translate(' + x + ' 130)"><circle cx="0" cy="-6" r="6" fill="none" stroke="#c9d1b6" stroke-width="1.8"/><rect x="-4" y="-14" width="9" height="3" fill="#c9d1b6"/><rect x="-3" y="-25" width="7" height="12" rx="3" fill="' + shirt + '"/><rect x="2" y="-13" width="8" height="3" rx="1" fill="#33445a"/><circle cx="0" cy="-29" r="4" fill="' + skin + '"/></g>';
+const HAND = skin => '<rect x="3" y="-38" width="2.4" height="13" rx="1.2" fill="' + skin + '"/>';
+const MAP_X = [40, 115, 200, 285, 365], MAP_Y = [112, 108, 110, 106, 104];
+
+const LAYERS = ''
+/* Capítulo 1: el campus */
++ '<g class="layer" id="L-campus">'
++ '<rect x="26" y="66" width="92" height="64" fill="#1f4532"/><rect x="22" y="62" width="100" height="6" fill="#28563f"/>'
++ '<g data-lit="2"><rect class="win" x="36" y="76" width="12" height="10"/><rect class="win" x="66" y="76" width="12" height="10"/><rect class="win" x="96" y="76" width="12" height="10"/><rect class="win" x="36" y="94" width="12" height="10"/><rect class="win" x="66" y="94" width="12" height="10"/><rect class="win" x="96" y="94" width="12" height="10"/></g>'
++ '<rect x="64" y="112" width="16" height="18" fill="#163526"/>'
++ '<rect x="252" y="82" width="108" height="48" fill="#1c3f2e"/><rect x="248" y="78" width="116" height="6" fill="#255039"/>'
++ '<g data-lit="2"><rect class="win" x="262" y="92" width="14" height="10"/><rect class="win" x="290" y="92" width="14" height="10"/><rect class="win" x="318" y="92" width="14" height="10"/><rect class="win" x="346" y="92" width="8" height="10"/></g>'
++ '<rect x="140" y="98" width="76" height="32" rx="2" fill="#24463a"/>'
++ '<g class="grow" data-s="3"><path d="M144 124 Q160 104 176 118 T212 108 V126 H144Z" fill="#7fc9c2" opacity=".85"/><circle cx="158" cy="110" r="6" fill="#f5d76e"/><circle cx="196" cy="112" r="5" fill="#ff9a86"/><path d="M150 104 h10 M186 104 h14" stroke="#c8f53a" stroke-width="3" stroke-linecap="round"/></g>'
++ '<g class="grow" data-s="4">' + PER(229, "#c68b5e", "#b39ddb", "#3a3550") + PER(243, "#5a3a28", "#ff9a86", "#2e3b33") + '</g>'
++ '<g fill="#3d6550"><rect x="224" y="121" width="24" height="3" rx="1"/><rect x="226" y="124" width="2" height="6"/><rect x="244" y="124" width="2" height="6"/></g>'
++ '<g class="grow" data-s="1"><rect x="130" y="108" width="4" height="22" fill="#4a3a2a"/><circle cx="132" cy="102" r="11" fill="#4f8a3c"/><circle cx="125" cy="108" r="7" fill="#5f9a45"/><circle cx="139" cy="107" r="7" fill="#6aa84b"/><rect x="376" y="104" width="4" height="26" fill="#4a3a2a"/><circle cx="378" cy="98" r="12" fill="#4f8a3c"/><circle cx="371" cy="104" r="7" fill="#6aa84b"/><rect x="6" y="110" width="3" height="20" fill="#4a3a2a"/><circle cx="8" cy="104" r="9" fill="#5f9a45"/></g>'
++ '</g>'
+/* Capítulo 2: el aula */
++ '<g class="layer" id="L-aula">'
++ '<rect x="-20" width="440" height="130" fill="#1b3528"/><rect x="-20" y="96" width="440" height="34" fill="#163023"/><rect x="-20" y="95" width="440" height="2" fill="#2a5640"/>'
++ '<g data-lit="2"><rect x="20" y="20" width="62" height="50" fill="#3d6550"/><rect class="pane" x="24" y="24" width="54" height="42"/><rect x="49" y="24" width="4" height="42" fill="#3d6550"/><rect x="24" y="43" width="54" height="4" fill="#3d6550"/></g>'
++ '<rect x="108" y="16" width="164" height="74" rx="3" fill="#4a3a2a"/><rect x="113" y="21" width="154" height="64" fill="#0e2418"/>'
++ '<g class="grow" data-s="3"><path d="M124 36h50M124 48h70M124 60h40" stroke="#eef6e8" stroke-width="3" stroke-linecap="round" opacity=".85"/><circle cx="232" cy="46" r="14" fill="none" stroke="#f5d76e" stroke-width="3"/><path d="M226 46l5 5 9-10" stroke="#c8f53a" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M216 72h34" stroke="#7fc9c2" stroke-width="3" stroke-linecap="round"/></g>'
++ '<rect x="310" y="0" width="2" height="12" fill="#3d6550"/><path d="M300 12h22l-4 7h-14z" fill="#5a7a68"/>'
++ '<path class="grow" data-s="2" d="M304 19 L282 96 L340 96 L318 19Z" fill="#f5d76e" opacity=".18"/>'
++ '<rect x="350" y="54" width="44" height="76" fill="#3a2e22"/><rect x="354" y="58" width="36" height="72" fill="#6b5236"/><circle cx="384" cy="96" r="2" fill="#f5d76e"/>'
++ '<rect x="336" y="122" width="64" height="8" fill="#5a6b5c"/>'
++ '<path class="grow" data-s="1" d="M294 130 L336 122 L336 130Z" fill="#7fc9c2"/>'
++ '<g class="grow" data-s="4">' + CHAIR(78, "#8d5a3b", "#7fc9c2") + '</g>'
++ '<g class="grow" data-s="5">' + PER(160, "#e0b48c", "#ff9a86", "#3a3550") + PER(178, "#5a3a28", "#f5d76e", "#2e3b33") + '</g>'
++ '<g class="grow" data-s="6">' + PER(246, "#c68b5e", "#b39ddb", "#3a3550", HAND("#c68b5e")) + PER(264, "#8d5a3b", "#c8f53a", "#2e3b33") + '</g>'
++ [52, 140, 226].map(x => '<rect x="' + x + '" y="112" width="64" height="5" rx="1" fill="#8c7d63"/><rect x="' + (x + 4) + '" y="117" width="3" height="13" fill="#6b5e48"/><rect x="' + (x + 57) + '" y="117" width="3" height="13" fill="#6b5e48"/>').join("")
++ '</g>'
+/* Capítulo 3: el chat y los grupos */
++ '<g class="layer" id="L-chat">'
++ '<rect x="148" y="4" width="104" height="126" rx="14" fill="#0e1f16" stroke="#3d6550" stroke-width="3"/><rect x="156" y="16" width="88" height="104" rx="5" fill="#eef6e8"/><rect x="186" y="8" width="28" height="3" rx="1.5" fill="#3d6550"/>'
++ '<rect x="162" y="22" width="58" height="14" rx="7" fill="#a3baa9"/><path d="M168 29h40" stroke="#6b7d70" stroke-width="2.5" stroke-linecap="round"/>'
++ '<g class="grow" data-s="1"><rect x="180" y="42" width="58" height="14" rx="7" fill="#c8f53a"/><path d="M186 49h36" stroke="#0a1910" stroke-width="2.5" stroke-linecap="round"/></g>'
++ '<g class="grow" data-s="2"><rect x="162" y="62" width="62" height="14" rx="7" fill="#7fc9c2"/><path d="M168 69h42" stroke="#0a1910" stroke-width="2.5" stroke-linecap="round"/><rect x="196" y="82" width="42" height="26" rx="12" fill="#ff9a86"/><path d="M217 101 l-8 -8 a4.5 4.5 0 0 1 8 -5 a4.5 4.5 0 0 1 8 5 z" fill="#ffffff"/></g>'
++ '<g class="grow" data-s="3">' + PER(96, "#e0b48c", "#7fc9c2", "#3a3550") + PER(116, "#5a3a28", "#f5d76e", "#2e3b33") + PER(286, "#8d5a3b", "#ff9a86", "#2e3b33") + PER(306, "#c68b5e", "#b39ddb", "#3a3550") + '<rect x="88" y="80" width="34" height="12" rx="6" fill="#c8f53a"/><rect x="282" y="78" width="34" height="12" rx="6" fill="#7fc9c2"/></g>'
++ '</g>'
+/* Capítulos 4 y 5: el territorio y la plaza */
++ '<g class="layer" id="L-pueblo">'
++ '<path d="M230 112 Q290 100 360 110 M240 117 Q300 106 370 116 M250 122 Q310 112 380 121" stroke="#3f6e34" stroke-width="3" fill="none" stroke-linecap="round"/>'
++ '<rect x="22" y="96" width="44" height="34" fill="#8c7d63"/><path d="M16 98 L44 80 L72 98Z" fill="#9a4d38"/><rect x="38" y="112" width="11" height="18" fill="#3a2e22"/><rect x="26" y="104" width="8" height="7" fill="#e6f39a"/>'
++ '<rect x="74" y="104" width="38" height="26" fill="#9c8c70"/><path d="M69 106 L93 90 L117 106Z" fill="#a55a40"/><rect x="86" y="116" width="10" height="14" fill="#3a2e22"/>'
++ '<rect x="300" y="100" width="46" height="30" fill="#8c7d63"/><path d="M294 102 L323 84 L352 102Z" fill="#9a4d38"/><rect x="316" y="114" width="12" height="16" fill="#3a2e22"/><rect x="334" y="108" width="8" height="7" fill="#e6f39a"/>'
++ '<g fill="#2c4a3a"><path d="M176 92 L204 80 L232 92Z" fill="#a55a40"/><rect x="180" y="92" width="3" height="38"/><rect x="225" y="92" width="3" height="38"/><rect x="178" y="92" width="52" height="3"/></g>'
++ '<g class="grow" data-s="3"><rect x="98" y="100" width="46" height="5" rx="2" fill="#a55a40"/><rect x="100" y="105" width="42" height="18" rx="2" fill="#f5d76e"/><rect x="100" y="112" width="42" height="3" fill="#ff9a86"/><rect x="100" y="117" width="42" height="2" fill="#7fc9c2"/>'
++ [104, 114, 124, 134].map(x => '<rect x="' + x + '" y="106" width="6" height="5" fill="#33445a"/>').join("")
++ '<circle cx="108" cy="125" r="5" fill="#2e3b33"/><circle cx="134" cy="125" r="5" fill="#2e3b33"/><circle cx="108" cy="125" r="2" fill="#c9d1b6"/><circle cx="134" cy="125" r="2" fill="#c9d1b6"/></g>'
++ '<g class="grow" data-s="1">' + CHAIR(152, "#8d5a3b", "#7fc9c2") + PER(170, "#e0b48c", "#ff9a86", "#3a3550") + '</g>'
++ '<g class="grow" data-s="2">' + PER(244, "#5a3a28", "#f5d76e", "#2e3b33", '<ellipse cx="6" cy="-12" rx="3.5" ry="4.5" fill="#c48a4a"/><rect x="7" y="-24" width="1.6" height="11" fill="#7a5530" transform="rotate(20 8 -18)"/>') + PER(262, "#c68b5e", "#b39ddb", "#3a3550") + PER(278, "#8d5a3b", "#c8f53a", "#2e3b33") + '</g>'
++ '<g class="grow" data-f="1"><path d="M10 70 Q105 92 200 70 T390 70" stroke="#c9d1b6" stroke-width="1" fill="none"/>'
++ '<path d="M30 75 l5 10 l5-9Z" fill="#ff9a86"/><path d="M60 81 l5 10 l5-10Z" fill="#f5d76e"/><path d="M90 85 l5 10 l5-10Z" fill="#7fc9c2"/><path d="M120 85 l5 10 l5-10Z" fill="#c8f53a"/><path d="M150 81 l5 10 l5-10Z" fill="#b39ddb"/><path d="M180 74 l5 10 l5-9Z" fill="#ff9a86"/><path d="M220 75 l5 10 l5-9Z" fill="#f5d76e"/><path d="M250 81 l5 10 l5-10Z" fill="#7fc9c2"/><path d="M280 85 l5 10 l5-10Z" fill="#c8f53a"/><path d="M310 85 l5 10 l5-10Z" fill="#b39ddb"/><path d="M340 81 l5 10 l5-10Z" fill="#ff9a86"/><path d="M370 74 l5 10 l5-9Z" fill="#f5d76e"/></g>'
++ '<g class="grow" data-f="2" fill="#f5e7a0"><circle class="bulb" cx="20" cy="40" r="2"/><circle class="bulb" cx="70" cy="30" r="2"/><circle class="bulb" cx="130" cy="44" r="2"/><circle class="bulb" cx="200" cy="26" r="2"/><circle class="bulb" cx="262" cy="42" r="2"/><circle class="bulb" cx="320" cy="30" r="2"/><circle class="bulb" cx="380" cy="44" r="2"/></g>'
++ '</g>'
+/* Mapa de la historia */
++ '<g class="layer" id="L-mapa">'
++ '<path d="M40 112 C70 96 90 96 115 108 S170 124 200 110 S260 94 285 106 S340 122 365 104" stroke="#c8f53a" stroke-width="3" stroke-dasharray="3 7" stroke-linecap="round" fill="none" opacity=".6"/>'
++ MAP_X.map((x, k) => '<g class="node" data-n="' + k + '" transform="translate(' + x + ' ' + MAP_Y[k] + ')"><rect x="-1" y="-36" width="2" height="36" fill="#c9d1b6"/><path class="flag" d="M1 -36 h18 l-5 6 l5 6 h-18z"/><circle class="disc" r="9"/><text class="num" y="4" text-anchor="middle">' + (k + 1) + '</text></g>').join("")
++ '</g>';
+
+const world = (() => {
+  const svg = document.getElementById("world");
+  svg.querySelector("#layers").innerHTML = LAYERS;
+  const STEPS = { campus: 4, aula: 6, chat: 3, pueblo: 3, plaza: 2, mapa: 1 };
+  /* Pinta el estado en cualquier copia del escenario, también la que se usa para las imágenes */
+  function apply(root, st) {
+    const layerOf = { campus: "campus", aula: "aula", chat: "chat", pueblo: "pueblo", plaza: "pueblo", mapa: "mapa" };
+    root.querySelectorAll(".layer").forEach(l => l.classList.toggle("hide", l.id !== "L-" + layerOf[st.place]));
+    const L = root.querySelector("#L-" + layerOf[st.place]);
+    const g = st.grown || 0;
+    L.querySelectorAll("[data-s]").forEach(n => n.classList.toggle("on", st.place === "plaza" || +n.dataset.s <= g));
+    L.querySelectorAll("[data-lit]").forEach(n => n.classList.toggle("lit", +n.dataset.lit <= g));
+    L.querySelectorAll("[data-f]").forEach(n => n.classList.toggle("on", st.place === "plaza" && (st.fiesta || +n.dataset.f <= g)));
+    L.querySelectorAll(".node").forEach(n => {
+      const k = +n.dataset.n, d = st.done || 0;
+      n.classList.toggle("done", k < d);
+      n.classList.toggle("now", k === Math.min(d, MAP_X.length - 1) && d < MAP_X.length);
+      n.classList.toggle("locked", k > d);
+    });
+    const r = Math.min(1, g / (STEPS[st.place] || 1));
+    const sun = st.place === "campus" ? 0.12 + 0.55 * r : st.place === "plaza" ? 0.8 : 0.5;
+    const day = st.place === "campus" ? 0.45 * r : st.place === "plaza" ? 0.32 : 0.5;
+    root.style.setProperty("--sun", sun);
+    root.style.setProperty("--day", day);
+  }
+  let state = { place: "campus", grown: 0 };
+  return {
+    apply,
+    get state() { return state; },
+    set(st) { state = Object.assign({ grown: 0, done: 0, fiesta: false }, st); apply(svg, state); sceneUpdate(); },
+    grow(n) { state.grown = n; apply(svg, state); },
+    cloud() {
+      const c = svg.querySelector(".cloud");
+      c.classList.remove("pass");
+      c.getBoundingClientRect();
+      c.classList.add("pass");
+    }
+  };
+})();
+
+/* ---------- Descripción de la escena para lectores de pantalla ---------- */
+function describeScene(st) {
+  const p = [], g = st.grown || 0;
+  if (st.place === "campus") {
+    p.push(g === 0 ? "Escena: de noche en un campus con dos edificios, una banca y una pared" : "Escena: amanece en el campus, con dos edificios, una banca y una pared");
+    p.push(g >= 1 ? "hay árboles" : "todavía no hay árboles");
+    p.push(g >= 2 ? "las ventanas están encendidas" : "las ventanas están apagadas");
+    p.push(g >= 3 ? "la pared tiene un mural de colores" : "la pared está en blanco");
+    if (g >= 4) p.push("dos personas conversan junto a la banca");
+  } else if (st.place === "aula") {
+    p.push("Escena: un aula con ventana, tablero, tres pupitres y una puerta con un escalón");
+    p.push(g >= 1 ? "junto al escalón ahora hay una rampa" : "todavía no hay rampa");
+    p.push(g >= 2 ? "la luz está encendida" : "la luz está apagada");
+    p.push(g >= 3 ? "el tablero tiene ideas escritas" : "el tablero está vacío");
+    if (g >= 4) p.push("en un pupitre hay una persona en silla de ruedas");
+    if (g >= 5) p.push("llegaron dos personas más");
+    if (g >= 6) p.push("y alguien levanta la mano para participar");
+  } else if (st.place === "chat") {
+    p.push("Escena: un celular grande con un chat abierto, arriba hay un mensaje gris");
+    if (g >= 1) p.push("llega un mensaje amable");
+    if (g >= 2) p.push("otra persona responde con respeto y aparece un mensaje con un corazón");
+    if (g >= 3) p.push("alrededor del celular se reúne un grupo de cuatro personas");
+  } else if (st.place === "pueblo") {
+    p.push("Escena: un pueblo del territorio con casas de teja, un quiosco en la plaza, cultivos y montañas");
+    if (g >= 1) p.push("en la plaza hay una persona en silla de ruedas y otra persona de pie");
+    if (g >= 2) p.push("también llegó un grupo de tres personas y una de ellas toca guitarra");
+    if (g >= 3) p.push("llegó una chiva de colores");
+  } else if (st.place === "plaza") {
+    p.push("Escena: la plaza del pueblo con personas diversas, una persona en silla de ruedas, un grupo con guitarra y una chiva de colores");
+    if (st.fiesta || g >= 1) p.push("cuelgan banderines de colores");
+    if (st.fiesta || g >= 2) p.push("brillan luces en el cielo");
+  } else if (st.place === "mapa") {
+    const d = st.done || 0;
+    p.push("Mapa de la historia: un camino con cinco banderas une el campus, el aula, el chat, el territorio y la plaza");
+    p.push(d >= 5 ? "todos los lugares están completos" : d === 0 ? "todavía no hay lugares completos" : d === 1 ? "ya completaste 1 lugar" : "ya completaste " + d + " lugares");
+  }
+  if (story.acc.length) p.push("Eco lleva " + story.acc.map(a => ACC[a].name.toLowerCase()).join(", "));
+  p.push(st.fiesta ? "Eco celebra con los brazos arriba" : "Eco, un globito de diálogo verde, camina por el lugar");
+  return p.join(", ");
+}
+function sceneUpdate(news) {
+  ecoTrack.setAttribute("aria-label", describeScene(world.state));
+  if (news) {
+    const live = document.getElementById("scene-live");
+    live.textContent = "";
+    setTimeout(() => { live.textContent = "Escena: " + news; }, 60);
+  }
+}
+
+
+let players = 1, mode = "solo", turn = 0, picks = [], scores = [];
+let i = 0, results = [];
+let phase = "start", j = 0, scenesDone = [], sceneChoices = [];
+let chap = 0, runStart = 0, runVoices = 0, runStars = [], chapSnap = null;
+let wGrown = 0, levelCorrect = 0, levelAnswers = 0;
+
+/* ---------- Utilidades de pantalla ---------- */
+function setPhase(p) {
+  phase = p;
+  setTrack(trackFor(p));
+  menuBtn.hidden = !(chapSnap && ["claims", "scenes", "check", "intro", "chapend"].includes(p));
+}
+function clearStage(single) {
+  stopSpeak();
+  stage.innerHTML = "";
+  controls.className = single ? "controls single" : "controls";
+  controls.innerHTML = "";
+  window.scrollTo(0, 0);
+}
+function mkBtn(text, cls, id, fn) {
+  const b = el("button", cls || "", text);
+  b.type = "button";
+  if (id) b.id = id;
+  b.addEventListener("click", () => { sfx("tap"); fn(); });
+  return b;
+}
+function optBtn(title, sub, id, fn, extraCls) {
+  const b = el("button", "option" + (extraCls ? " " + extraCls : ""));
+  b.type = "button";
+  if (id) b.id = id;
+  b.appendChild(el("span", "", title));
+  if (sub) b.appendChild(el("small", "", sub));
+  b.addEventListener("click", () => { sfx("tap"); fn(); });
+  return b;
+}
+function chips(list) {
+  const c = el("div", "chips");
+  list.forEach(([t, on]) => c.appendChild(el("span", "chip" + (on ? " on" : ""), t)));
+  return c;
+}
+const STAR = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6.1 6.6.8-4.9 4.6 1.3 6.6L12 17.3 6.1 20.6l1.3-6.6L2.5 9.4l6.6-.8z" fill="currentColor"/></svg>';
+function starsRow(n) {
+  const s = el("div", "stars");
+  s.setAttribute("role", "img");
+  s.setAttribute("aria-label", n + " de 3 estrellas");
+  for (let k = 0; k < 3; k++) { const w = el("span", k < n ? "" : "off"); w.innerHTML = STAR; s.appendChild(w); }
+  return s;
+}
+function wearAcc() {
+  ["mochila", "bufanda", "gorra", "gafas", "corona"].forEach(a => ecoEl.classList.toggle("w-" + a, story.acc.includes(a)));
+  ecoEl.classList.toggle("w-gorra", story.acc.includes("gorra") && !story.acc.includes("corona"));
+}
+
+function drawDots() {
+  dots.innerHTML = "";
+  if (!["claims", "scenes", "check"].includes(phase)) { dots.setAttribute("aria-label", "Progreso del juego"); stopSpeak(); return; }
+  const total = ITEMS.length + SCENES.length;
+  const pos = phase === "claims" ? i : phase === "scenes" ? ITEMS.length + j : -1;
+  for (let k = 0; k < total; k++) {
+    let state = "";
+    if (k < ITEMS.length) state = results[k] === true ? " done" : results[k] === false ? " wrong" : "";
+    else if (scenesDone[k - ITEMS.length]) state = " done";
+    if (!state && k === pos) state = " now";
+    dots.appendChild(el("span", "dot" + state, state === " done" ? "✓" : state === " wrong" ? "✗" : ""));
+  }
+  const ok = results.filter(r => r === true).length + scenesDone.filter(Boolean).length;
+  const bad = results.filter(r => r === false).length;
+  dots.setAttribute("aria-label", "Progreso del capítulo: " + ok + " bien, " + bad + " por mejorar, " + (total - ok - bad) + " pendientes");
+  stopSpeak();
+}
+
+/* ---------- Inicio ---------- */
+function showStart() {
+  setPhase("start");
+  ecoTarget = null;
+  world.set({ place: "campus", grown: 0 });
+  drawDots();
+  clearStage();
+  stage.appendChild(el("p", "hello", "¡Te damos la bienvenida! Comienza el desafío"));
+  stage.appendChild(el("div", "eyebrow", "Antes de empezar"));
+  stage.appendChild(el("p", "claim", "¿Cuántas personas van a jugar en este celular?"));
+  stage.appendChild(el("p", "note", "Ayuda a Eco a reunir las voces de toda la comunidad TdeA en 5 capítulos: estudiantes, docentes, directivas, egresados y personal administrativo"));
+  stage.appendChild(el("p", "note", "Si son varias personas pueden jugar en equipo o por turnos, se pasan el celular y nadie ve la respuesta de los demás hasta el final"));
+  stage.appendChild(creditBlock(true));
+  const saved = loadRun();
+  if (saved) { const c = mkBtn("Continuar partida", "span2", "btn-continue", resumeRun); c.appendChild(el("small", "btn-sub", runHint(saved))); controls.appendChild(c); }
+  [1, 2, 3, 4].forEach(n => controls.appendChild(mkBtn(n === 1 ? "1 persona" : n + " personas", "", "btn-players-" + n, () => n === 1 ? startGame(1, "solo") : chooseMode(n))));
+  controls.appendChild(mkBtn("Mapa de la historia", "ghost span2", "btn-map", () => { players = 1; mode = "solo"; showMap(); }));
+  controls.appendChild(mkBtn("La historia de Eco", "ghost span2", "btn-book", () => showBook(showStart)));
+  controls.appendChild(mkBtn("Pregúntale", "ghost span2", "btn-faq", showFaq));
+}
+
+function chooseMode(n) {
+  setPhase("start");
+  clearStage();
+  stage.appendChild(el("div", "eyebrow", n + " personas"));
+  stage.appendChild(el("p", "claim", "¿Cómo quieren jugar?"));
+  controls.className = "controls options";
+  controls.appendChild(optBtn("En equipo", "Deciden juntos cada respuesta y suman aciertos para el grupo", "btn-mode-coop", () => startGame(n, "coop")));
+  controls.appendChild(optBtn("Por turnos", "Cada quien responde en secreto y al final se ve quién acertó más", "btn-mode-versus", () => startGame(n, "versus")));
+  controls.appendChild(mkBtn("Volver", "ghost", "btn-mode-back", showStart));
+}
+
+function resetRun() {
+  scores = Array(mode === "versus" ? players : 1).fill(0);
+  i = 0; results = []; j = 0; scenesDone = []; sceneChoices = [];
+  turn = 0; picks = []; chap = 0;
+  runStart = 0; runVoices = 0; runStars = []; chapSnap = null;
+  wGrown = 0; levelCorrect = 0; levelAnswers = 0;
+}
+function startGame(n, m) {
+  players = n; mode = m;
+  resetRun();
+  if (!story.seen) { story.seen = true; saveStory(); prologue(); }
+  else showMap();
+}
+function resumeRun() {
+  const r = loadRun();
+  if (!r) return showStart();
+  players = r.players; mode = r.mode;
+  resetRun();
+  runStart = r.runStart; runStars = r.runStars || [];
+  scores = r.snap.scores.slice();
+  sceneChoices = (r.snap.choiceList || []).slice();
+  runVoices = r.snap.voices || 0;
+  chapterIntro(r.chap);
+}
+
+function prologue() {
+  setPhase("intro");
+  ecoTarget = null;
+  world.set({ place: "campus", grown: 0 });
+  drawDots();
+  clearStage(true);
+  stage.appendChild(el("div", "eyebrow", "La historia de Eco"));
+  stage.appendChild(el("p", "claim", "Las voces se dispersaron"));
+  stage.appendChild(el("p", "end-text", PROLOGUE));
+  addListen(stage, "La historia de Eco. Las voces se dispersaron. " + PROLOGUE);
+  ecoSay("sad", 2500);
+  setSingle(mkBtn("Ayudar a Eco", "", "btn-prologue", showMap));
+}
+
+/* ---------- Mapa ---------- */
+function showMap() {
+  setPhase("map");
+  const done = Math.min(story.unlocked, CHAPTERS.length);
+  const start = Math.min(done, CHAPTERS.length - 1);
+  world.set({ place: "mapa", done });
+  const saved = loadRun();
+  goNode(saved ? saved.chap : start);
+  drawDots();
+  clearStage();
+  controls.className = "controls options";
+  stage.appendChild(el("div", "eyebrow", "Mapa de la historia"));
+  stage.appendChild(el("p", "claim", done >= CHAPTERS.length ? "¡Historia completa!" : "Elige un capítulo"));
+  stage.appendChild(chips([["Estrellas " + story.stars.reduce((a, b) => a + b, 0) + " de " + CHAPTERS.length * 3, true], ["Regalos " + story.acc.length + " de " + CHAPTERS.length, false]]));
+  if (story.acc.length) stage.appendChild(el("p", "note", "Eco ya lleva: " + story.acc.map(a => ACC[a].name.toLowerCase()).join(", ")));
+  stage.appendChild(el("p", "note", "Tu avance se guarda solo en este celular, para el resultado final juega desde el capítulo 1"));
+  if (saved) {
+    const c = optBtn("Continuar partida", runHint(saved), "btn-map-continue", resumeRun, "primary");
+    c.addEventListener("focus", () => goNode(saved.chap));
+    controls.appendChild(c);
+  }
+  CHAPTERS.forEach((c, k) => {
+    const open = k <= done;
+    const sub = open ? (story.stars[k] ? story.stars[k] + " de 3 estrellas" : "Nuevo") + " · regalo: " + ACC[c.reward].name.toLowerCase() : "Bloqueado, primero completa el capítulo " + k;
+    const b = optBtn((k + 1) + " · " + nice(c.name), sub, "btn-chap-" + k, () => {
+      if (open) beginRun(k);
+      else { ecoSay("sad", 1400); b.querySelector("small").textContent = "Primero completa el capítulo " + k; }
+    }, open ? "" : "locked");
+    if (!open) b.setAttribute("aria-disabled", "true");
+    b.addEventListener("pointerenter", () => goNode(k));
+    b.addEventListener("focus", () => goNode(k));
+    controls.appendChild(b);
+  });
+  controls.appendChild(mkBtn("Leer la historia", "ghost", "btn-map-book", () => showBook(showMap)));
+  controls.appendChild(mkBtn("Volver al inicio", "ghost", "btn-map-back", showStart));
+  ecoSay("happy", 1200);
+}
+function goNode(k) {
+  const w = ecoTrack.clientWidth, h = ecoTrack.clientHeight;
+  const s = Math.max(w / 400, h / 150), off = (w - 400 * s) / 2;
+  ecoTarget = Math.max(0, off + MAP_X[k] * s - 26);
+}
+
+function beginRun(k) {
+  resetRun();
+  runStart = k;
+  chapterIntro(k);
+}
+
+/* ---------- Capítulo ---------- */
+function chapterIntro(k) {
+  chap = k;
+  const c = CHAPTERS[k];
+  if (window.JUEGO && JUEGO.sortear) JUEGO.sortear(c);
+  ITEMS = c.claims.map(id => CLAIMS[id]);
+  SCENES = c.dilemmas.map(id => DILEMMAS[id]);
+  i = 0; results = []; j = 0; scenesDone = [];
+  turn = 0; picks = [];
+  wGrown = 0; levelCorrect = 0; levelAnswers = 0;
+  chapSnap = { scores: scores.slice(), choiceList: sceneChoices.slice(), voices: runVoices };
+  saveRun();
+  setPhase("intro");
+  ecoTarget = null;
+  world.set({ place: c.place, grown: 0 });
+  drawDots();
+  clearStage(true);
+  stage.appendChild(el("div", "eyebrow", "Capítulo " + (k + 1) + " de " + CHAPTERS.length));
+  stage.appendChild(el("p", "claim", nice(c.name)));
+  stage.appendChild(el("p", "end-text", c.intro));
+  const need = Math.ceil(c.claims.length * GOAL);
+  const goal = players === 1 || mode === "coop" ? "Meta: " + need + " de " + c.claims.length + " afirmaciones" : "Meta: la mitad de las respuestas";
+  stage.appendChild(chips([[goal, true], [voicesOf(c) + " voces por recuperar", false], ["Regalo: " + ACC[c.reward].name.toLowerCase(), false]]));
+  addListen(stage, "Capítulo " + (k + 1) + ", " + nice(c.name) + ". " + c.intro + ". " + goal + ". Regalo para Eco: " + ACC[c.reward].name.toLowerCase());
+  ecoSay("happy", 1600);
+  setSingle(mkBtn("Empezar", "", "btn-start-chap", () => { setPhase("claims"); showQuestion(); }));
+}
+function retryChapter() {
+  scores = chapSnap.scores.slice();
+  sceneChoices = chapSnap.choiceList.slice();
+  runVoices = chapSnap.voices;
+  chapterIntro(chap);
+}
+
+/* Cada acierto o decisión devuelve una voz y el lugar crece */
+function growVoice() {
+  const c = CHAPTERS[chap];
+  wGrown++; runVoices++;
+  world.grow(wGrown);
+  const t = STEP_TXT[c.place][wGrown - 1] || "Este lugar brilla";
+  sceneUpdate(t.toLowerCase() + ", recuperaste una voz");
+  return "¡" + t + "! Recuperaste una voz, van " + wGrown + " de " + voicesOf(c) + " en este capítulo";
+}
+const capLabel = () => "Capítulo " + (chap + 1) + " · ";
+
+/* ---------- Afirmaciones ---------- */
+function showQuestion() {
+  setPhase("claims");
+  drawDots();
+  clearStage();
+  const eb = el("div", "eyebrow", capLabel() + "Afirmación " + (i + 1) + " de " + ITEMS.length);
+  if (mode === "versus") { eb.appendChild(document.createTextNode(" · ")); eb.appendChild(el("span", "turn", "Turno de " + name(turn))); }
+  if (mode === "coop") { eb.appendChild(document.createTextNode(" · ")); eb.appendChild(el("span", "turn", "Decidan en grupo")); }
+  stage.appendChild(eb);
+  stage.appendChild(el("p", "claim", ITEMS[i].claim));
+  addListen(stage, ITEMS[i].claim);
+  [["mito", "Mito"], ["derecho", "Derecho"]].forEach(([val, lab]) => {
+    const b = el("button", "", lab);
+    b.type = "button";
+    b.id = "btn-" + val;
+    b.addEventListener("click", () => mode === "versus" ? pick(val) : answer(val, b));
+    controls.appendChild(b);
+  });
+}
+
+function answer(val, btn) {
+  const item = ITEMS[i];
+  const ok = val === item.answer;
+  if (ok) scores[0]++;
+  results[i] = ok;
+  levelAnswers++; if (ok) levelCorrect++;
+  drawDots();
+  sfx(ok ? "ok" : "bad");
+  controls.querySelectorAll("button").forEach(b => b.disabled = true);
+  btn.classList.add("picked");
+  const fb = el("div", "feedback");
+  const head = ok ? (mode === "coop" ? "¡Acertaron!" : "¡Acertaste!") : "Esta vez no";
+  fb.appendChild(el("p", "verdict " + (ok ? "ok" : "bad"), head));
+  fb.appendChild(el("span", "answer-tag", item.answer === "mito" ? "Es un mito" : "Es un derecho"));
+  if (item.level === 3) fb.appendChild(el("span", "answer-tag trampa", "Trampa"));
+  fb.appendChild(el("p", "why", item.why));
+  let voice = "";
+  if (ok) voice = growVoice(); else { world.cloud(); sceneUpdate("pasa una nube por el cielo, no se pierde nada de lo construido"); }
+  fb.appendChild(el("p", "note voice", ok ? voice : "Pasa una nube, no se pierde nada de lo construido"));
+  addListen(fb, head + ". " + (item.answer === "mito" ? "Es un mito" : "Es un derecho") + ". " + item.why + ". " + (ok ? voice : ""));
+  stage.appendChild(fb);
+  if (ok) { fb.firstChild.classList.add("cheer"); celebrate(); }
+  ecoSay(ok ? "happy" : "sad");
+  setSingle(nextClaimBtn());
+}
+
+function pick(val) {
+  picks[turn] = val;
+  sfx("tap");
+  if (turn < players - 1) { turn++; showPass(); }
+  else reveal();
+}
+function showPass() {
+  clearStage(true);
+  stage.appendChild(el("div", "eyebrow", capLabel() + "Afirmación " + (i + 1) + " de " + ITEMS.length));
+  stage.appendChild(el("p", "claim", name(turn - 1) + " ya eligió"));
+  stage.appendChild(el("p", "end-text", "Pásale el celular a " + name(turn)));
+  controls.appendChild(mkBtn("Soy " + name(turn), "", "btn-pass", showQuestion));
+}
+function reveal() {
+  const item = ITEMS[i];
+  const oks = picks.map(p => p === item.answer);
+  const count = oks.filter(Boolean).length;
+  oks.forEach((ok, k) => { if (ok) scores[k]++; });
+  results[i] = count * 2 >= players;
+  levelAnswers += players; levelCorrect += count;
+  drawDots();
+  sfx(count > 0 ? "ok" : "bad");
+  clearStage();
+  stage.appendChild(el("div", "eyebrow", capLabel() + "Afirmación " + (i + 1) + " de " + ITEMS.length + " · Resultado"));
+  stage.appendChild(el("p", "claim", item.claim));
+  const fb = el("div", "feedback");
+  const title = count === players ? "¡Acertó todo el grupo!" : count === 0 ? "Esta vez nadie acertó" : "¡Acertaron " + count + " de " + players + "!";
+  fb.appendChild(el("p", "verdict " + (count > 0 ? "ok" : "bad"), title));
+  fb.appendChild(el("span", "answer-tag", item.answer === "mito" ? "Es un mito" : "Es un derecho"));
+  if (item.level === 3) fb.appendChild(el("span", "answer-tag trampa", "Trampa"));
+  fb.appendChild(el("p", "why", item.why));
+  const list = el("ul", "tally");
+  picks.forEach((p, k) => {
+    const li = el("li");
+    li.appendChild(el("span", "who", name(k) + " · " + (p === "mito" ? "Mito" : "Derecho")));
+    li.appendChild(el("span", oks[k] ? "ok" : "bad", oks[k] ? "Acertó" : "No esta vez"));
+    list.appendChild(li);
+  });
+  fb.appendChild(list);
+  let voice = "";
+  if (count > 0) voice = growVoice(); else { world.cloud(); sceneUpdate("pasa una nube por el cielo, no se pierde nada de lo construido"); }
+  fb.appendChild(el("p", "note voice", count > 0 ? voice : "Pasa una nube, no se pierde nada de lo construido"));
+  addListen(fb, title + ". " + (item.answer === "mito" ? "Es un mito" : "Es un derecho") + ". " + item.why + ". " + voice);
+  stage.appendChild(fb);
+  if (count > 0) { fb.firstChild.classList.add("cheer"); celebrate(); }
+  ecoSay(count > 0 ? "happy" : "sad");
+  controls.querySelectorAll("button").forEach(b => b.disabled = true);
+  setSingle(nextClaimBtn());
+}
+function nextClaimBtn() {
+  return mkBtn(i < ITEMS.length - 1 ? "Siguiente" : "Ver la meta del capítulo", "", "btn-next", () => {
+    i++; turn = 0; picks = [];
+    if (i < ITEMS.length) showQuestion();
+    else chapterCheck();
+  });
+}
+
+/* ---------- Meta del capítulo ---------- */
+function chapterCheck() {
+  setPhase("check");
+  drawDots();
+  clearStage(true);
+  const pct = levelAnswers ? levelCorrect / levelAnswers : 0;
+  const ok = pct >= GOAL;
+  const next = () => SCENES.length ? showScene() : chapterEnd();
+  stage.appendChild(el("div", "eyebrow", "Meta del capítulo " + (chap + 1)));
+  stage.appendChild(el("p", "claim", ok ? "¡Meta cumplida!" : players === 1 ? "Casi lo logras" : "Casi lo logran"));
+  const s = el("p", "score");
+  s.textContent = Math.round(pct * 100);
+  s.appendChild(el("small", "", " % de aciertos"));
+  stage.appendChild(s);
+  stage.appendChild(chips([[levelCorrect + " de " + levelAnswers + " respuestas", ok], ["Meta: la mitad", false]]));
+  if (ok) {
+    stage.appendChild(el("p", "end-text", SCENES.length ? "Ahora vienen " + SCENES.length + (SCENES.length === 1 ? " situación" : " situaciones") + " de ¿Qué harías?, cada decisión también devuelve una voz" : "Ya casi terminas el capítulo, Eco tiene un regalo esperando"));
+    sfx("win"); celebrate(); ecoSay("cheer", 2500);
+    setSingle(mkBtn(SCENES.length ? "Ir a ¿Qué harías?" : "Terminar capítulo", "", "btn-check-next", next));
+  } else {
+    stage.appendChild(el("p", "end-text", "Estuvieron cerca, cada error también enseña, pueden repasar el capítulo o seguir la historia"));
+    ecoSay("sad", 2000);
+    controls.appendChild(mkBtn("Repasar el capítulo", "", "btn-retry", retryChapter));
+    controls.appendChild(mkBtn("Seguir la historia", "ghost", "btn-check-go", next));
+  }
+}
+
+/* ---------- ¿Qué harías? ---------- */
+function showScene() {
+  setPhase("scenes");
+  drawDots();
+  const sc = SCENES[j];
+  clearStage();
+  controls.className = "controls options";
+  let label = capLabel() + "¿Qué harías? · " + (j + 1) + " de " + SCENES.length;
+  if (players > 1) label += " · Decidan en grupo";
+  stage.appendChild(el("div", "eyebrow", label));
+  stage.appendChild(el("span", "answer-tag", sc.place));
+  stage.appendChild(el("p", "claim scene", sc.text));
+  addListen(stage, sc.place + ". " + sc.text + ". " + sc.options.map((o, n) => "Opción " + (n + 1) + ": " + o.label).join(". "));
+  sc.options.forEach((op, k) => {
+    const b = el("button", "option", op.label);
+    b.type = "button";
+    b.id = "btn-op-" + j + "-" + k;
+    b.addEventListener("click", () => choose(op, b));
+    controls.appendChild(b);
+  });
+}
+function choose(op, btn) {
+  scenesDone[j] = true;
+  sceneChoices.push(op.profile);
+  drawDots();
+  sfx("choice");
+  ecoSay("happy");
+  controls.querySelectorAll("button").forEach(b => b.disabled = true);
+  btn.classList.add("picked");
+  const voice = growVoice();
+  const fb = el("div", "feedback");
+  fb.appendChild(el("p", "verdict neutral", "Lo que pasa después"));
+  fb.appendChild(el("p", "why", op.next));
+  fb.appendChild(el("p", "note voice", voice));
+  fb.appendChild(el("p", "note", "Si vives algo parecido, en Bienestar Universitario pueden orientarte"));
+  addListen(fb, "Lo que pasa después. " + op.next + ". " + voice + ". Si vives algo parecido, en Bienestar Universitario pueden orientarte");
+  stage.appendChild(fb);
+  setSingle(mkBtn(j < SCENES.length - 1 ? "Siguiente situación" : "Terminar capítulo", "", "btn-next-scene", () => {
+    j++;
+    if (j < SCENES.length) showScene(); else chapterEnd();
+  }));
+}
+
+/* ---------- Fin de capítulo: estrellas y regalo ---------- */
+function chapterEnd() {
+  setPhase("chapend");
+  const c = CHAPTERS[chap];
+  const pct = levelAnswers ? levelCorrect / levelAnswers : 0;
+  const stars = pct >= 1 ? 3 : pct >= 0.66 ? 2 : 1;
+  const isNew = !story.acc.includes(c.reward);
+  story.stars[chap] = Math.max(story.stars[chap] || 0, stars);
+  story.unlocked = Math.max(story.unlocked, chap + 1);
+  if (isNew) story.acc.push(c.reward);
+  saveStory();
+  runStars[chap] = stars;
+  wearAcc();
+  sceneUpdate("Eco recibe " + article(c.reward) + ACC[c.reward].name.toLowerCase());
+  drawDots();
+  clearStage();
+  stage.appendChild(el("div", "eyebrow", "Capítulo " + (chap + 1) + " completado"));
+  stage.appendChild(el("p", "claim", "¡Capítulo superado!"));
+  stage.appendChild(starsRow(stars));
+  stage.appendChild(chips([["Voces " + wGrown + " de " + voicesOf(c), true], [stars + " de 3 estrellas", false]]));
+  const card = el("section", "ally");
+  card.appendChild(el("div", "eyebrow", isNew ? "Regalo nuevo para Eco" : "Regalo de este capítulo"));
+  card.appendChild(el("p", "ally-name", nice(ACC[c.reward].name)));
+  card.appendChild(el("p", "ally-phrase", isNew ? ACC[c.reward].text : "Eco ya lo tenía y lo luce con orgullo"));
+  stage.appendChild(card);
+  addListen(stage, "Capítulo " + (chap + 1) + " completado. " + stars + " de 3 estrellas. Recuperaste " + wGrown + " de " + voicesOf(c) + " voces. Regalo para Eco: " + ACC[c.reward].name.toLowerCase());
+  sfx("win"); celebrate(); ecoSay("cheer", 3000);
+  const last = chap >= CHAPTERS.length - 1;
+  controls.className = "controls single";
+  controls.appendChild(mkBtn(last ? "Ir a la gran fiesta" : "Ir al capítulo " + (chap + 2), "", "btn-chap-next", () => last ? showEnd() : chapterIntro(chap + 1)));
+  controls.appendChild(mkBtn("Ver el mapa", "ghost", "btn-chap-map", showMap));
+}
+
+/* ---------- Libro de la historia ---------- */
+function showBook(back) {
+  setPhase("book");
+  drawDots();
+  clearStage(true);
+  stage.appendChild(el("div", "eyebrow", "La historia de Eco"));
+  stage.appendChild(el("p", "claim", "Eco construye su comunidad"));
+  const parts = [["El comienzo", PROLOGUE]];
+  CHAPTERS.forEach((c, k) => parts.push(["Capítulo " + (k + 1) + " · " + nice(c.name), c.intro + ", al terminar Eco recibe " + article(c.reward) + ACC[c.reward].name.toLowerCase() + ", " + ACC[c.reward].text.toLowerCase()]));
+  parts.push(["El final", EPILOGUE]);
+  addListen(stage, parts.map(p => p[0] + ". " + p[1]).join(". "));
+  const box = el("div", "book");
+  parts.forEach(([h, t], k) => {
+    const sec = el("section");
+    sec.appendChild(el("div", "eyebrow", h));
+    sec.appendChild(el("p", "why", t));
+    if (k >= 1 && k <= CHAPTERS.length) sec.appendChild(el("p", "note", story.unlocked >= k ? "Completado, " + story.stars[k - 1] + " de 3 estrellas" : "Todavía por jugar"));
+    box.appendChild(sec);
+  });
+  stage.appendChild(box);
+  controls.appendChild(mkBtn("Volver", "ghost", "btn-book-back", back));
+}
+
+/* ---------- Gran fiesta y resultado ---------- */
+function showEnd() {
+  setPhase("end");
+  clearRun();
+  ecoTarget = null;
+  world.set({ place: "plaza", grown: 2, fiesta: true });
+  sceneUpdate("la plaza se llena de banderines de colores y luces, toda la comunidad celebra con Eco");
+  drawDots();
+  clearStage(true);
+  const played = CHAPTERS.slice(runStart);
+  const totalClaims = played.reduce((a, c) => a + c.claims.length, 0);
+  const maxVoices = played.reduce((a, c) => a + voicesOf(c), 0);
+  const starsGot = runStars.reduce((a, b) => a + (b || 0), 0);
+  let winText = "";
+  stage.appendChild(el("div", "eyebrow", "La gran fiesta"));
+  stage.appendChild(el("p", "end-text", "Eco reunió " + runVoices + " voces y ahora todas las personas tienen lugar en la comunidad"));
+  if (mode === "versus") {
+    const top = Math.max(...scores);
+    const leaders = scores.map((s, k) => s === top ? k : -1).filter(k => k >= 0);
+    const head = leaders.length === players ? "¡Empate general!" : leaders.length > 1 ? "Empate entre " + leaders.map(name).join(" y ") : "¡Ganó " + name(leaders[0]) + "!";
+    winText = leaders.length > 1 ? "quedamos en empate" : "ganó " + name(leaders[0]);
+    stage.appendChild(el("p", "claim winner", head));
+    const list = el("ul", "tally");
+    scores.map((s, k) => ({ s, k })).sort((a, b) => b.s - a.s || a.k - b.k).forEach(({ s, k }) => {
+      const li = el("li", s === top ? "lead" : "");
+      li.appendChild(el("span", "who", name(k)));
+      li.appendChild(el("span", s === top ? "ok" : "", s + " de " + totalClaims));
+      list.appendChild(li);
+    });
+    stage.appendChild(list);
+  } else {
+    stage.appendChild(el("div", "eyebrow", mode === "coop" ? "Aciertos del equipo" : "Tus aciertos"));
+    const s = el("p", "score");
+    s.textContent = scores[0];
+    s.appendChild(el("small", "", " / " + totalClaims));
+    stage.appendChild(s);
+  }
+  stage.appendChild(chips([["Voces " + runVoices + " de " + maxVoices, true], ["Estrellas " + starsGot + " de " + played.length * 3, false], ["Regalos de Eco " + story.acc.length + " de " + CHAPTERS.length, false]]));
+  if (runStart > 0) stage.appendChild(el("p", "note", "Esta partida empezó en el capítulo " + (runStart + 1) + ", para recorrer toda la historia empieza desde el capítulo 1"));
+  sfx("win"); celebrate(); ecoSay("cheer", 5000);
+  const prof = allyProfile(sceneChoices);
+  const card = el("section", "ally");
+  card.appendChild(el("div", "eyebrow", players === 1 ? "Tu perfil aliado" : "El perfil aliado del grupo"));
+  card.appendChild(el("p", "ally-name", prof.name));
+  card.appendChild(el("p", "ally-phrase", prof.phrase));
+  card.appendChild(el("div", "eyebrow ally-label", "Para hacer mañana"));
+  card.appendChild(el("p", "ally-action", prof.action));
+  addListen(card, (players === 1 ? "Tu perfil aliado es " : "El perfil aliado del grupo es ") + prof.name + ". " + prof.phrase + ". Para hacer mañana: " + prof.action);
+  stage.appendChild(card);
+  stage.appendChild(creditBlock());
+
+  const best = mode === "versus" ? Math.max(...scores) : scores[0];
+  const tail = ["Es para toda la comunidad TdeA: estudiantes, docentes, directivas, egresados y personal administrativo", "Se juega desde el celular, es gratis y no pide datos", "👉 " + SHARE_URL];
+  const msg = (players === 1 ? [
+    "¡Me salió el perfil aliado " + prof.name + " en el juego Sin etiquetas! 🌱",
+    "Ayudé a Eco a reunir " + runVoices + " voces del TdeA y acerté " + best + " de " + totalClaims + " afirmaciones",
+    "“" + prof.phrase + "”",
+    "¿Qué perfil te sale a ti? ¿Cuántas aciertas? Te reto 🔥"
+  ] : mode === "coop" ? [
+    "¡Nuestro equipo ayudó a Eco a reunir " + runVoices + " voces del TdeA en el juego Sin etiquetas! 🌱",
+    "Acertamos " + best + " de " + totalClaims + " afirmaciones juntos y nuestro perfil aliado es " + prof.name,
+    "“" + prof.phrase + "”",
+    "¿Su grupo nos supera? Armen equipo y jueguen en un solo celular 🔥"
+  ] : [
+    "¡Jugamos Sin etiquetas por turnos y " + winText + " con " + best + " aciertos! 🌱",
+    "El perfil aliado de nuestro grupo es " + prof.name,
+    "“" + prof.phrase + "”",
+    "¿Quién gana en tu parche? Reta a tu grupo y descubran qué perfil les sale 🔥"
+  ]).concat(tail).join("\n");
+  const wa = document.createElement("a");
+  wa.className = "share-wa";
+  wa.id = "btn-share-wa";
+  wa.href = "https://wa.me/?text=" + encodeURIComponent(msg);
+  wa.target = "_blank";
+  wa.rel = "noopener noreferrer";
+  wa.textContent = "Compartir por WhatsApp";
+  wa.addEventListener("click", () => sfx("tap"));
+  controls.appendChild(wa);
+  const info = { prof, best, totalClaims, voices: runVoices, stars: starsGot, players, mode, msg };
+  controls.appendChild(mkBtn("Compartir imagen", "", "btn-share-img", () => showShareImage(info)));
+  const copy = el("button", "ghost", "Copiar mensaje");
+  copy.type = "button";
+  copy.id = "btn-copy-msg";
+  copy.addEventListener("click", () => {
+    sfx("tap");
+    const show = () => {
+      if (!document.getElementById("share-text")) { const pre = el("pre", "share-text", msg); pre.id = "share-text"; stage.appendChild(pre); }
+      document.getElementById("share-text").scrollIntoView({ block: "nearest", behavior: "smooth" });
+      copy.textContent = "Selecciona el texto y cópialo";
+    };
+    try {
+      if (!navigator.clipboard) return show();
+      navigator.clipboard.writeText(msg).then(() => { copy.textContent = "Mensaje copiado"; setTimeout(() => { copy.textContent = "Copiar mensaje"; }, 2000); }, show);
+    } catch (e) { show(); }
+  });
+  controls.appendChild(copy);
+  controls.appendChild(mkBtn("Ver el mapa", "ghost", "btn-end-map", showMap));
+  controls.appendChild(mkBtn("Volver al inicio", "ghost", "btn-again", showStart));
+  showEnd.last = info;
+}
+
+/* ---------- Créditos ---------- */
+function creditBlock(start) {
+  const box = el("div", "credit");
+  box.appendChild(el("p", "c1", CREDIT_START));
+  box.appendChild(el("p", "c2", CREDIT_2));
+  return box;
+}
+function showCredits() {
+  setPhase("credits");
+  drawDots();
+  stage.innerHTML = "";
+  stage.appendChild(el("div", "eyebrow", "Créditos"));
+  stage.appendChild(el("p", "claim scene", "Sin etiquetas"));
+  const ul = el("ul", "credits-list");
+  CREDITS.forEach(t => ul.appendChild(el("li", "", t)));
+  stage.appendChild(ul);
+  const p = el("p", "note credits");
+  const a = document.createElement("a");
+  a.href = PLURI_URL; a.target = "_blank"; a.rel = "noopener noreferrer"; a.textContent = "Conoce Pluridiversos";
+  p.appendChild(a);
+  stage.appendChild(p);
+  controls.className = "controls single";
+  controls.innerHTML = "";
+  const back = el("button", "ghost", "Volver al inicio");
+  back.type = "button";
+  back.id = "btn-credits-back";
+  back.addEventListener("click", () => { sfx("tap"); showStart(); });
+  controls.appendChild(back);
+  window.scrollTo(0, 0);
+}
+document.getElementById("btn-credits").addEventListener("click", () => { sfx("tap"); showCredits(); });
+
+/* ---------- Pregúntale ---------- */
+const FAQ = [
+  { q: "¿Qué es Pluridiversos?",
+    a: "Es el programa de Bienestar Universitario que acompaña el acceso, la permanencia, el egreso y la empleabilidad con enfoque diferencial, para estudiantes, egresados, docentes y administrativos" },
+  { q: "¿Pluridiversos es solo para algunos grupos?",
+    a: "No, trabaja diversidades e identidades, género, discapacidad, regionalismos y más, en Bienestar Universitario te cuentan cómo participar" },
+  { q: "¿Qué es la inclusión en el TdeA?",
+    a: "Es que todas las personas puedan estudiar, enseñar, trabajar, participar y sentirse parte del TdeA, sin importar de dónde vienen, cómo hablan o qué necesitan, en Bienestar Universitario te pueden contar cómo se vive en tu sede" },
+  { q: "¿Qué son los ajustes razonables?",
+    a: "Son cambios en cómo se evalúa o se enseña para que una persona con discapacidad o con una condición particular estudie en igualdad, se piden por un formulario en línea de Pluridiversos, en Bienestar Universitario te orientan" },
+  { q: "¿Qué hago si veo burlas o discriminación en un grupo o un chat?",
+    a: "Si es seguro para ti, puedes decir algo corto y amable o escribirle en privado a la persona afectada, para contar lo que pasó y recibir orientación acércate a Bienestar Universitario" },
+  { q: "¿Tengo que tener pruebas para pedir ayuda?",
+    a: "No necesitas tener todo resuelto para buscar orientación, qué se necesita para un proceso formal te lo explican en Bienestar Universitario" },
+  { q: "¿Lo que cuente en Bienestar es confidencial?",
+    a: "La confidencialidad y sus límites te los explican en la primera atención de Bienestar Universitario" },
+  { q: "Me siento mal emocionalmente, ¿a dónde voy?",
+    a: "Bienestar Universitario tiene acompañamiento para eso, si sientes que estás en peligro ahora, llama al 123" },
+  { q: "Vengo de otra región y me cuesta adaptarme, ¿hay apoyo?",
+    a: "Es normal que cueste al principio, en Bienestar Universitario pueden orientarte sobre actividades, grupos y acompañamiento para que te sientas en casa" },
+  { q: "¿Hay grupos o espacios para participar?",
+    a: "Sí, Pluridiversos tiene grupos de participación poblacional, cátedras y semilleros en el Pluri-Lab, pregunta en Bienestar Universitario por la oferta del semestre" },
+  { q: "¿Cómo puedo ser una mejor persona aliada?",
+    a: "Escucha, pregunta qué necesita la otra persona y no guardes silencio ante una burla, en Bienestar Universitario puedes conocer actividades para seguir aprendiendo" }
+];
+/* Palabras extra para que el buscador encuentre sinónimos */
+const FAQ_TAGS = [
+  "pluridiversos programa bienestar que es enfoque diferencial permanencia egresados docentes profesores empleados administrativos directivos trabajadores",
+  "grupos poblaciones quien puede para quien todas las personas diversidad genero discapacidad",
+  "inclusion diversidad que es significa todas las personas participar universidad comunidad docentes egresados empleados administrativos directivos trabajadores",
+  "discapacidad ajustes razonables clases evaluaciones examenes accesibilidad docente profesor formulario condicion",
+  "burla burlas matoneo bullying discriminacion racismo chat whatsapp grupo meme ofensa",
+  "pruebas evidencia denunciar reportar contar ayuda orientacion proceso",
+  "confidencial privado secreto contar nadie sabra privacidad",
+  "emocional emociones salud mental triste ansiedad psicologia psicologo apoyo mal peligro",
+  "region territorio municipio pueblo vereda sede adaptarme adaptacion nuevo nueva llegue lejos casa",
+  "grupos espacios participar semillero catedra pluri-lab pluri lab actividades voluntariado",
+  "aliado aliada alianza persona aliada ayudar apoyar acompanar companero companera amigo amiga"
+];
+if (window.JUEGO) JUEGO.preguntas(FAQ, FAQ_TAGS);
+const norm = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+function showFaq() {
+  setPhase("faq");
+  drawDots();
+  stage.innerHTML = "";
+  stage.appendChild(el("div", "eyebrow", "Pregúntale"));
+  stage.appendChild(el("p", "claim scene", "Preguntas frecuentes"));
+  stage.appendChild(el("p", "note", "Escribe una palabra o toca una pregunta para ver la respuesta"));
+
+  const field = el("label", "search");
+  field.htmlFor = "q-search";
+  field.appendChild(el("span", "eyebrow", "Buscar"));
+  const input = document.createElement("input");
+  input.type = "search";
+  input.id = "q-search";
+  input.placeholder = "Ej: burlas, discapacidad, región";
+  input.autocomplete = "off";
+  input.enterKeyHint = "search";
+  input.setAttribute("aria-controls", "q-list");
+  field.appendChild(input);
+  stage.appendChild(field);
+  const count = el("p", "note");
+  count.id = "q-count";
+  count.setAttribute("aria-live", "polite");
+  stage.appendChild(count);
+  const list = el("div", "faq-list");
+  list.id = "q-list";
+  stage.appendChild(list);
+
+  let open = -1, shown = [];
+  const toggle = pos => {
+    list.querySelectorAll(".faq-a").forEach(n => n.remove());
+    list.querySelectorAll(".faq-q").forEach(b => b.setAttribute("aria-expanded", "false"));
+    if (open === pos) { open = -1; return; }
+    open = pos;
+    const b = document.getElementById("faq-" + pos);
+    b.setAttribute("aria-expanded", "true");
+    const ans = el("p", "faq-a", FAQ[shown[pos]].a + " ");
+    const pl = document.createElement("a");
+    pl.href = PLURI_URL;
+    pl.target = "_blank";
+    pl.rel = "noopener noreferrer";
+    pl.textContent = "Conoce Pluridiversos";
+    ans.appendChild(pl);
+    if (canSpeak) { const lw = el("div", ""); addListen(lw, FAQ[shown[pos]].q + ". " + FAQ[shown[pos]].a); ans.appendChild(lw); }
+    b.insertAdjacentElement("afterend", ans);
+    ans.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    ecoSay("happy");
+  };
+  const render = () => {
+    const words = norm(input.value).split(/\s+/).filter(Boolean);
+    shown = FAQ.map((_, k) => k).filter(k => {
+      const hay = norm(FAQ[k].q + " " + FAQ[k].a + " " + FAQ_TAGS[k]);
+      return words.every(w => hay.includes(w));
+    });
+    list.innerHTML = "";
+    open = -1;
+    if (!shown.length) {
+      count.textContent = "Sin resultados";
+      list.appendChild(el("p", "why", "No encontramos esa palabra, prueba con otra o acércate a Bienestar Universitario, allí te orientan"));
+      return;
+    }
+    count.textContent = !words.length ? FAQ.length + " preguntas" : shown.length === 1 ? "1 pregunta encontrada" : shown.length + " preguntas encontradas";
+    shown.forEach((k, pos) => {
+      const b = el("button", "faq-q", FAQ[k].q);
+      b.type = "button";
+      b.id = "faq-" + pos;
+      b.setAttribute("aria-expanded", "false");
+      b.addEventListener("click", () => { sfx("tap"); toggle(pos); });
+      list.appendChild(b);
+    });
+  };
+  input.addEventListener("input", render);
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); if (shown.length) { input.blur(); toggle(0); } }
+    else if (e.key === "Escape") { e.preventDefault(); input.value = ""; render(); }
+  });
+  render();
+
+  controls.className = "controls single";
+  controls.innerHTML = "";
+  const back = el("button", "ghost", "Volver al inicio");
+  back.type = "button";
+  back.id = "btn-faq-back";
+  back.addEventListener("click", () => { sfx("tap"); showStart(); });
+  controls.appendChild(back);
+}
+
+/* ---------- Tarjetas para compartir, con el estilo de esta versión ---------- */
+const CARD_STYLES = {
+  aurora: { name: "Aurora", hint: "Vertical oscura, para estados", w: 1080, h: 1920, bg: "#0a1910", fg: "#eef6e8", muted: "#a3baa9", accent: "#c8f53a", onAccent: "#0a1910", card: "#11261a", line: "#234132", blobs: [["rgba(200,245,58,.16)", 260, 360, 640], ["rgba(60,170,130,.22)", 860, 1320, 720], ["rgba(120,200,90,.10)", 640, 120, 420]] },
+  dia: { name: "Día", hint: "Vertical clara, para estados", w: 1080, h: 1920, bg: "#eef3e6", fg: "#1d2b20", muted: "#55665a", accent: "#2f6b2a", onAccent: "#ffffff", card: "#ffffff", line: "#c9d4bf", blobs: [["rgba(160,210,90,.30)", 240, 340, 620], ["rgba(120,200,180,.28)", 880, 1300, 700], ["rgba(245,215,110,.25)", 700, 140, 420]] },
+  cuadrada: { name: "Cuadrada", hint: "Para chats y grupos", w: 1080, h: 1080, bg: "#0a1910", fg: "#eef6e8", muted: "#a3baa9", accent: "#c8f53a", onAccent: "#0a1910", card: "#11261a", line: "#234132", blobs: [["rgba(200,245,58,.14)", 200, 220, 520], ["rgba(60,170,130,.22)", 900, 900, 600]] }
+};
+let cardStyle = "aurora";
+const DISP = '"Bricolage Grotesque", "Arial Black", system-ui, sans-serif', BODY = '"Atkinson Hyperlegible", system-ui, sans-serif';
+const svgImage = str => new Promise((res, rej) => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(str); });
+
+function sceneSVG(st) {
+  const c = document.getElementById("world").cloneNode(true);
+  c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  c.setAttribute("width", "800"); c.setAttribute("height", "300");
+  c.removeAttribute("class");
+  world.apply(c, st);
+  const css = ".layer.hide{display:none}.grow{opacity:0}.grow.on{opacity:1}.cloud{opacity:0}.win{fill:#2a5640}.lit .win{fill:#e6f39a}.lit .win:nth-child(3n){fill:#f5d76e}.sun{opacity:.8}.daytint{opacity:.32}.stars{opacity:.35}.pane{fill:#12301f}.lit .pane{fill:#e6f39a}";
+  const s = document.createElementNS("http://www.w3.org/2000/svg", "style");
+  s.textContent = css;
+  c.insertBefore(s, c.firstChild);
+  return new XMLSerializer().serializeToString(c);
+}
+function ecoSVG() {
+  const c = ecoEl.querySelector("svg").cloneNode(true);
+  c.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+  c.setAttribute("width", "320"); c.setAttribute("height", "320");
+  c.querySelectorAll(".eye, .smile, .frown").forEach(n => n.remove());
+  c.querySelector(".arm-l").setAttribute("transform", "rotate(55 10 29.5)");
+  c.querySelector(".arm-r").setAttribute("transform", "rotate(-55 54 29.5)");
+  c.querySelectorAll(".acc").forEach(n => {
+    const k = [...n.classList].find(x => x.startsWith("acc-")).slice(4);
+    if (!ecoEl.classList.contains("w-" + k)) n.remove();
+  });
+  return new XMLSerializer().serializeToString(c);
+}
+function wrap(c, text, maxW) {
+  const lines = []; let line = "";
+  text.split(" ").forEach(w => { const t = line ? line + " " + w : w; if (c.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t; });
+  if (line) lines.push(line);
+  return lines;
+}
+function fit(c, text, weight, family, max, maxW) {
+  let s = max;
+  do { c.font = weight + " " + s + "px " + family; s -= 4; } while (c.measureText(text).width > maxW && s > 24);
+  return s + 4;
+}
+function rrect(c, x, y, w, h, r) { c.beginPath(); c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); }
+function pills(c, S, list, x, y, size) {
+  c.font = "700 " + size + "px " + BODY;
+  list.forEach(t => {
+    const w = c.measureText(t).width + size * 1.4;
+    rrect(c, x, y, w, size * 2, size);
+    c.lineWidth = 4; c.strokeStyle = S.accent; c.stroke();
+    c.fillStyle = S.fg; c.fillText(t, x + size * 0.7, y + size * 0.45);
+    x += w + 16;
+  });
+}
+
+async function drawCard(info, key) {
+  const S = CARD_STYLES[key];
+  try { await Promise.all([document.fonts.load("800 100px " + DISP), document.fonts.load("700 40px " + BODY), document.fonts.load("400 40px " + BODY)]); } catch (e) {}
+  const [scene, eco] = await Promise.all([svgImage(sceneSVG({ place: "plaza", grown: 2, fiesta: true })), svgImage(ecoSVG())]);
+  const W = S.w, H = S.h, M = 72;
+  const cv = document.createElement("canvas");
+  cv.width = W; cv.height = H;
+  const c = cv.getContext("2d");
+  c.textBaseline = "top";
+  c.fillStyle = S.bg; c.fillRect(0, 0, W, H);
+  S.blobs.forEach(([col, x, y, r]) => { const g = c.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, "rgba(0,0,0,0)"); c.fillStyle = g; c.fillRect(0, 0, W, H); });
+  const prof = info.prof;
+  const eyebrow = info.players === 1 ? "MI PERFIL ALIADO" : info.mode === "coop" ? "EL PERFIL ALIADO DE NUESTRO EQUIPO" : "EL PERFIL ALIADO DE NUESTRO GRUPO";
+  const cta = info.players === 1 ? "¿Qué perfil te sale a ti?" : "¿Su grupo nos supera?";
+  const stats = [info.best + " de " + info.totalClaims + " aciertos", info.voices + " voces", info.stars + " estrellas"];
+  const url = SHARE_URL.replace(/^https?:\/\//, "").replace(/\/$/, "");
+  const sceneRound = (x, y, w, h, r) => { c.save(); rrect(c, x, y, w, h, r); c.clip(); c.drawImage(scene, x, y, w, h); c.restore(); rrect(c, x, y, w, h, r); c.lineWidth = 4; c.strokeStyle = S.line; c.stroke(); };
+
+  if (key !== "cuadrada") {
+    c.fillStyle = S.muted; c.font = "700 30px " + BODY;
+    c.fillText("COMUNIDAD TdeA · ACUDE 2026-2", M, 84);
+    c.font = "800 150px " + DISP;
+    c.fillStyle = S.fg; c.fillText("Sin", M, 140);
+    c.fillStyle = S.accent; c.fillText("etiquetas", M, 296);
+    c.drawImage(eco, W - M - 220, 56, 220, 220);
+    c.fillStyle = S.muted; c.font = "400 40px " + BODY;
+    wrap(c, "Un juego sobre diversidad e inclusión para toda la comunidad TdeA", W - 2 * M).forEach((l, k) => c.fillText(l, M, 478 + k * 50));
+    const sy = 600, sw = W - 2 * M, sh = Math.round(sw * 150 / 400);
+    sceneRound(M, sy, sw, sh, 36);
+    /* Tarjeta del perfil */
+    let y = sy + sh + 48;
+    c.font = "400 44px " + BODY;
+    const ph = wrap(c, "“" + prof.phrase + "”", W - 2 * M - 112).slice(0, 3);
+    const ch = 56 + 40 + 20 + 124 + 24 + ph.length * 56 + 48;
+    rrect(c, M, y, W - 2 * M, ch, 40);
+    c.fillStyle = S.card; c.fill();
+    c.lineWidth = 4; c.strokeStyle = S.accent; c.stroke();
+    let ty = y + 56;
+    c.fillStyle = S.muted; c.font = "700 32px " + BODY; c.fillText(eyebrow, M + 56, ty);
+    ty += 52;
+    const ns = fit(c, prof.name, "800", DISP, 124, W - 2 * M - 112);
+    c.fillStyle = S.accent; c.font = "800 " + ns + "px " + DISP; c.fillText(prof.name, M + 56, ty);
+    ty += 124 + 20;
+    c.fillStyle = S.fg; c.font = "400 44px " + BODY;
+    ph.forEach((l, k) => c.fillText(l, M + 56, ty + k * 56));
+    y += ch + 36;
+    pills(c, S, stats, M, y, 32);
+    /* Invitación al final */
+    c.fillStyle = S.accent; c.font = "800 " + fit(c, cta, "800", DISP, 72, W - 2 * M) + "px " + DISP;
+    c.fillText(cta, M, H - 270);
+    c.fillStyle = S.fg; c.font = "700 " + fit(c, "Juega gratis en " + url, "700", BODY, 40, W - 2 * M) + "px " + BODY;
+    c.fillText("Juega gratis en " + url, M, H - 172);
+    c.fillStyle = S.muted; c.font = "400 " + fit(c, CREDIT_START, "400", BODY, 30, W - 2 * M) + "px " + BODY;
+    c.fillText(CREDIT_START, M, H - 108);
+  } else {
+    c.fillStyle = S.accent; c.font = "700 30px " + BODY;
+    c.fillText("SIN ETIQUETAS · COMUNIDAD TdeA", M, 64);
+    const sw = W - 2 * M, sh = Math.round(sw * 150 / 400);
+    sceneRound(M, 116, sw, sh, 32);
+    c.drawImage(eco, M - 10, 116 + sh - 120, 280, 280);
+    const tx = M + 300, tw = W - M - tx;
+    let y = 116 + sh + 30;
+    c.fillStyle = S.muted; c.font = "700 " + fit(c, eyebrow, "700", BODY, 28, tw) + "px " + BODY; c.fillText(eyebrow, tx, y);
+    y += 44;
+    const ns = fit(c, prof.name, "800", DISP, 100, tw);
+    c.fillStyle = S.accent; c.font = "800 " + ns + "px " + DISP; c.fillText(prof.name, tx, y);
+    y += ns + 18;
+    c.fillStyle = S.fg; c.font = "400 34px " + BODY;
+    wrap(c, "“" + prof.phrase + "”", tw).slice(0, 3).forEach((l, k) => c.fillText(l, tx, y + k * 44));
+    pills(c, S, stats, M, H - 230, 28);
+    c.fillStyle = S.accent; c.font = "800 " + fit(c, cta, "800", DISP, 52, W - 2 * M) + "px " + DISP;
+    c.fillText(cta, M, H - 150);
+    c.fillStyle = S.fg; c.font = "700 " + fit(c, "Juega gratis en " + url, "700", BODY, 32, W - 2 * M) + "px " + BODY;
+    c.fillText("Juega gratis en " + url, M, H - 82);
+  }
+  return cv;
+}
+
+/* Guardar: en claude.ai con el permiso de descargas, en otros sitios con un enlace normal */
+let dlNS = null;
+try { if (window.claude && typeof window.claude.use === "function") window.claude.use("downloads").then(d => { dlNS = d; }, () => {}); } catch (e) {}
+function saveBlob(blob, fname, done) {
+  const plain = () => {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob); a.download = fname;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    done && done();
+  };
+  if (!dlNS) return plain();
+  dlNS.save({ filename: fname, data: blob }).then(() => done && done(), e => {
+    if (e && (e.code === "declined" || e.code === "rate_limited")) return;
+    plain();
+  });
+}
+
+function showShareImage(info) {
+  setPhase("end");
+  clearStage(true);
+  stage.appendChild(el("div", "eyebrow", "Imagen para compartir"));
+  stage.appendChild(el("p", "claim scene", "Elige tu tarjeta"));
+  stage.appendChild(el("p", "note", "Sirven para estados y chats de WhatsApp, no llevan datos personales"));
+  const opts = el("div", "card-opts");
+  opts.setAttribute("role", "group");
+  opts.setAttribute("aria-label", "Diseños de tarjeta");
+  const img = document.createElement("img");
+  img.className = "share-img";
+  const status = el("p", "note");
+  status.setAttribute("aria-live", "polite");
+  let blob = null, url = "", file = null, tok = 0;
+  const render = () => {
+    const my = ++tok;
+    status.textContent = "Preparando la tarjeta…";
+    drawCard(info, cardStyle).then(cv => new Promise(r => cv.toBlob(r, "image/png"))).then(b => {
+      if (!b || my !== tok) return;
+      blob = b;
+      if (url) URL.revokeObjectURL(url);
+      url = URL.createObjectURL(b);
+      img.src = url;
+      img.alt = "Tarjeta " + CARD_STYLES[cardStyle].name + " del juego Sin etiquetas con el perfil aliado " + info.prof.name + ", " + info.voices + " voces reunidas y la invitación a jugar";
+      file = new File([b], "sin-etiquetas-" + cardStyle + ".png", { type: "image/png" });
+      status.textContent = "";
+    }).catch(() => { status.textContent = "No se pudo crear la imagen en este navegador, puedes compartir el mensaje de texto"; });
+  };
+  Object.keys(CARD_STYLES).forEach(k => {
+    const b = el("button", "card-opt");
+    b.type = "button";
+    b.id = "card-" + k;
+    b.appendChild(el("span", "", CARD_STYLES[k].name));
+    b.appendChild(el("small", "", CARD_STYLES[k].hint));
+    b.setAttribute("aria-pressed", k === cardStyle ? "true" : "false");
+    b.addEventListener("click", () => {
+      sfx("tap");
+      cardStyle = k;
+      opts.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+      render();
+    });
+    opts.appendChild(b);
+  });
+  stage.appendChild(opts);
+  stage.appendChild(img);
+  stage.appendChild(status);
+  const canFiles = f => { try { return !!(navigator.canShare && navigator.share && navigator.canShare({ files: [f] })); } catch (e) { return false; } };
+  const saved = () => { status.textContent = "Imagen guardada, ya la puedes enviar por WhatsApp"; ecoSay("happy"); };
+  controls.appendChild(mkBtn("Compartir imagen", "", "btn-img-share", () => {
+    if (!blob) return;
+    if (canFiles(file)) navigator.share({ files: [file], text: info.msg }).catch(e => { if (!e || e.name !== "AbortError") saveBlob(blob, file.name, saved); });
+    else saveBlob(blob, file.name, saved);
+  }));
+  controls.appendChild(mkBtn("Guardar imagen", "ghost", "btn-img-save", () => { if (blob) saveBlob(blob, file.name, saved); }));
+  controls.appendChild(mkBtn("Volver al resultado", "ghost", "btn-img-back", showEnd));
+  render();
+}
+
+/* ---------- Hoja de opciones: menú del juego, colores y voz ---------- */
+const sheetEl = document.getElementById("sheet"), sheetCard = document.getElementById("sheet-card");
+let sheetOpener = null;
+function openSheet(title, build) {
+  sheetOpener = document.activeElement;
+  sheetCard.innerHTML = "";
+  const h = el("h2", "", title);
+  h.id = "sheet-title";
+  sheetCard.appendChild(h);
+  build(sheetCard);
+  const close = el("button", "help-close", "Cerrar");
+  close.type = "button";
+  close.id = "sheet-close";
+  close.addEventListener("click", closeSheet);
+  sheetCard.appendChild(close);
+  sheetEl.hidden = false;
+  close.focus({ preventScroll: true });
+}
+function closeSheet() {
+  stopSpeak();
+  sheetEl.hidden = true;
+  if (sheetOpener && sheetOpener.focus) sheetOpener.focus({ preventScroll: true });
+}
+sheetEl.addEventListener("click", e => { if (e.target === sheetEl) closeSheet(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !sheetEl.hidden) closeSheet(); });
+function sheetBtn(text, sub, id, fn, pressed) {
+  const b = el("button", "sheet-opt");
+  b.type = "button";
+  if (id) b.id = id;
+  b.appendChild(el("span", "", text));
+  if (sub) b.appendChild(el("small", "", sub));
+  if (pressed != null) b.setAttribute("aria-pressed", pressed ? "true" : "false");
+  b.addEventListener("click", fn);
+  return b;
+}
+
+/* Menú durante la partida */
+menuBtn.addEventListener("click", () => {
+  sfx("tap");
+  openSheet("Menú", box => {
+    box.appendChild(el("p", "", "Tu partida queda guardada desde el inicio de este capítulo"));
+    box.appendChild(sheetBtn("Seguir jugando", null, "menu-resume", closeSheet));
+    box.appendChild(sheetBtn("Ver el mapa", "Puedes volver con Continuar partida", "menu-map", () => { closeSheet(); showMap(); }));
+    box.appendChild(sheetBtn("Volver al inicio", "Lo que llevas de este capítulo se pierde", "menu-home", () => { closeSheet(); showStart(); }));
+  });
+});
+
+/* ---------- Colores ---------- */
+const PALETTES = {
+  aurora: { name: "Aurora", hint: "Verde noche, la original", sw: ["#0a1910", "#11261a", "#c8f53a", "#eef6e8"] },
+  noche: { name: "Noche azul", hint: "Oscura y tranquila", sw: ["#0b1220", "#121c30", "#8fd3ff", "#eef2fb"] },
+  tierra: { name: "Tierra", hint: "Cálida, en tonos café y miel", sw: ["#1d1610", "#2a2018", "#f5b041", "#f6ecdf"] },
+  dia: { name: "Día", hint: "Clara, como papel", sw: ["#eef3e6", "#ffffff", "#2f6b2a", "#1d2b20"] },
+  bruma: { name: "Bruma", hint: "Clara y suave, cansa menos la vista", sw: ["#dfe5dc", "#eef2ec", "#3f6e34", "#263228"] }
+};
+let palKey = "aurora";
+try { const p = localStorage.getItem("mod-pal"); if (PALETTES[p]) palKey = p; } catch (e) {}
+function applyPalette(k) {
+  palKey = k;
+  if (k === "aurora") document.documentElement.removeAttribute("data-pal");
+  else document.documentElement.setAttribute("data-pal", k);
+  try { localStorage.setItem("mod-pal", k); } catch (e) {}
+}
+applyPalette(palKey);
+function swatch(c) { const s = el("span", "swatch"); s.setAttribute("aria-hidden", "true"); c.forEach(x => { const i = el("i"); i.style.background = x; s.appendChild(i); }); return s; }
+document.getElementById("btn-colors").addEventListener("click", () => {
+  sfx("tap");
+  openSheet("Colores", box => {
+    box.appendChild(el("p", "", "Elige la paleta que te resulte más cómoda, se guarda en este celular. El botón Aa sigue activando letra grande y alto contraste"));
+    Object.keys(PALETTES).forEach(k => {
+      const P = PALETTES[k];
+      const b = sheetBtn(P.name, P.hint, "pal-" + k, () => {
+        applyPalette(k);
+        box.querySelectorAll("[id^=pal-]").forEach(x => x.setAttribute("aria-pressed", x.id === "pal-" + k ? "true" : "false"));
+        ecoSay("happy");
+      }, k === palKey);
+      b.insertBefore(swatch(P.sw), b.firstChild);
+      box.appendChild(b);
+    });
+  });
+});
+
+/* ---------- Voz de lectura ---------- */
+document.getElementById("btn-voice").addEventListener("click", () => {
+  sfx("tap");
+  openSheet("Voz de lectura", box => {
+    const vs = esVoices();
+    box.appendChild(el("p", "", vs.length ? "Toca una voz para escucharla y elegirla, se guarda en este celular" : "Este celular no tiene voces en español instaladas, el botón Escuchar usará la voz que tenga disponible"));
+    const list = [null, ...vs];
+    const paint = () => box.querySelectorAll("[id^=voz-]").forEach(x => x.setAttribute("aria-pressed", x.dataset.uri === voicePick ? "true" : "false"));
+    list.forEach((v, k) => {
+      const b = sheetBtn(v ? shortVoice(v) : "Automática", v ? regionOf(v.lang) + (v.localService === false ? ", necesita internet" : "") : "El juego elige una voz en español", "voz-" + k, () => {
+        voicePick = v ? v.voiceURI : "";
+        try { localStorage.setItem("mod-voice", voicePick); } catch (e) {}
+        paint();
+        speak("Hola, soy Eco, así sueno cuando te leo");
+      });
+      b.dataset.uri = v ? v.voiceURI : "";
+      box.appendChild(b);
+    });
+    paint();
+    box.appendChild(el("p", "", "Velocidad"));
+    const row = el("div", "speed-row");
+    RATES.forEach(([r, lab]) => {
+      const b = sheetBtn(nice(lab), null, "rate-" + lab.toLowerCase(), () => {
+        voiceRate = r;
+        try { localStorage.setItem("mod-rate", String(r)); } catch (e) {}
+        row.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false"));
+        speak("Así leo a velocidad " + lab.toLowerCase());
+      }, r === voiceRate);
+      row.appendChild(b);
+    });
+    box.appendChild(row);
+  });
+});
+if (!canSpeak) document.getElementById("btn-voice").hidden = true;
+
+/* ---------- Letra grande y alto contraste ---------- */
+const aaBtn = document.getElementById("btn-aa");
+let a11yOn = false;
+try { a11yOn = localStorage.getItem("mod-a11y") === "on"; } catch (e) {}
+function setA11y(on, persist) {
+  a11yOn = on;
+  document.documentElement.classList.toggle("a11y", on);
+  aaBtn.setAttribute("aria-pressed", on ? "true" : "false");
+  if (persist) { try { localStorage.setItem("mod-a11y", on ? "on" : "off"); } catch (e) {} }
+}
+setA11y(a11yOn, false);
+aaBtn.addEventListener("click", () => { sfx("tap"); setA11y(!a11yOn, true); });
+
+/* ---------- Interruptor de avisos de sonido ---------- */
+const capsBtn = document.getElementById("btn-caps");
+function paintCaps() { capsBtn.textContent = "Avisos de sonido: " + (capsOn ? "s\u00ed" : "no"); capsBtn.setAttribute("aria-pressed", capsOn ? "true" : "false"); }
+paintCaps();
+capsBtn.addEventListener("click", () => {
+  capsOn = !capsOn;
+  try { localStorage.setItem("mod-caps", capsOn ? "on" : "off"); } catch (e) {}
+  paintCaps();
+  if (capsOn) caption("Avisos de sonido activados");
+});
+
+/* ---------- Ayuda inmediata ---------- */
+const helpEl = document.getElementById("help"), helpBtn = document.getElementById("btn-help");
+function openHelp() { helpEl.hidden = false; document.getElementById("help-close").focus({ preventScroll: true }); }
+function closeHelp() { helpEl.hidden = true; helpBtn.focus({ preventScroll: true }); }
+helpBtn.addEventListener("click", openHelp);
+document.getElementById("help-close").addEventListener("click", closeHelp);
+helpEl.addEventListener("click", e => { if (e.target === helpEl) closeHelp(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !helpEl.hidden) closeHelp(); });
+helpEl.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => {
+  const n = b.getAttribute("data-copy"), label = "Copiar número";
+  const done = t => { b.textContent = t; setTimeout(() => { b.textContent = label; }, 2000); };
+  try {
+    if (!navigator.clipboard) throw 0;
+    navigator.clipboard.writeText(n).then(() => done("Copiado"), () => done("Marca el " + n));
+  } catch (e) { done("Marca el " + n); }
+}));
+
+wearAcc();
+showStart();
+</script>
+
+<script src="../movil.js"></script>
+<script src="../creditos.js"></script>
+<script src="../compartir.js"></script>
+<script src="../paletas.js"></script>
+</body></html>

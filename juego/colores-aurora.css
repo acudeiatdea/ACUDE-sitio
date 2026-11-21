@@ -1,0 +1,258 @@
+/* Generado por scripts/colores-aurora.mjs (npm run colores-aurora): no editar a mano.
+   El escenario de Eco en Aurora toma el tono de la paleta elegida; solo cambian los verdes del entorno
+   (27 colores), las personas, casas, árboles, luces y Eco quedan iguales. Con la paleta Aurora no cambia nada */
+:root[data-pal="arena"] { --bg: #f3ede2; --surface: #fbf8f2; --line: #ddd0bd; --fg: #2e2620; --muted: #6a5b4e; --lime: #a4512f; --lime-ink: #fff8f0; --miss: #a8432f; --red: #b03a2e; --au1: rgba(214,150,90,.20); --au2: rgba(196,120,86,.14); --au3: rgba(240,214,160,.24); color-scheme: light; }
+:root[data-pal="lavanda"] { --bg: #eeebf5; --surface: #faf9fd; --line: #d5cfe6; --fg: #29243b; --muted: #5f5876; --lime: #5b4c9e; --lime-ink: #faf9fd; --miss: #a8432f; --red: #b03a2e; --au1: rgba(150,130,220,.18); --au2: rgba(120,160,230,.14); --au3: rgba(210,200,240,.30); color-scheme: light; }
+
+/* Noche azul */
+:root[data-pal="noche"] .world [fill="#08170f" i] { fill: #080d17; }
+:root[data-pal="noche"] .world [stop-color="#08170f" i] { stop-color: #080d17; }
+:root[data-pal="noche"] .world [fill="#0a1910" i] { fill: #0a0f19; }
+:root[data-pal="noche"] .world [stroke="#0a1910" i] { stroke: #0a0f19; }
+:root[data-pal="noche"] .world [fill="#0e1f16" i] { fill: #0e141f; }
+:root[data-pal="noche"] .world [fill="#0e2418" i] { fill: #0f1623; }
+:root[data-pal="noche"] .world [fill="#11301f" i] { fill: #121c2f; }
+:root[data-pal="noche"] .world [fill="#132b1d" i] { fill: #141b2a; }
+:root[data-pal="noche"] .world [fill="#163023" i] { fill: #171f2f; }
+:root[data-pal="noche"] .world [fill="#163526" i] { fill: #172134; }
+:root[data-pal="noche"] .world [fill="#16392a" i] { fill: #172238; }
+:root[data-pal="noche"] .world [stop-color="#16392a" i] { stop-color: #172238; }
+:root[data-pal="noche"] .world [fill="#173d29" i] { fill: #18243c; }
+:root[data-pal="noche"] .world [fill="#1b3528" i] { fill: #1c2434; }
+:root[data-pal="noche"] .world [fill="#1c3f2e" i] { fill: #1d283e; }
+:root[data-pal="noche"] .world [fill="#1f4532" i] { fill: #202c44; }
+:root[data-pal="noche"] .world [fill="#24463a" i] { fill: #253045; }
+:root[data-pal="noche"] .world [fill="#24503a" i] { fill: #25334f; }
+:root[data-pal="noche"] .world [fill="#255039" i] { fill: #26344f; }
+:root[data-pal="noche"] .world [fill="#28563f" i] { fill: #293855; }
+:root[data-pal="noche"] .world [fill="#2a5640" i] { fill: #2b3955; }
+:root[data-pal="noche"] .world [fill="#2c4a3a" i] { fill: #2d3649; }
+:root[data-pal="noche"] .world [fill="#2f6a50" i] { fill: #304369; }
+:root[data-pal="noche"] .world [fill="#3d6550" i] { fill: #3e4b64; }
+:root[data-pal="noche"] .world [stroke="#3d6550" i] { stroke: #3e4b64; }
+:root[data-pal="noche"] .world [fill="#5a6b5c" i] { fill: #5a606b; }
+:root[data-pal="noche"] .world [fill="#5a7a68" i] { fill: #5b6579; }
+:root[data-pal="noche"] .world [fill="#6b7d70" i] { fill: #6b717d; }
+:root[data-pal="noche"] .world [stroke="#6b7d70" i] { stroke: #6b717d; }
+:root[data-pal="noche"] .world [fill="#7d9688" i] { fill: #7e8695; }
+:root[data-pal="noche"] .world [fill="#8aa394" i] { fill: #8b93a2; }
+:root[data-pal="noche"] .world [fill="#a3baa9" i] { fill: #a4abb9; }
+:root[data-pal="noche"] .world .win { fill: #2b3955; }
+:root[data-pal="noche"] .world .pane { fill: #131c2f; }
+:root[data-pal="noche"] .world .node .flag { fill: #3e4b64; }
+:root[data-pal="noche"] .world .node .disc { fill: #242d40; }
+:root[data-pal="noche"] .world .node .disc { stroke: #3e4b64; }
+
+/* Tierra */
+:root[data-pal="tierra"] .world [fill="#08170f" i] { fill: #150f0a; }
+:root[data-pal="tierra"] .world [stop-color="#08170f" i] { stop-color: #150f0a; }
+:root[data-pal="tierra"] .world [fill="#0a1910" i] { fill: #17120c; }
+:root[data-pal="tierra"] .world [stroke="#0a1910" i] { stroke: #17120c; }
+:root[data-pal="tierra"] .world [fill="#0e1f16" i] { fill: #1c1611; }
+:root[data-pal="tierra"] .world [fill="#0e2418" i] { fill: #211911; }
+:root[data-pal="tierra"] .world [fill="#11301f" i] { fill: #2b2116; }
+:root[data-pal="tierra"] .world [fill="#132b1d" i] { fill: #271f17; }
+:root[data-pal="tierra"] .world [fill="#163023" i] { fill: #2c231a; }
+:root[data-pal="tierra"] .world [fill="#163526" i] { fill: #30261b; }
+:root[data-pal="tierra"] .world [fill="#16392a" i] { fill: #34281b; }
+:root[data-pal="tierra"] .world [stop-color="#16392a" i] { stop-color: #34281b; }
+:root[data-pal="tierra"] .world [fill="#173d29" i] { fill: #372a1d; }
+:root[data-pal="tierra"] .world [fill="#1b3528" i] { fill: #31281f; }
+:root[data-pal="tierra"] .world [fill="#1c3f2e" i] { fill: #3a2e21; }
+:root[data-pal="tierra"] .world [fill="#1f4532" i] { fill: #3f3225; }
+:root[data-pal="tierra"] .world [fill="#24463a" i] { fill: #413529; }
+:root[data-pal="tierra"] .world [fill="#24503a" i] { fill: #493a2b; }
+:root[data-pal="tierra"] .world [fill="#255039" i] { fill: #4a3b2b; }
+:root[data-pal="tierra"] .world [fill="#28563f" i] { fill: #4f3f2f; }
+:root[data-pal="tierra"] .world [fill="#2a5640" i] { fill: #4f4031; }
+:root[data-pal="tierra"] .world [fill="#2c4a3a" i] { fill: #463b31; }
+:root[data-pal="tierra"] .world [fill="#2f6a50" i] { fill: #614d38; }
+:root[data-pal="tierra"] .world [fill="#3d6550" i] { fill: #5f5143; }
+:root[data-pal="tierra"] .world [stroke="#3d6550" i] { stroke: #5f5143; }
+:root[data-pal="tierra"] .world [fill="#5a6b5c" i] { fill: #68635d; }
+:root[data-pal="tierra"] .world [fill="#5a7a68" i] { fill: #756a5f; }
+:root[data-pal="tierra"] .world [fill="#6b7d70" i] { fill: #7a746e; }
+:root[data-pal="tierra"] .world [stroke="#6b7d70" i] { stroke: #7a746e; }
+:root[data-pal="tierra"] .world [fill="#7d9688" i] { fill: #928a81; }
+:root[data-pal="tierra"] .world [fill="#8aa394" i] { fill: #9f968e; }
+:root[data-pal="tierra"] .world [fill="#a3baa9" i] { fill: #b7afa6; }
+:root[data-pal="tierra"] .world .win { fill: #4f4031; }
+:root[data-pal="tierra"] .world .pane { fill: #2b2116; }
+:root[data-pal="tierra"] .world .node .flag { fill: #5f5143; }
+:root[data-pal="tierra"] .world .node .disc { fill: #3d3228; }
+:root[data-pal="tierra"] .world .node .disc { stroke: #5f5143; }
+
+/* Día */
+:root[data-pal="dia"] .world [fill="#08170f" i] { fill: #4e864e; }
+:root[data-pal="dia"] .world [stop-color="#08170f" i] { stop-color: #4e864e; }
+:root[data-pal="dia"] .world [fill="#0a1910" i] { fill: #538653; }
+:root[data-pal="dia"] .world [stroke="#0a1910" i] { stroke: #538653; }
+:root[data-pal="dia"] .world [fill="#0e1f16" i] { fill: #5b8b5b; }
+:root[data-pal="dia"] .world [fill="#0e2418" i] { fill: #599259; }
+:root[data-pal="dia"] .world [fill="#11301f" i] { fill: #5ea15e; }
+:root[data-pal="dia"] .world [fill="#132b1d" i] { fill: #639863; }
+:root[data-pal="dia"] .world [fill="#163023" i] { fill: #699c69; }
+:root[data-pal="dia"] .world [fill="#163526" i] { fill: #355435; }
+:root[data-pal="dia"] .world [fill="#16392a" i] { fill: #6ba56b; }
+:root[data-pal="dia"] .world [stop-color="#16392a" i] { stop-color: #6ba56b; }
+:root[data-pal="dia"] .world [fill="#173d29" i] { fill: #6ea86e; }
+:root[data-pal="dia"] .world [fill="#1b3528" i] { fill: #749e74; }
+:root[data-pal="dia"] .world [fill="#1c3f2e" i] { fill: #3c5c3c; }
+:root[data-pal="dia"] .world [fill="#1f4532" i] { fill: #406140; }
+:root[data-pal="dia"] .world [fill="#24463a" i] { fill: #456245; }
+:root[data-pal="dia"] .world [fill="#24503a" i] { fill: #8bb38b; }
+:root[data-pal="dia"] .world [fill="#255039" i] { fill: #476b47; }
+:root[data-pal="dia"] .world [fill="#28563f" i] { fill: #4b704b; }
+:root[data-pal="dia"] .world [fill="#2a5640" i] { fill: #96b796; }
+:root[data-pal="dia"] .world [fill="#2c4a3a" i] { fill: #93ae93; }
+:root[data-pal="dia"] .world [fill="#2f6a50" i] { fill: #a7c6a7; }
+:root[data-pal="dia"] .world [fill="#3d6550" i] { fill: #b3c5b3; }
+:root[data-pal="dia"] .world [stroke="#3d6550" i] { stroke: #b3c5b3; }
+:root[data-pal="dia"] .world [fill="#5a6b5c" i] { fill: #d0d4d0; }
+:root[data-pal="dia"] .world [fill="#5a7a68" i] { fill: #d8ded8; }
+:root[data-pal="dia"] .world [fill="#6b7d70" i] { fill: #e7e9e7; }
+:root[data-pal="dia"] .world [stroke="#6b7d70" i] { stroke: #e7e9e7; }
+:root[data-pal="dia"] .world [fill="#7d9688" i] { fill: #ffffff; }
+:root[data-pal="dia"] .world [fill="#8aa394" i] { fill: #ffffff; }
+:root[data-pal="dia"] .world [fill="#a3baa9" i] { fill: #ffffff; }
+:root[data-pal="dia"] .world .win { fill: #96b796; }
+:root[data-pal="dia"] .world .pane { fill: #60a060; }
+:root[data-pal="dia"] .world .node .flag { fill: #b3c5b3; }
+:root[data-pal="dia"] .world .node .disc { fill: #84a784; }
+:root[data-pal="dia"] .world .node .disc { stroke: #b3c5b3; }
+:root[data-pal="dia"] .world .node .disc { fill: #2f4c2f; stroke: #2f6b2a; }
+:root[data-pal="dia"] .world .node .flag { fill: #2f6b2a; }
+:root[data-pal="dia"] .world [stroke="#c8f53a" i] { stroke: #2f6b2a; }
+
+/* Bruma */
+:root[data-pal="bruma"] .world [fill="#08170f" i] { fill: #5e7e66; }
+:root[data-pal="bruma"] .world [stop-color="#08170f" i] { stop-color: #5e7e66; }
+:root[data-pal="bruma"] .world [fill="#0a1910" i] { fill: #627e69; }
+:root[data-pal="bruma"] .world [stroke="#0a1910" i] { stroke: #627e69; }
+:root[data-pal="bruma"] .world [fill="#0e1f16" i] { fill: #68836f; }
+:root[data-pal="bruma"] .world [fill="#0e2418" i] { fill: #698871; }
+:root[data-pal="bruma"] .world [fill="#11301f" i] { fill: #6f9378; }
+:root[data-pal="bruma"] .world [fill="#132b1d" i] { fill: #718e78; }
+:root[data-pal="bruma"] .world [fill="#163023" i] { fill: #76927d; }
+:root[data-pal="bruma"] .world [fill="#163526" i] { fill: #3e4f42; }
+:root[data-pal="bruma"] .world [fill="#16392a" i] { fill: #7a9981; }
+:root[data-pal="bruma"] .world [stop-color="#16392a" i] { stop-color: #7a9981; }
+:root[data-pal="bruma"] .world [fill="#173d29" i] { fill: #7d9c84; }
+:root[data-pal="bruma"] .world [fill="#1b3528" i] { fill: #7e9584; }
+:root[data-pal="bruma"] .world [fill="#1c3f2e" i] { fill: #46584a; }
+:root[data-pal="bruma"] .world [fill="#1f4532" i] { fill: #4a5d4e; }
+:root[data-pal="bruma"] .world [fill="#24463a" i] { fill: #4e5e52; }
+:root[data-pal="bruma"] .world [fill="#24503a" i] { fill: #94a999; }
+:root[data-pal="bruma"] .world [fill="#255039" i] { fill: #526657; }
+:root[data-pal="bruma"] .world [fill="#28563f" i] { fill: #566b5b; }
+:root[data-pal="bruma"] .world [fill="#2a5640" i] { fill: #9cafa1; }
+:root[data-pal="bruma"] .world [fill="#2c4a3a" i] { fill: #98a79c; }
+:root[data-pal="bruma"] .world [fill="#2f6a50" i] { fill: #abbcaf; }
+:root[data-pal="bruma"] .world [fill="#3d6550" i] { fill: #b4beb6; }
+:root[data-pal="bruma"] .world [stroke="#3d6550" i] { stroke: #b4beb6; }
+:root[data-pal="bruma"] .world [fill="#5a6b5c" i] { fill: #cccecc; }
+:root[data-pal="bruma"] .world [fill="#5a7a68" i] { fill: #d4d8d5; }
+:root[data-pal="bruma"] .world [fill="#6b7d70" i] { fill: #e1e2e1; }
+:root[data-pal="bruma"] .world [stroke="#6b7d70" i] { stroke: #e1e2e1; }
+:root[data-pal="bruma"] .world [fill="#7d9688" i] { fill: #fafafa; }
+:root[data-pal="bruma"] .world [fill="#8aa394" i] { fill: #ffffff; }
+:root[data-pal="bruma"] .world [fill="#a3baa9" i] { fill: #ffffff; }
+:root[data-pal="bruma"] .world .win { fill: #9cafa1; }
+:root[data-pal="bruma"] .world .pane { fill: #719379; }
+:root[data-pal="bruma"] .world .node .flag { fill: #b4beb6; }
+:root[data-pal="bruma"] .world .node .disc { fill: #8c9f91; }
+:root[data-pal="bruma"] .world .node .disc { stroke: #b4beb6; }
+:root[data-pal="bruma"] .world .node .disc { fill: #2f4c36; stroke: #3f6e34; }
+:root[data-pal="bruma"] .world .node .flag { fill: #3f6e34; }
+:root[data-pal="bruma"] .world [stroke="#c8f53a" i] { stroke: #3f6e34; }
+
+/* Arena */
+:root[data-pal="arena"] .world [fill="#08170f" i] { fill: #927a5e; }
+:root[data-pal="arena"] .world [stop-color="#08170f" i] { stop-color: #927a5e; }
+:root[data-pal="arena"] .world [fill="#0a1910" i] { fill: #927c63; }
+:root[data-pal="arena"] .world [stroke="#0a1910" i] { stroke: #927c63; }
+:root[data-pal="arena"] .world [fill="#0e1f16" i] { fill: #95816a; }
+:root[data-pal="arena"] .world [fill="#0e2418" i] { fill: #9b846a; }
+:root[data-pal="arena"] .world [fill="#11301f" i] { fill: #a48d73; }
+:root[data-pal="arena"] .world [fill="#132b1d" i] { fill: #9e8b75; }
+:root[data-pal="arena"] .world [fill="#163023" i] { fill: #a1907b; }
+:root[data-pal="arena"] .world [fill="#163526" i] { fill: #5d4f40; }
+:root[data-pal="arena"] .world [fill="#16392a" i] { fill: #a9957e; }
+:root[data-pal="arena"] .world [stop-color="#16392a" i] { stop-color: #a9957e; }
+:root[data-pal="arena"] .world [fill="#173d29" i] { fill: #ac9881; }
+:root[data-pal="arena"] .world [fill="#1b3528" i] { fill: #a49584; }
+:root[data-pal="arena"] .world [fill="#1c3f2e" i] { fill: #655747; }
+:root[data-pal="arena"] .world [fill="#1f4532" i] { fill: #6a5c4b; }
+:root[data-pal="arena"] .world [fill="#24463a" i] { fill: #6b5f50; }
+:root[data-pal="arena"] .world [fill="#24503a" i] { fill: #b7aa9a; }
+:root[data-pal="arena"] .world [fill="#255039" i] { fill: #746453; }
+:root[data-pal="arena"] .world [fill="#28563f" i] { fill: #796957; }
+:root[data-pal="arena"] .world [fill="#2a5640" i] { fill: #bcb0a3; }
+:root[data-pal="arena"] .world [fill="#2c4a3a" i] { fill: #b4aaa0; }
+:root[data-pal="arena"] .world [fill="#2f6a50" i] { fill: #c9bfb3; }
+:root[data-pal="arena"] .world [fill="#3d6550" i] { fill: #cac4bc; }
+:root[data-pal="arena"] .world [stroke="#3d6550" i] { stroke: #cac4bc; }
+:root[data-pal="arena"] .world [fill="#5a6b5c" i] { fill: #d9d7d6; }
+:root[data-pal="arena"] .world [fill="#5a7a68" i] { fill: #e2e0de; }
+:root[data-pal="arena"] .world [fill="#6b7d70" i] { fill: #ecebeb; }
+:root[data-pal="arena"] .world [stroke="#6b7d70" i] { stroke: #ecebeb; }
+:root[data-pal="arena"] .world [fill="#7d9688" i] { fill: #ffffff; }
+:root[data-pal="arena"] .world [fill="#8aa394" i] { fill: #ffffff; }
+:root[data-pal="arena"] .world [fill="#a3baa9" i] { fill: #ffffff; }
+:root[data-pal="arena"] .world .win { fill: #bcb0a3; }
+:root[data-pal="arena"] .world .pane { fill: #a38e74; }
+:root[data-pal="arena"] .world .node .flag { fill: #cac4bc; }
+:root[data-pal="arena"] .world .node .disc { fill: #aca093; }
+:root[data-pal="arena"] .world .node .disc { stroke: #cac4bc; }
+:root[data-pal="arena"] .world .node .disc { fill: #4c3e2f; stroke: #7a4a30; }
+:root[data-pal="arena"] .world .node .flag { fill: #7a4a30; }
+:root[data-pal="arena"] .world [stroke="#c8f53a" i] { stroke: #7a4a30; }
+
+/* Lavanda */
+:root[data-pal="lavanda"] .world [fill="#08170f" i] { fill: #6e6494; }
+:root[data-pal="lavanda"] .world [stop-color="#08170f" i] { stop-color: #6e6494; }
+:root[data-pal="lavanda"] .world [fill="#0a1910" i] { fill: #716994; }
+:root[data-pal="lavanda"] .world [stroke="#0a1910" i] { stroke: #716994; }
+:root[data-pal="lavanda"] .world [fill="#0e1f16" i] { fill: #797196; }
+:root[data-pal="lavanda"] .world [fill="#0e2418" i] { fill: #7a719c; }
+:root[data-pal="lavanda"] .world [fill="#11301f" i] { fill: #8279a4; }
+:root[data-pal="lavanda"] .world [fill="#132b1d" i] { fill: #837c9f; }
+:root[data-pal="lavanda"] .world [fill="#163023" i] { fill: #8881a2; }
+:root[data-pal="lavanda"] .world [fill="#163526" i] { fill: #49435e; }
+:root[data-pal="lavanda"] .world [fill="#16392a" i] { fill: #8b84a9; }
+:root[data-pal="lavanda"] .world [stop-color="#16392a" i] { stop-color: #8b84a9; }
+:root[data-pal="lavanda"] .world [fill="#173d29" i] { fill: #8e87ac; }
+:root[data-pal="lavanda"] .world [fill="#1b3528" i] { fill: #8f8aa5; }
+:root[data-pal="lavanda"] .world [fill="#1c3f2e" i] { fill: #514b67; }
+:root[data-pal="lavanda"] .world [fill="#1f4532" i] { fill: #554f6c; }
+:root[data-pal="lavanda"] .world [fill="#24463a" i] { fill: #59546d; }
+:root[data-pal="lavanda"] .world [fill="#24503a" i] { fill: #a39eb8; }
+:root[data-pal="lavanda"] .world [fill="#255039" i] { fill: #5d5775; }
+:root[data-pal="lavanda"] .world [fill="#28563f" i] { fill: #615b7a; }
+:root[data-pal="lavanda"] .world [fill="#2a5640" i] { fill: #aba7bc; }
+:root[data-pal="lavanda"] .world [fill="#2c4a3a" i] { fill: #a7a4b4; }
+:root[data-pal="lavanda"] .world [fill="#2f6a50" i] { fill: #b9b5c9; }
+:root[data-pal="lavanda"] .world [fill="#3d6550" i] { fill: #c1beca; }
+:root[data-pal="lavanda"] .world [stroke="#3d6550" i] { stroke: #c1beca; }
+:root[data-pal="lavanda"] .world [fill="#5a6b5c" i] { fill: #d7d6d9; }
+:root[data-pal="lavanda"] .world [fill="#5a7a68" i] { fill: #dfdee2; }
+:root[data-pal="lavanda"] .world [fill="#6b7d70" i] { fill: #eaeaeb; }
+:root[data-pal="lavanda"] .world [stroke="#6b7d70" i] { stroke: #eaeaeb; }
+:root[data-pal="lavanda"] .world [fill="#7d9688" i] { fill: #ffffff; }
+:root[data-pal="lavanda"] .world [fill="#8aa394" i] { fill: #ffffff; }
+:root[data-pal="lavanda"] .world [fill="#a3baa9" i] { fill: #ffffff; }
+:root[data-pal="lavanda"] .world .win { fill: #aba7bc; }
+:root[data-pal="lavanda"] .world .pane { fill: #837ba4; }
+:root[data-pal="lavanda"] .world .node .flag { fill: #c1beca; }
+:root[data-pal="lavanda"] .world .node .disc { fill: #9b97ad; }
+:root[data-pal="lavanda"] .world .node .disc { stroke: #c1beca; }
+:root[data-pal="lavanda"] .world .node .disc { fill: #342f4c; stroke: #4e4290; }
+:root[data-pal="lavanda"] .world .node .flag { fill: #4e4290; }
+:root[data-pal="lavanda"] .world [stroke="#c8f53a" i] { stroke: #4e4290; }
+
+/* Estados (como en el juego) */
+:root[data-pal] .world .lit .win, :root[data-pal] .world .lit .pane { fill: #e6f39a; }
+:root[data-pal] .world .lit .win:nth-child(3n) { fill: #f5d76e; }
+:root[data-pal] .world .node.done .flag, :root[data-pal] .world .node.done .disc { fill: #c8f53a; }
+:root[data-pal] .world .node.now .flag { fill: #f5d76e; }
+:root[data-pal] .world .node.now .disc { stroke: #f5d76e; }

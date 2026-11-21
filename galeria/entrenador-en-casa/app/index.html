@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FFF8F1">
+<title>Mi entrenador en casa</title>
+<style>
+  :root{
+    --bg:#FFF8F1;
+    --card:#FFFFFF;
+    --naranja:#E8590C;
+    --naranja-osc:#B8440A;
+    --naranja-suave:#FFE8D6;
+    --negro:#141414;
+    --gris:#6B6B6B;
+    --linea:#F1DCCB;
+    --ok:#2F7D32;
+    --radio:16px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg)}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--naranja-osc);
+    line-height:1.45;
+    padding:env(safe-area-inset-top) 0 calc(90px + env(safe-area-inset-bottom));
+    -webkit-tap-highlight-color:transparent;
+  }
+  .wrap{max-width:560px;margin:0 auto;padding:18px 16px}
+  header h1{font-size:1.6rem;color:var(--naranja);letter-spacing:-.02em;line-height:1.15}
+  header p{color:var(--naranja-osc);opacity:.85;font-size:.95rem;margin-top:4px}
+  h2{font-size:1.1rem;color:var(--naranja);margin:22px 0 10px}
+  h3{font-size:1.05rem;color:var(--naranja)}
+  .card{background:var(--card);border:1px solid var(--linea);border-radius:var(--radio);padding:16px;margin-bottom:12px}
+  .muted{color:var(--gris);font-size:.88rem}
+
+  /* chips de selección */
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    border:2px solid var(--negro);background:#fff;color:var(--negro);
+    padding:10px 14px;border-radius:999px;font-size:.95rem;font-weight:600;cursor:pointer;
+    min-height:44px;font-family:inherit
+  }
+  .chip[aria-pressed="true"]{background:var(--negro);color:#fff}
+  .grid-grupos{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .grid-grupos .chip{border-radius:14px;text-align:left;display:flex;align-items:center;gap:8px}
+  .grid-grupos .chip span.ico{font-size:1.2rem}
+
+  /* botones */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    background:var(--negro);color:#fff;border:none;border-radius:14px;
+    padding:14px 18px;font-size:1rem;font-weight:700;cursor:pointer;min-height:48px;
+    font-family:inherit;width:100%
+  }
+  .btn:active{transform:scale(.98)}
+  .btn.sec{background:#fff;color:var(--negro);border:2px solid var(--negro)}
+  .btn.peq{width:auto;padding:9px 14px;min-height:40px;font-size:.9rem;border-radius:12px}
+  .fila{display:flex;gap:8px;flex-wrap:wrap}
+  .fila .btn{flex:1}
+
+  /* ejercicio */
+  .ej-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .ej-num{background:var(--naranja);color:#fff;border-radius:10px;font-weight:800;min-width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:.95rem}
+  .ej-meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+  .tag{background:var(--naranja-suave);color:var(--naranja-osc);font-weight:700;font-size:.85rem;padding:5px 10px;border-radius:8px}
+  .pasos{margin:8px 0 4px 18px;color:var(--naranja-osc)}
+  .pasos li{margin:3px 0}
+  .tip{background:#FFF3E8;border-left:4px solid var(--naranja);padding:8px 10px;border-radius:8px;font-size:.9rem;margin-top:8px}
+  .series{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .serie{
+    width:48px;height:48px;border-radius:12px;border:2px solid var(--negro);background:#fff;
+    font-weight:800;font-size:1rem;color:var(--negro);cursor:pointer;font-family:inherit
+  }
+  .serie.hecha{background:var(--negro);color:#fff}
+  .ej.completo{border-color:var(--naranja);box-shadow:0 0 0 2px var(--naranja-suave)}
+  .lista-simple{list-style:none}
+  .lista-simple li{padding:8px 0;border-bottom:1px dashed var(--linea);display:flex;justify-content:space-between;gap:10px}
+  .lista-simple li:last-child{border-bottom:none}
+  .lista-simple b{color:var(--naranja)}
+
+  /* progreso */
+  .barra{height:10px;background:var(--naranja-suave);border-radius:99px;overflow:hidden;margin-top:8px}
+  .barra > div{height:100%;background:var(--naranja);width:0;transition:width .3s}
+
+  /* nav inferior */
+  nav{
+    position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--linea);
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;gap:8px;justify-content:center;z-index:5
+  }
+  nav .btn{max-width:180px;padding:12px 10px;font-size:.92rem}
+  nav .btn[aria-current="true"]{background:var(--naranja)}
+
+  /* temporizador */
+  .overlay{position:fixed;inset:0;background:rgba(255,248,241,.97);display:none;flex-direction:column;align-items:center;justify-content:center;z-index:20;padding:24px;text-align:center}
+  .overlay.on{display:flex}
+  .reloj{font-size:5.5rem;font-weight:800;color:var(--naranja);font-variant-numeric:tabular-nums;line-height:1}
+  .overlay p{margin:10px 0 24px;font-size:1.05rem}
+  .overlay .fila{width:100%;max-width:360px}
+
+  .vista{display:none}
+  .vista.on{display:block}
+  .aviso{font-size:.85rem;color:var(--gris);margin-top:18px;text-align:center}
+  .vacio{text-align:center;color:var(--gris);padding:20px 0}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Mi entrenador en casa</h1>
+    <p>Rutinas con pesas y objetos de tu casa, sin cuentas ni datos personales</p>
+  </header>
+
+  <!-- VISTA: CONFIGURAR -->
+  <section id="v-config" class="vista on">
+    <h2>1 · ¿Qué quieres trabajar hoy?</h2>
+    <div class="grid-grupos" id="grupos"></div>
+    <button class="btn sec" id="btn-sugerir" style="margin-top:10px">✨ Elige por mí según mi historial</button>
+    <p class="muted" id="sugerencia" style="margin-top:6px"></p>
+
+    <h2>2 · ¿Qué tienes a mano?</h2>
+    <p class="muted" style="margin-bottom:8px">Tu propio peso siempre cuenta, marca lo demás</p>
+    <div class="chips" id="equipo"></div>
+
+    <h2>3 · Tu nivel</h2>
+    <div class="chips" id="niveles"></div>
+    <p class="muted" id="nivel-desc" style="margin-top:8px"></p>
+
+    <h2>4 · Duración aproximada</h2>
+    <div class="chips" id="duraciones"></div>
+
+    <div style="margin-top:22px">
+      <button class="btn" id="btn-generar">Armar mi rutina 💪</button>
+    </div>
+  </section>
+
+  <!-- VISTA: RUTINA -->
+  <section id="v-rutina" class="vista">
+    <div class="card">
+      <h3 id="r-titulo">Rutina</h3>
+      <p class="muted" id="r-resumen"></p>
+      <div class="barra"><div id="r-barra"></div></div>
+      <p class="muted" id="r-progreso" style="margin-top:6px"></p>
+    </div>
+
+    <h2>Calentamiento · 5 minutos</h2>
+    <div class="card"><ul class="lista-simple" id="r-calentamiento"></ul></div>
+
+    <h2>Ejercicios</h2>
+    <p class="muted" style="margin-bottom:10px">Toca cada cuadro al terminar una serie y arranca el descanso</p>
+    <div id="r-ejercicios"></div>
+
+    <h2>Estiramiento final</h2>
+    <div class="card"><ul class="lista-simple" id="r-estiramiento"></ul></div>
+
+    <div class="fila" style="margin-top:12px">
+      <button class="btn" id="btn-terminar">Terminar y guardar ✅</button>
+    </div>
+    <div class="fila" style="margin-top:8px">
+      <button class="btn sec" id="btn-otra">Armar otra rutina</button>
+    </div>
+  </section>
+
+  <!-- VISTA: HISTORIAL -->
+  <section id="v-historial" class="vista">
+    <h2>Tu semana</h2>
+    <div class="card">
+      <p><b id="h-semana" style="font-size:1.8rem;color:var(--naranja)">0</b> entrenos en los últimos 7 días</p>
+      <p class="muted" id="h-grupos"></p>
+    </div>
+    <h2>Últimos entrenos</h2>
+    <div class="card"><ul class="lista-simple" id="h-lista"></ul></div>
+    <button class="btn sec" id="btn-borrar">Borrar historial</button>
+    <p class="aviso">El historial vive solo en este navegador, no se envía a ningún lado</p>
+  </section>
+
+  <p class="aviso">Guía general de ejercicio, no reemplaza a un profesional de la salud<br>
+  Si sientes dolor agudo, mareo o falta de aire, detente</p>
+</div>
+
+<nav>
+  <button class="btn" data-ir="v-config" aria-current="true">🏠 Inicio</button>
+  <button class="btn" data-ir="v-rutina">📋 Rutina</button>
+  <button class="btn" data-ir="v-historial">📅 Historial</button>
+</nav>
+
+<!-- TEMPORIZADOR -->
+<div class="overlay" id="timer">
+  <div class="muted" id="t-label">Descanso</div>
+  <div class="reloj" id="t-reloj">60</div>
+  <p id="t-sig"></p>
+  <div class="fila">
+    <button class="btn sec" id="t-mas">+15 s</button>
+    <button class="btn" id="t-saltar">Listo, seguir</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  /* ---------- DATOS ---------- */
+  const EQUIPO = [
+    {id:'mancuernas', nombre:'🏋️ Mancuernas'},
+    {id:'botellas',  nombre:'🧴 Botellas o galones con agua'},
+    {id:'mochila',   nombre:'🎒 Mochila con libros'},
+    {id:'silla',     nombre:'🪑 Silla firme'},
+    {id:'toalla',    nombre:'🧺 Toalla'}
+  ];
+
+  const NIVELES = {
+    principiante:{nombre:'Principiante', series:2, reps:'8 a 10', seg:20, descanso:75, desc:'2 series, movimientos controlados, prioriza la técnica'},
+    intermedio:  {nombre:'Intermedio',   series:3, reps:'10 a 12', seg:30, descanso:60, desc:'3 series, las últimas repeticiones deben costar'},
+    avanzado:    {nombre:'Avanzado',     series:4, reps:'12 a 15', seg:45, descanso:45, desc:'4 series, menos descanso, baja lento en cada repetición'}
+  };
+
+  const DURACIONES = {20:4, 30:5, 45:6};
+
+  const GRUPOS = [
+    {id:'pecho', nombre:'Pecho', ico:'🫁'},
+    {id:'espalda', nombre:'Espalda', ico:'🔙'},
+    {id:'piernas', nombre:'Piernas', ico:'🦵'},
+    {id:'gluteos', nombre:'Glúteos', ico:'🍑'},
+    {id:'hombros', nombre:'Hombros', ico:'🙆'},
+    {id:'brazos', nombre:'Brazos', ico:'💪'},
+    {id:'core', nombre:'Abdomen y core', ico:'🎯'},
+    {id:'completo', nombre:'Cuerpo completo', ico:'⚡'}
+  ];
+
+  // eq: vacío = solo peso corporal; si tiene valores, sirve cualquiera de ellos
+  // tipo: 'reps' o 'seg'; lado: true si se hace por cada lado
+  const EJ = {
+    pecho:[
+      {n:'Flexiones de pecho', eq:[], tipo:'reps', p:['Manos un poco más abiertas que los hombros','Cuerpo recto de cabeza a talones','Baja el pecho cerca del piso y empuja'], tip:'Si cuesta mucho, apoya las rodillas en el piso'},
+      {n:'Flexiones inclinadas en silla', eq:['silla'], tipo:'reps', p:['Silla contra la pared para que no se mueva','Manos en el asiento, cuerpo en línea recta','Baja el pecho al borde y empuja'], tip:'Ideal para empezar, entre más alto el apoyo más fácil'},
+      {n:'Flexiones con pies en silla', eq:['silla'], tipo:'reps', p:['Pies sobre la silla, manos en el piso','Abdomen firme, no hundas la cadera','Baja controlado y empuja'], tip:'Enfoca la parte alta del pecho, solo si ya dominas las flexiones normales'},
+      {n:'Press de pecho en el piso', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Acostada boca arriba, rodillas dobladas','Peso a la altura del pecho, codos a unos 45°','Empuja hacia arriba y baja hasta que el codo toque el piso'], tip:'Con mochila, abrázala contra el pecho y empújala con ambas manos'},
+      {n:'Aperturas en el piso', eq:['mancuernas','botellas'], tipo:'reps', p:['Boca arriba, brazos estirados sobre el pecho','Codos un poco doblados','Abre los brazos en arco hasta rozar el piso y vuelve'], tip:'Piensa en abrazar un árbol grande'},
+      {n:'Flexiones con mochila', eq:['mochila'], tipo:'reps', p:['Ponte la mochila bien ajustada','Haz flexiones normales con el peso extra','Mantén el cuerpo recto'], tip:'Ajusta los libros para subir o bajar la dificultad'}
+    ],
+    espalda:[
+      {n:'Remo a una mano apoyada en silla', eq:['mancuernas','botellas','mochila'], tipo:'reps', lado:true, p:['Una mano y una rodilla sobre la silla','Espalda plana, peso colgando','Lleva el codo hacia la cadera y baja lento'], tip:'Aprieta el omóplato al subir'},
+      {n:'Remo inclinado con mochila', eq:['mochila'], tipo:'reps', p:['Pies al ancho de cadera, rodillas suaves','Inclina el tronco con la espalda recta','Tira de la mochila hacia el ombligo'], tip:'No redondees la espalda baja'},
+      {n:'Remo inclinado con dos pesos', eq:['mancuernas','botellas'], tipo:'reps', p:['Inclina el tronco unos 45° con espalda recta','Un peso en cada mano','Sube los codos hacia atrás y baja controlado'], tip:'Mira al piso para cuidar el cuello'},
+      {n:'Superman', eq:[], tipo:'reps', p:['Boca abajo, brazos estirados al frente','Sube brazos, pecho y piernas a la vez','Sostén 2 segundos y baja'], tip:'Movimiento corto, no fuerces la espalda baja'},
+      {n:'Jalón con toalla', eq:['toalla'], tipo:'reps', p:['Toalla estirada sobre la cabeza, una punta en cada mano','Tira hacia afuera sin soltar tensión','Baja la toalla detrás de la nuca o al pecho y sube'], tip:'Entre más fuerte tires hacia afuera, más trabaja la espalda'},
+      {n:'Pullover acostada', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Boca arriba, peso sostenido con ambas manos sobre el pecho','Llévalo hacia atrás de la cabeza con codos suaves','Vuelve al pecho'], tip:'Baja solo hasta donde tus hombros se sientan cómodos'},
+      {n:'Ángeles en el piso boca abajo', eq:[], tipo:'reps', p:['Boca abajo, brazos estirados al frente un poco elevados','Llévalos en arco hasta la cadera','Regresa sin apoyarlos'], tip:'Excelente para la postura'}
+    ],
+    piernas:[
+      {n:'Sentadilla', eq:[], tipo:'reps', p:['Pies al ancho de hombros','Baja como si te sentaras, pecho arriba','Rodillas en la dirección de los pies, sube empujando el piso'], tip:'Baja hasta donde mantengas la espalda recta'},
+      {n:'Sentadilla con peso al pecho', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Sostén el peso pegado al pecho','Baja con el tronco erguido','Sube apretando glúteos'], tip:'El peso al frente ayuda a mantener la postura'},
+      {n:'Zancadas alternas', eq:[], tipo:'reps', lado:true, p:['Da un paso largo al frente','Baja hasta que ambas rodillas formen 90°','Empuja con la pierna de adelante y vuelve'], tip:'Agarra pesos en las manos para hacerlo más duro'},
+      {n:'Sentadilla búlgara', eq:['silla'], tipo:'reps', lado:true, p:['Empeine de un pie sobre la silla detrás de ti','Baja con la pierna de adelante','Sube empujando con el talón'], tip:'Silla contra la pared, empieza sin peso'},
+      {n:'Subidas a la silla', eq:['silla'], tipo:'reps', lado:true, p:['Silla firme contra la pared','Sube con un pie apoyando todo el pie','Baja controlado'], tip:'Si la silla tiene ruedas o se mueve, no la uses para esto'},
+      {n:'Peso muerto rumano', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Pies al ancho de cadera, peso frente a los muslos','Lleva la cadera hacia atrás con espalda recta','Baja el peso por las piernas y sube apretando glúteos'], tip:'Sentirás estirar la parte de atrás del muslo'},
+      {n:'Elevación de talones', eq:[], tipo:'reps', p:['De pie, apóyate en la pared','Sube en puntas lo más alto posible','Baja lento'], tip:'En el borde de un escalón ganas más rango'},
+      {n:'Sentadilla isométrica en pared', eq:[], tipo:'seg', p:['Espalda pegada a la pared','Baja hasta que muslos queden casi paralelos al piso','Sostén sin moverte'], tip:'Respira normal, no aguantes el aire'}
+    ],
+    gluteos:[
+      {n:'Puente de glúteo', eq:[], tipo:'reps', p:['Boca arriba, rodillas dobladas, pies apoyados','Sube la cadera apretando glúteos','Sostén 1 segundo arriba y baja'], tip:'Empuja con los talones'},
+      {n:'Puente con peso', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Pon el peso sobre la cadera','Sube la cadera y aprieta arriba','Baja sin tocar del todo el piso'], tip:'Dobla una toalla debajo del peso para que no moleste'},
+      {n:'Hip thrust en silla o sofá', eq:['silla'], tipo:'reps', p:['Espalda alta apoyada en el borde de la silla o sofá','Pies firmes, rodillas a 90° arriba','Sube la cadera y baja controlado'], tip:'Mantén la barbilla hacia el pecho'},
+      {n:'Patada de glúteo en cuatro apoyos', eq:[], tipo:'reps', lado:true, p:['Manos bajo hombros, rodillas bajo cadera','Lleva una pierna doblada hacia el techo','Baja sin arquear la espalda'], tip:'Sostén una botella detrás de la rodilla para más intensidad'},
+      {n:'Abducción lateral acostada', eq:[], tipo:'reps', lado:true, p:['Acostada de lado, piernas estiradas','Sube la pierna de arriba sin girar la cadera','Baja lento'], tip:'Trabaja el glúteo medio, clave para las rodillas'},
+      {n:'Peso muerto a una pierna', eq:[], tipo:'reps', lado:true, p:['De pie sobre una pierna','Inclina el tronco y lleva la otra pierna atrás','Vuelve apretando el glúteo de apoyo'], tip:'Apóyate en una silla si pierdes el equilibrio'},
+      {n:'Sentadilla sumo con peso', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Pies bien abiertos, puntas hacia afuera','Peso colgando entre las piernas','Baja y sube apretando glúteos'], tip:'Rodillas hacia afuera todo el tiempo'}
+    ],
+    hombros:[
+      {n:'Press de hombros', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['De pie o sentada, peso a la altura de los hombros','Empuja hacia arriba sin bloquear codos','Baja controlado'], tip:'Abdomen firme para no arquear la espalda'},
+      {n:'Elevaciones laterales', eq:['mancuernas','botellas'], tipo:'reps', p:['Brazos a los lados, codos un poco doblados','Sube hasta la altura de los hombros','Baja lento'], tip:'Usa poco peso, aquí manda la técnica'},
+      {n:'Elevaciones frontales', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Peso frente a los muslos','Sube con brazos casi estirados hasta los hombros','Baja controlado'], tip:'Sin balanceo del cuerpo'},
+      {n:'Flexiones en V', eq:[], tipo:'reps', p:['Forma una V invertida con la cadera arriba','Dobla los codos llevando la cabeza al piso','Empuja de vuelta'], tip:'Con pies en una silla se vuelve más difícil'},
+      {n:'Pájaros inclinada', eq:['mancuernas','botellas'], tipo:'reps', p:['Tronco inclinado con espalda recta','Abre los brazos hacia los lados','Aprieta la parte de atrás del hombro'], tip:'Perfecto para compensar horas frente al computador'},
+      {n:'Círculos de brazos', eq:[], tipo:'seg', p:['Brazos estirados a los lados','Haz círculos pequeños hacia adelante','A mitad del tiempo cambia hacia atrás'], tip:'Con botellas pequeñas en las manos arde más'},
+      {n:'Remo al mentón con toalla', eq:['toalla'], tipo:'reps', p:['Pisa el centro de la toalla','Agarra las puntas y tira hacia el mentón','Codos más altos que las manos'], tip:'Tira fuerte contra el pie para crear resistencia'}
+    ],
+    brazos:[
+      {n:'Curl de bíceps', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Codos pegados al cuerpo','Sube el peso doblando el codo','Baja lento hasta estirar'], tip:'Con mochila agárrala de la manija superior'},
+      {n:'Curl martillo', eq:['mancuernas','botellas'], tipo:'reps', p:['Palmas mirándose entre sí','Sube sin mover los codos','Baja controlado'], tip:'Trabaja también el antebrazo'},
+      {n:'Fondos de tríceps en silla', eq:['silla'], tipo:'reps', p:['Manos en el borde de la silla, dedos hacia ti','Baja doblando los codos hacia atrás','Empuja hasta estirar'], tip:'Silla contra la pared, rodillas dobladas para hacerlo más fácil'},
+      {n:'Extensión de tríceps sobre la cabeza', eq:['mancuernas','botellas','mochila'], tipo:'reps', p:['Sostén el peso con ambas manos sobre la cabeza','Baja detrás de la nuca doblando codos','Estira de nuevo'], tip:'Codos apuntando al frente, cerca de la cabeza'},
+      {n:'Patada de tríceps', eq:['mancuernas','botellas'], tipo:'reps', lado:true, p:['Inclinada con una mano en la silla o rodilla','Codo pegado al cuerpo a 90°','Estira el brazo hacia atrás'], tip:'Solo se mueve el antebrazo'},
+      {n:'Flexiones diamante', eq:[], tipo:'reps', p:['Manos juntas formando un diamante bajo el pecho','Baja con codos pegados','Empuja'], tip:'Apoya rodillas si hace falta'},
+      {n:'Curl isométrico con toalla', eq:['toalla'], tipo:'seg', lado:true, p:['Pisa la toalla con un pie','Agárrala y tira con el codo a 90°','Sostén la fuerza sin moverte'], tip:'Aplica fuerza alta pero sin dolor'}
+    ],
+    core:[
+      {n:'Plancha', eq:[], tipo:'seg', p:['Antebrazos en el piso, codos bajo hombros','Cuerpo recto, aprieta abdomen y glúteos','Sostén'], tip:'Si la cadera se cae, apoya rodillas'},
+      {n:'Plancha lateral', eq:[], tipo:'seg', lado:true, p:['De lado sobre un antebrazo','Cadera arriba en línea recta','Sostén'], tip:'Rodillas dobladas para la versión fácil'},
+      {n:'Crunch abdominal', eq:[], tipo:'reps', p:['Boca arriba, rodillas dobladas','Sube hombros del piso contrayendo el abdomen','Baja lento'], tip:'Manos en el pecho, no jales el cuello'},
+      {n:'Bicho muerto', eq:[], tipo:'reps', lado:true, p:['Boca arriba, brazos al techo y rodillas a 90°','Estira brazo y pierna contrarios','Vuelve y cambia'], tip:'Espalda baja pegada al piso siempre'},
+      {n:'Giros rusos', eq:[], tipo:'reps', p:['Sentada, tronco inclinado atrás, pies en el piso','Gira el tronco de lado a lado','Cuenta cada lado como una repetición'], tip:'Sostén una botella o mancuerna para más intensidad'},
+      {n:'Escaladores', eq:[], tipo:'seg', p:['Posición de flexión','Lleva rodillas al pecho alternando','Ritmo constante'], tip:'Hombros sobre las manos'},
+      {n:'Elevación de piernas', eq:[], tipo:'reps', p:['Boca arriba, manos bajo la cadera','Sube las piernas estiradas hasta 90°','Baja sin tocar el piso'], tip:'Dobla rodillas si sientes la espalda baja'},
+      {n:'Rodillas al pecho con toalla', eq:['toalla'], tipo:'reps', p:['Posición de flexión, pies sobre la toalla en piso liso','Desliza las rodillas al pecho','Vuelve a estirar'], tip:'Solo en piso liso como baldosa o madera'},
+      {n:'Leñador con peso', eq:['mancuernas','botellas','mochila'], tipo:'reps', lado:true, p:['Peso con ambas manos junto a una cadera','Llévalo en diagonal sobre el hombro contrario','Baja controlado'], tip:'Gira desde el tronco, no solo con los brazos'}
+    ]
+  };
+
+  const CALENTAMIENTO = [
+    ['Marcha en el sitio subiendo rodillas','1 min'],
+    ['Círculos de brazos adelante y atrás','30 s'],
+    ['Rotaciones de cadera','30 s'],
+    ['Sentadillas suaves sin peso','10'],
+    ['Saltos de tijera o pasos laterales','1 min'],
+    ['Giros de tronco','30 s'],
+    ['Movilidad de cuello y muñecas','30 s']
+  ];
+
+  const ESTIRAMIENTOS = {
+    pecho:[['Pecho en el marco de una puerta','30 s por lado'],['Brazos entrelazados atrás','30 s']],
+    espalda:[['Postura del niño','40 s'],['Gato y vaca','8 lentos']],
+    piernas:[['Cuádriceps de pie','30 s por lado'],['Isquiotibiales sentada','40 s'],['Pantorrilla contra la pared','30 s por lado']],
+    gluteos:[['Figura 4 acostada','30 s por lado'],['Rodilla al pecho','30 s por lado']],
+    hombros:[['Brazo cruzado al pecho','30 s por lado'],['Tríceps tras la cabeza','30 s por lado']],
+    brazos:[['Tríceps tras la cabeza','30 s por lado'],['Antebrazo con palma al frente','30 s por lado']],
+    core:[['Cobra suave','30 s'],['Torsión acostada','30 s por lado']],
+    completo:[['Postura del niño','40 s'],['Isquiotibiales sentada','40 s'],['Brazo cruzado al pecho','30 s por lado']]
+  };
+
+  /* ---------- ESTADO ---------- */
+  const store = {
+    get(k, def){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : def; }catch(e){ return def; } },
+    set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  };
+
+  let cfg = store.get('ent_cfg', {grupo:'piernas', equipo:['mancuernas'], nivel:'principiante', dur:30});
+  let rutina = store.get('ent_rutina', null);
+  let historial = store.get('ent_hist', []);
+
+  const $ = s => document.querySelector(s);
+
+  /* ---------- UI CONFIG ---------- */
+  function pintarConfig(){
+    $('#grupos').innerHTML = GRUPOS.map(g =>
+      `<button class="chip" data-g="${g.id}" aria-pressed="${cfg.grupo===g.id}"><span class="ico">${g.ico}</span>${g.nombre}</button>`).join('');
+    $('#equipo').innerHTML = EQUIPO.map(e =>
+      `<button class="chip" data-e="${e.id}" aria-pressed="${cfg.equipo.includes(e.id)}">${e.nombre}</button>`).join('');
+    $('#niveles').innerHTML = Object.entries(NIVELES).map(([k,v]) =>
+      `<button class="chip" data-n="${k}" aria-pressed="${cfg.nivel===k}">${v.nombre}</button>`).join('');
+    $('#nivel-desc').textContent = NIVELES[cfg.nivel].desc;
+    $('#duraciones').innerHTML = Object.keys(DURACIONES).map(d =>
+      `<button class="chip" data-d="${d}" aria-pressed="${cfg.dur==d}">${d} min</button>`).join('');
+  }
+
+  document.addEventListener('click', ev => {
+    const b = ev.target.closest('button');
+    if(!b) return;
+    if(b.dataset.g){ cfg.grupo = b.dataset.g; $('#sugerencia').textContent=''; }
+    else if(b.dataset.e){
+      const id = b.dataset.e;
+      cfg.equipo = cfg.equipo.includes(id) ? cfg.equipo.filter(x=>x!==id) : [...cfg.equipo, id];
+    }
+    else if(b.dataset.n){ cfg.nivel = b.dataset.n; }
+    else if(b.dataset.d){ cfg.dur = +b.dataset.d; }
+    else if(b.dataset.ir){ irA(b.dataset.ir); return; }
+    else return;
+    store.set('ent_cfg', cfg);
+    pintarConfig();
+  });
+
+  /* ---------- SUGERENCIA ---------- */
+  $('#btn-sugerir').addEventListener('click', () => {
+    const orden = ['piernas','pecho','espalda','gluteos','hombros','core','brazos','completo'];
+    const recientes = historial.slice(0,4).map(h => h.grupo);
+    const elegido = orden.find(g => !recientes.includes(g)) || orden[0];
+    cfg.grupo = elegido;
+    store.set('ent_cfg', cfg);
+    pintarConfig();
+    const nombre = GRUPOS.find(g=>g.id===elegido).nombre;
+    $('#sugerencia').textContent = recientes.length
+      ? `Hoy toca ${nombre}, es el grupo que llevas más tiempo sin trabajar`
+      : `Para empezar te propongo ${nombre}`;
+  });
+
+  /* ---------- GENERAR ---------- */
+  function disponible(ej){
+    return ej.eq.length === 0 || ej.eq.some(e => cfg.equipo.includes(e));
+  }
+  function mezclar(a){
+    a = a.slice();
+    for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; }
+    return a;
+  }
+  function conPeso(ej){ return ej.eq.length>0; }
+
+  function elegir(grupo, cant){
+    if(grupo==='completo'){
+      const base = ['piernas','pecho','espalda','gluteos','hombros','core'];
+      return base.slice(0,cant).map(g => {
+        const op = mezclar(EJ[g].filter(disponible));
+        return {...op[0], grupo:g};
+      });
+    }
+    let op = mezclar(EJ[grupo].filter(disponible));
+    // prioriza ejercicios que usan lo que marcaste
+    op.sort((a,b) => conPeso(b) - conPeso(a));
+    const conEq = op.filter(conPeso), sinEq = op.filter(e=>!conPeso(e));
+    const sel = [];
+    while(sel.length < cant && (conEq.length || sinEq.length)){
+      if(conEq.length) sel.push(conEq.shift());
+      if(sel.length < cant && sinEq.length) sel.push(sinEq.shift());
+    }
+    return sel.map(e => ({...e, grupo}));
+  }
+
+  function generar(){
+    const cant = DURACIONES[cfg.dur];
+    const niv = NIVELES[cfg.nivel];
+    const ejercicios = elegir(cfg.grupo, cant).map(e => ({
+      ...e, series:niv.series, hechas:0
+    }));
+    rutina = {
+      grupo:cfg.grupo, nivel:cfg.nivel, dur:cfg.dur,
+      calentamiento: mezclar(CALENTAMIENTO).slice(0,5),
+      ejercicios, creada: Date.now()
+    };
+    store.set('ent_rutina', rutina);
+    pintarRutina();
+    irA('v-rutina');
+  }
+  $('#btn-generar').addEventListener('click', generar);
+  $('#btn-otra').addEventListener('click', () => irA('v-config'));
+
+  function textoCarga(e, niv){
+    if(e.tipo==='seg') return `${niv.seg} s` + (e.lado?' por lado':'');
+    return `${niv.reps} reps` + (e.lado?' por lado':'');
+  }
+  function textoEquipo(e){
+    if(!e.eq.length) return 'Peso corporal';
+    const usa = e.eq.filter(x => cfg.equipo.includes(x));
+    return (usa.length?usa:e.eq).map(x => EQUIPO.find(q=>q.id===x).nombre.replace(/^\S+\s/,'')).join(' o ');
+  }
+
+  /* ---------- PINTAR RUTINA ---------- */
+  function pintarRutina(){
+    const cont = $('#r-ejercicios');
+    if(!rutina){
+      $('#r-titulo').textContent = 'Aún no tienes rutina';
+      $('#r-resumen').textContent = 'Ve a Inicio y arma una';
+      cont.innerHTML = '';
+      $('#r-calentamiento').innerHTML = '';
+      $('#r-estiramiento').innerHTML = '';
+      $('#r-barra').style.width = '0';
+      $('#r-progreso').textContent = '';
+      return;
+    }
+    const niv = NIVELES[rutina.nivel];
+    const g = GRUPOS.find(x=>x.id===rutina.grupo);
+    $('#r-titulo').textContent = `${g.ico} ${g.nombre}`;
+    $('#r-resumen').textContent = `${niv.nombre} · unos ${rutina.dur} min · descanso de ${niv.descanso} s entre series`;
+
+    $('#r-calentamiento').innerHTML = rutina.calentamiento.map(c => `<li><span>${c[0]}</span><b>${c[1]}</b></li>`).join('');
+    $('#r-estiramiento').innerHTML = (ESTIRAMIENTOS[rutina.grupo]||ESTIRAMIENTOS.completo).map(c => `<li><span>${c[0]}</span><b>${c[1]}</b></li>`).join('');
+
+    cont.innerHTML = rutina.ejercicios.map((e,i) => {
+      const completo = e.hechas >= e.series;
+      const grupoTxt = rutina.grupo==='completo' ? `<span class="tag">${GRUPOS.find(x=>x.id===e.grupo).nombre}</span>` : '';
+      let chips = '';
+      for(let s=0;s<e.series;s++){
+        chips += `<button class="serie ${s<e.hechas?'hecha':''}" data-ej="${i}" data-s="${s}" aria-label="Serie ${s+1}">${s<e.hechas?'✓':s+1}</button>`;
+      }
+      return `<div class="card ej ${completo?'completo':''}">
+        <div class="ej-top">
+          <h3>${e.n}</h3>
+          <div class="ej-num">${i+1}</div>
+        </div>
+        <div class="ej-meta">
+          <span class="tag">${e.series} series</span>
+          <span class="tag">${textoCarga(e,niv)}</span>
+          <span class="tag">${textoEquipo(e)}</span>
+          ${grupoTxt}
+        </div>
+        <ol class="pasos">${e.p.map(x=>`<li>${x}</li>`).join('')}</ol>
+        <div class="tip">💡 ${e.tip}</div>
+        <div class="series">${chips}</div>
+        <div class="fila" style="margin-top:10px">
+          <button class="btn sec peq" data-cambiar="${i}">🔄 Cambiar ejercicio</button>
+        </div>
+      </div>`;
+    }).join('');
+
+    const total = rutina.ejercicios.reduce((a,e)=>a+e.series,0);
+    const hechas = rutina.ejercicios.reduce((a,e)=>a+Math.min(e.hechas,e.series),0);
+    $('#r-barra').style.width = (total? (hechas/total*100):0) + '%';
+    $('#r-progreso').textContent = `${hechas} de ${total} series completadas`;
+  }
+
+  $('#r-ejercicios').addEventListener('click', ev => {
+    const s = ev.target.closest('.serie');
+    const c = ev.target.closest('[data-cambiar]');
+    if(s){
+      const i = +s.dataset.ej, n = +s.dataset.s;
+      const e = rutina.ejercicios[i];
+      if(n < e.hechas){ e.hechas = n; }        // desmarcar
+      else {
+        e.hechas = n+1;
+        const ultimaSerie = e.hechas >= e.series;
+        const siguiente = ultimaSerie ? rutina.ejercicios.find(x => x.hechas < x.series) : e;
+        if(siguiente) abrirTimer(NIVELES[rutina.nivel].descanso, siguiente.n, ultimaSerie);
+        else celebrar();
+      }
+      store.set('ent_rutina', rutina);
+      pintarRutina();
+    }
+    if(c){
+      const i = +c.dataset.cambiar;
+      const actual = rutina.ejercicios[i];
+      const usados = rutina.ejercicios.map(x=>x.n);
+      const op = mezclar(EJ[actual.grupo].filter(x => disponible(x) && !usados.includes(x.n)));
+      if(op.length){
+        rutina.ejercicios[i] = {...op[0], grupo:actual.grupo, series:actual.series, hechas:0};
+        store.set('ent_rutina', rutina);
+        pintarRutina();
+      } else {
+        c.textContent = 'No hay más opciones con tu equipo';
+      }
+    }
+  });
+
+  /* ---------- TERMINAR ---------- */
+  $('#btn-terminar').addEventListener('click', () => {
+    if(!rutina) return;
+    const total = rutina.ejercicios.reduce((a,e)=>a+e.series,0);
+    const hechas = rutina.ejercicios.reduce((a,e)=>a+Math.min(e.hechas,e.series),0);
+    if(hechas===0){
+      $('#r-progreso').textContent = 'Marca al menos una serie antes de guardar';
+      return;
+    }
+    historial.unshift({fecha:Date.now(), grupo:rutina.grupo, nivel:rutina.nivel, hechas, total});
+    historial = historial.slice(0,60);
+    store.set('ent_hist', historial);
+    rutina = null;
+    store.set('ent_rutina', null);
+    pintarRutina();
+    pintarHistorial();
+    irA('v-historial');
+  });
+
+  /* ---------- HISTORIAL ---------- */
+  function pintarHistorial(){
+    const semana = Date.now() - 7*864e5;
+    const sem = historial.filter(h => h.fecha >= semana);
+    $('#h-semana').textContent = sem.length;
+    const nombres = [...new Set(sem.map(h => GRUPOS.find(g=>g.id===h.grupo).nombre))];
+    $('#h-grupos').textContent = nombres.length ? 'Trabajaste: ' + nombres.join(', ') : 'Arranca hoy, cada sesión suma';
+    $('#h-lista').innerHTML = historial.length
+      ? historial.slice(0,15).map(h => {
+          const g = GRUPOS.find(x=>x.id===h.grupo);
+          const f = new Date(h.fecha).toLocaleDateString('es-CO',{weekday:'short', day:'numeric', month:'short'});
+          return `<li><span>${g.ico} ${g.nombre} <span class="muted">· ${f}</span></span><b>${h.hechas}/${h.total}</b></li>`;
+        }).join('')
+      : '<li class="vacio">Todavía no hay entrenos guardados</li>';
+  }
+  $('#btn-borrar').addEventListener('click', () => {
+    const b = $('#btn-borrar');
+    if(b.dataset.conf !== '1'){ b.dataset.conf='1'; b.textContent='Toca otra vez para confirmar'; setTimeout(()=>{b.dataset.conf='';b.textContent='Borrar historial';},3000); return; }
+    historial = []; store.set('ent_hist', historial); pintarHistorial();
+    b.dataset.conf=''; b.textContent='Borrar historial';
+  });
+
+  /* ---------- TEMPORIZADOR ---------- */
+  let tRest = 0, tInt = null;
+  function sonar(){
+    try{
+      const C = window.AudioContext || window.webkitAudioContext;
+      const ctx = new C();
+      [0,0.25,0.5].forEach((t,i) => {
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.frequency.value = i===2 ? 1046 : 784;
+        o.connect(g); g.connect(ctx.destination);
+        g.gain.setValueAtTime(0.25, ctx.currentTime+t);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+t+0.2);
+        o.start(ctx.currentTime+t); o.stop(ctx.currentTime+t+0.22);
+      });
+    }catch(e){}
+    try{ navigator.vibrate && navigator.vibrate([200,100,200]); }catch(e){}
+  }
+  function abrirTimer(seg, siguiente, cambio){
+    tRest = seg;
+    $('#t-label').textContent = 'Descanso';
+    $('#t-sig').innerHTML = (cambio ? 'Siguiente ejercicio<br>' : 'Siguiente serie de<br>') + `<b>${siguiente}</b>`;
+    $('#t-reloj').textContent = tRest;
+    $('#timer').classList.add('on');
+    clearInterval(tInt);
+    tInt = setInterval(() => {
+      tRest--;
+      $('#t-reloj').textContent = Math.max(tRest,0);
+      if(tRest <= 0){ clearInterval(tInt); sonar(); $('#t-label').textContent='¡A darle!'; setTimeout(cerrarTimer, 1200); }
+    }, 1000);
+  }
+  function cerrarTimer(){ clearInterval(tInt); $('#timer').classList.remove('on'); }
+  function celebrar(){
+    $('#t-label').textContent = '¡Rutina completa!';
+    $('#t-reloj').textContent = '🎉';
+    $('#t-sig').innerHTML = 'Haz el estiramiento final y guarda tu entreno';
+    $('#timer').classList.add('on');
+    sonar();
+  }
+  $('#t-saltar').addEventListener('click', cerrarTimer);
+  $('#t-mas').addEventListener('click', () => { tRest += 15; $('#t-reloj').textContent = tRest; });
+
+  /* ---------- NAVEGACIÓN ---------- */
+  function irA(id){
+    document.querySelectorAll('.vista').forEach(v => v.classList.toggle('on', v.id===id));
+    document.querySelectorAll('nav .btn').forEach(b => b.setAttribute('aria-current', b.dataset.ir===id));
+    if(id==='v-historial') pintarHistorial();
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  /* ---------- INICIO ---------- */
+  pintarConfig();
+  pintarRutina();
+  pintarHistorial();
+})();
+</script>
+</body>
+</html>
